@@ -106,7 +106,6 @@ class AddWeightFragment : BottomSheetDialogFragment() {
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText(getString(R.string.select_date))
-            .setSelection(selectedDate.time)
             .setCalendarConstraints(constraintsBuilder.build())
             .setTheme(R.style.MaterialCalendarTheme)
             .build()
