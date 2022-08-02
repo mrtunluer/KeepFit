@@ -24,7 +24,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_regular"
                 android:gravity="center"
                 android:text="Weight"
                 android:textColor="@color/hint"
@@ -34,7 +33,6 @@
                 android:id="@+id/weight_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_regular"
                 android:gravity="center"
                 android:padding="10dp"
                 android:textColor="@color/white"
@@ -69,7 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:background="@drawable/edit_text_bg"
-        android:fontFamily="@font/open_sans_regular"
         android:hint="@string/add_note"
         android:paddingStart="20dp"
         android:paddingTop="15dp"
@@ -79,49 +76,67 @@
         android:textColorHint="@color/hint"
         android:textSize="14sp" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="2"
         android:layout_gravity="center"
-        android:layout_marginBottom="15dp"
-        app:cardBackgroundColor="@color/dark_blue"
-        app:cardCornerRadius="20dp">
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/date_txt"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_regular"
-            android:paddingStart="20dp"
-            android:paddingTop="15dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="15dp"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/dark_blue"
+            app:cardCornerRadius="20dp">
 
-    </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/date_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/light_blue"
+                android:textSize="14sp"  />
+
+        </com.google.android.material.card.MaterialCardView>
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="@color/light_blue"
-        app:cardCornerRadius="20dp">
-
-        <TextView
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/save_btn"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_semi_bold"
-            android:paddingStart="30dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="30dp"
-            android:paddingBottom="10dp"
-            android:text="Save"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/light_blue"
+            app:cardCornerRadius="20dp">
 
-    </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open_sans_semi_bold"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                android:text="Save"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

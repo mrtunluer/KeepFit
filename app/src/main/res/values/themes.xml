@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">@style/defaultTextViewStyle</item>
     </style>
 
     <style name="BottomSheetTheme" parent="Theme.Design.Light.BottomSheetDialog">
@@ -40,6 +41,10 @@
     <style name="TextButton.Dialog1" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/blue</item>
+    </style>
+
+    <style name="defaultTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/open_sans_regular</item>
     </style>
 
 </resources>
