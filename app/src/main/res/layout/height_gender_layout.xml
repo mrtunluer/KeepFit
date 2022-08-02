@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/open_sans_semi_bold"
+            android:gravity="center"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="Finally, let's enter the height and gender values"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/group_choices_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:tbgCheckedButton="@+id/cm">
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/cm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cm"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:tbgMarkerColor="@color/secondary_blue" />
+
+            <com.nex3z.togglebuttongroup.button.CircularToggle
+                android:id="@+id/ft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ft"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:tbgMarkerColor="@color/secondary_blue" />
+
+        </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="@color/dark_blue"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:gravity="center"
+                    android:text="Height"
+                    android:textColor="@color/hint"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/current_height_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.neobaran.open.android.nruler.RulerView
+                    android:id="@+id/current_height_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:centerLineColor="@color/light_blue"
+                    app:centerLineHeight="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:numDigits="1"
+                    app:numMaxValue="240"
+                    app:numMinValue="10"
+                    app:numTextColor="@color/hint"
+                    app:numValue="160"
+                    app:sideLineColor="@color/light_blue"
+                    app:sideLineHeight="8dp"
+                    app:textSize="13sp"
+                    app:textSpaceHeight="10dp"
+                    app:unitStr="cm" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/open_sans_regular"
+            android:gravity="center"
+            android:text="Select Gender"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+            android:id="@+id/gender_cards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:alignItems="center"
+            app:toggle_requiredAmount="1">
+
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                android:id="@+id/female_card"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:toggle_backgroundColor="@color/blue"
+                app:toggle_btnCornerRadius="200dp"
+                app:toggle_icon="@drawable/ic_baseline_woman_24"
+                app:toggle_iconColor="@color/white"
+                app:toggle_iconPadding="20dp"
+                app:toggle_selectedBackgroundColor="@color/secondary_blue" />
+
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                android:id="@+id/male_card"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:toggle_backgroundColor="@color/blue"
+                app:toggle_btnCornerRadius="200dp"
+                app:toggle_icon="@drawable/ic_baseline_man_24"
+                app:toggle_iconColor="@color/white"
+                app:toggle_iconPadding="20dp"
+                app:toggle_selectedBackgroundColor="@color/secondary_blue" />
+
+        </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/light_blue"
+            app:cardCornerRadius="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_semi_bold"
+                android:paddingStart="30dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="30dp"
+                android:paddingBottom="10dp"
+                android:text="Save"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_ios_new_24" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

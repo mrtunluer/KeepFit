@@ -1,0 +1,123 @@
+package com.mertdev.weighttracking.data.repo
+
+import android.content.Context
+import android.util.Log
+import androidx.datastore.preferences.core.*
+import androidx.datastore.preferences.preferencesDataStore
+import com.mertdev.weighttracking.utils.Constants.CURRENT_HEIGHT_KEY
+import com.mertdev.weighttracking.utils.Constants.DATA_STORE_NAME
+import com.mertdev.weighttracking.utils.Constants.GENDER_KEY
+import com.mertdev.weighttracking.utils.Constants.HEIGHT_UNIT_KEY
+import com.mertdev.weighttracking.utils.Constants.IS_INFO_ENTERED_KEY
+import com.mertdev.weighttracking.utils.Constants.TARGET_WEIGHT_KEY
+import com.mertdev.weighttracking.utils.Constants.WEIGHT_UNIT_KEY
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
+import java.io.IOException
+import javax.inject.Inject
+
+private val Context.dataStore by preferencesDataStore(DATA_STORE_NAME)
+
+class DataStoreRepo @Inject constructor(@ApplicationContext private val context: Context){
+
+    private object PreferenceKeys{
+        val weightUnit = stringPreferencesKey(WEIGHT_UNIT_KEY)
+        val heightUnit = stringPreferencesKey(HEIGHT_UNIT_KEY)
+        val targetWeight = floatPreferencesKey(TARGET_WEIGHT_KEY)
+        val isInfoEntered = booleanPreferencesKey(IS_INFO_ENTERED_KEY)
+        val gender = stringPreferencesKey(GENDER_KEY)
+        val currentHeight = floatPreferencesKey(CURRENT_HEIGHT_KEY)
+    }
+
+    suspend fun saveWeightUnit(weightUnit: String){
+        context.dataStore.edit { preference ->
+            preference[PreferenceKeys.weightUnit] = weightUnit
+        }
+    }
+
+    suspend fun saveHeightUnit(heightUnit: String){
+        context.dataStore.edit { preference ->
+            preference[PreferenceKeys.heightUnit] = heightUnit
+        }
+    }
+
+    suspend fun saveTargetWeight(targetWeight: Float){
+        context.dataStore.edit { preference ->
+            preference[PreferenceKeys.targetWeight] = targetWeight
+        }
+    }
+
+    suspend fun saveOnBoardingState(isInfoEntered: Boolean){
+        context.dataStore.edit { preference ->
+            preference[PreferenceKeys.isInfoEntered] = isInfoEntered
+        }
+    }
+
+    suspend fun saveGender(gender: String){
+        context.dataStore.edit { preference ->
+            preference[PreferenceKeys.gender] = gender
+        }
+    }
+
+    suspend fun saveCurrentHeight(currentHeight: Float){
+        context.dataStore.edit { preference ->
+            preference[PreferenceKeys.currentHeight] = currentHeight
+        }
+    }
+
+    val readWeightUnit: Flow<String> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException){
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            }else{
+                throw exception
+            }
+        }.map { preference ->
+            val unit = preference[PreferenceKeys.weightUnit]
+            unit
+        }.filterNotNull()
+
+    val readHeightUnit: Flow<String> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException){
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            }else{
+                throw exception
+            }
+        }.map { preference ->
+            val unit = preference[PreferenceKeys.heightUnit]
+            unit
+        }.filterNotNull()
+
+    val readTargetWeight: Flow<Float> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException){
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            }else{
+                throw exception
+            }
+        }.map { preference ->
+            val targetWeight = preference[PreferenceKeys.targetWeight]
+            targetWeight
+        }.filterNotNull()
+
+    val readOnBoardingState: Flow<Boolean> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException){
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            }else{
+                throw exception
+            }
+        }.map { preference ->
+            val isInfoEntered = preference[PreferenceKeys.isInfoEntered] ?: false
+            isInfoEntered
+        }
+
+}
