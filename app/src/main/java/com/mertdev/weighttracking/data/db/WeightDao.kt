@@ -8,14 +8,8 @@ import java.util.*
 @Dao
 interface WeightDao {
 
-    @Query("SELECT * FROM Weight ORDER BY date DESC")
+    @Query("SELECT * FROM Weight ORDER BY date ASC")
     fun getAllWeights(): Flow<List<Weight>>
-
-    @Query("SELECT * FROM Weight ORDER BY date ASC LIMIT 1")
-    fun getFirstWeight(): Flow<Weight>
-
-    @Query("SELECT * FROM Weight ORDER BY date DESC LIMIT 1")
-    fun getCurrentWeight(): Flow<Weight>
 
     // start and end of the entered weight's day (date)
     @Query("SELECT * FROM Weight WHERE date BETWEEN :start AND :end")

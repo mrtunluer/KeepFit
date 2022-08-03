@@ -9,10 +9,6 @@ class WeightRepo @Inject constructor(private val dao: WeightDao){
 
     fun getAllWeights() = dao.getAllWeights()
 
-    fun getFirstWeight() = dao.getFirstWeight()
-
-    fun getCurrentWeight() = dao.getCurrentWeight()
-
     fun getWeightByDate(start: Date, end: Date) = dao.getWeightByDate(start, end)
 
     fun getAvgWeight() = dao.getAvgWeight()

@@ -29,19 +29,19 @@ class HomeViewModel @Inject constructor(
 
     private fun fetchData() {
         combine(
-            weightRepo.getFirstWeight(),
-            weightRepo.getCurrentWeight(),
             weightRepo.getAllWeights(),
             dataStoreRepo.readTargetWeight,
-            dataStoreRepo.readWeightUnit
-        ) { firstWeight, currentWeight, allWeights, targetWeight, weightUnit ->
+            dataStoreRepo.readWeightUnit,
+            dataStoreRepo.readHeight
+        ) { allWeights, targetWeight, weightUnit, height ->
             _uiState.value = DataStatus.Success(
                 UiModel(
-                    firstWeight = firstWeight.weight,
-                    currentWeight = currentWeight.weight,
                     allWeights = allWeights,
+                    firstWeight = allWeights.firstOrNull()?.weight,
+                    currentWeight = allWeights.lastOrNull()?.weight,
                     targetWeight = targetWeight,
-                    weightUnit = weightUnit
+                    weightUnit = weightUnit,
+                    height = height
                 )
             )
         }.catch { exception ->
