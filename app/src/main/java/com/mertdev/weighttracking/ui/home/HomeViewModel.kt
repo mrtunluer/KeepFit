@@ -16,11 +16,15 @@ class HomeViewModel @Inject constructor(
     private val dataStoreRepo: DataStoreRepo
 ) : ViewModel() {
 
-    private val _uiModel = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
-    val uiModel: StateFlow<DataStatus<UiModel>> = _uiModel
+    private val _uiState = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
+    val uiState: StateFlow<DataStatus<UiModel>> = _uiState
+
+    private val _minMaxState = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
+    val minMaxState: StateFlow<DataStatus<UiModel>> = _minMaxState
 
     init {
         fetchData()
+        fetchMinMaxAvg()
     }
 
     private fun fetchData() {
@@ -31,7 +35,7 @@ class HomeViewModel @Inject constructor(
             dataStoreRepo.readTargetWeight,
             dataStoreRepo.readWeightUnit
         ) { firstWeight, currentWeight, allWeights, targetWeight, weightUnit ->
-            _uiModel.value = DataStatus.Success(
+            _uiState.value = DataStatus.Success(
                 UiModel(
                     firstWeight = firstWeight.weight,
                     currentWeight = currentWeight.weight,
@@ -41,7 +45,25 @@ class HomeViewModel @Inject constructor(
                 )
             )
         }.catch { exception ->
-            _uiModel.value = DataStatus.Error(exception.message.toString())
+            _uiState.value = DataStatus.Error(exception.message.toString())
+        }.launchIn(viewModelScope)
+    }
+
+    private fun fetchMinMaxAvg() {
+        combine(
+            weightRepo.getMaxWeight(),
+            weightRepo.getMinWeight(),
+            weightRepo.getAvgWeight()
+        ) { maxWeight, minWeight, avgWeight ->
+            _minMaxState.value = DataStatus.Success(
+                UiModel(
+                    maxWeight = maxWeight,
+                    minWeight = minWeight,
+                    avgWeight = avgWeight
+                )
+            )
+        }.catch { exception ->
+            _minMaxState.value = DataStatus.Error(exception.message.toString())
         }.launchIn(viewModelScope)
     }
 
