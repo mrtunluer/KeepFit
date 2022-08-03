@@ -46,7 +46,7 @@ class OnBoardingViewModel @Inject constructor(
             dataStoreRepo.saveWeightUnit(weightUnit)
             dataStoreRepo.saveHeightUnit(heightUnit)
             dataStoreRepo.saveTargetWeight(targetWeight)
-            dataStoreRepo.saveCurrentHeight(currentHeight)
+            dataStoreRepo.saveHeight(currentHeight)
             dataStoreRepo.saveGender(gender)
             dataStoreRepo.saveOnBoardingState(true)
         }

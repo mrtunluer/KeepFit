@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
-import com.mertdev.weighttracking.utils.Constants.CURRENT_HEIGHT_KEY
 import com.mertdev.weighttracking.utils.Constants.DATA_STORE_NAME
 import com.mertdev.weighttracking.utils.Constants.GENDER_KEY
+import com.mertdev.weighttracking.utils.Constants.HEIGHT_KEY
 import com.mertdev.weighttracking.utils.Constants.HEIGHT_UNIT_KEY
 import com.mertdev.weighttracking.utils.Constants.IS_INFO_ENTERED_KEY
 import com.mertdev.weighttracking.utils.Constants.TARGET_WEIGHT_KEY
@@ -29,7 +29,7 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
         val targetWeight = floatPreferencesKey(TARGET_WEIGHT_KEY)
         val isInfoEntered = booleanPreferencesKey(IS_INFO_ENTERED_KEY)
         val gender = stringPreferencesKey(GENDER_KEY)
-        val currentHeight = floatPreferencesKey(CURRENT_HEIGHT_KEY)
+        val height = floatPreferencesKey(HEIGHT_KEY)
     }
 
     suspend fun saveWeightUnit(weightUnit: String){
@@ -62,9 +62,9 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
         }
     }
 
-    suspend fun saveCurrentHeight(currentHeight: Float){
+    suspend fun saveHeight(height: Float){
         context.dataStore.edit { preference ->
-            preference[PreferenceKeys.currentHeight] = currentHeight
+            preference[PreferenceKeys.height] = height
         }
     }
 
@@ -119,5 +119,18 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
             val isInfoEntered = preference[PreferenceKeys.isInfoEntered] ?: false
             isInfoEntered
         }
+
+    val readHeight: Flow<Float> = context.dataStore.data
+        .catch { exception ->
+            if (exception is IOException){
+                Log.d("DataStore", exception.message.toString())
+                emit(emptyPreferences())
+            }else{
+                throw exception
+            }
+        }.map { preference ->
+            val height = preference[PreferenceKeys.height]
+            height
+        }.filterNotNull()
 
 }
