@@ -75,7 +75,7 @@
                     android:id="@+id/rocket_img"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:src="@drawable/rocket"
+                    android:src="@drawable/ic_rocket"
                     app:layout_constraintBottom_toBottomOf="@+id/first_weight_txt"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/first_weight_txt" />
@@ -96,7 +96,7 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginEnd="5dp"
-                    android:src="@drawable/target"
+                    android:src="@drawable/ic_target"
                     app:layout_constraintBottom_toBottomOf="@+id/target_weight_txt"
                     app:layout_constraintEnd_toStartOf="@+id/target_weight_txt"
                     app:layout_constraintTop_toTopOf="@+id/target_weight_txt" />
@@ -147,7 +147,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="-20dp"
-                android:src="@drawable/add" />
+                android:src="@drawable/ic_add" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -318,7 +318,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:src="@drawable/rocket" />
+                                android:src="@drawable/ic_rocket" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -331,17 +331,17 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:textSize="14sp"
                                     android:text="Starting Weight"
-                                    android:textColor="@color/hint" />
+                                    android:textColor="@color/hint"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:textSize="14sp"
                                     android:text="73 kg"
-                                    android:textColor="@color/white" />
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -375,7 +375,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:src="@drawable/target" />
+                                android:src="@drawable/ic_target" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -389,16 +389,16 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
                                     android:text="Target Weight"
-                                    android:textSize="14sp"
-                                    android:textColor="@color/hint" />
+                                    android:textColor="@color/hint"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
-                                    android:textSize="14sp"
                                     android:text="80 kg"
-                                    android:textColor="@color/white" />
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -432,7 +432,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:src="@drawable/graph" />
+                                android:src="@drawable/ic_graph" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -445,17 +445,17 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:textSize="14sp"
                                     android:text="Ideal Weight Range"
-                                    android:textColor="@color/hint" />
+                                    android:textColor="@color/hint"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="14sp"
                                     android:layout_marginTop="2dp"
                                     android:text="75-82 kg"
-                                    android:textColor="@color/white" />
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -489,7 +489,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:src="@drawable/weight" />
+                                android:src="@drawable/ic_weight" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -502,17 +502,17 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:textSize="14sp"
                                     android:text="Ideal Weight"
-                                    android:textColor="@color/hint" />
+                                    android:textColor="@color/hint"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="14sp"
                                     android:layout_marginTop="2dp"
                                     android:text="80 kg"
-                                    android:textColor="@color/white" />
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
@@ -546,7 +546,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:src="@drawable/bmi" />
+                                android:src="@drawable/ic_bmi" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -559,17 +559,17 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="2dp"
-                                    android:textSize="14sp"
                                     android:text="Body Mass Index"
-                                    android:textColor="@color/hint" />
+                                    android:textColor="@color/hint"
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="14sp"
                                     android:layout_marginTop="2dp"
                                     android:text="28.6"
-                                    android:textColor="@color/white" />
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
 
