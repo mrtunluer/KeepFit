@@ -101,7 +101,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.targetWeightTxt.text = targetWeight.toString()
         binding.currentWeightTxt.text = currentWeight.toString()
         binding.firstWeightTxt.text = firstWeight.toString()
-        binding.weightUnitTxt.text = weightUnit
+        binding.weightUnitTxt.text = data.weightUnit
         setRemainderWeight(this)
         setProgressLoading(this)
         uiModel = this
