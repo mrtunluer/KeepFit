@@ -115,15 +115,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             val progressMax = firstWeight!!.minus(targetWeight!!).absoluteValue
             val progress = median.minus(min).absoluteValue
 
-            if (currentWeight == median) {
+            if (currentWeight == median)
                 binding.horizontalProgress.progress = progress.div(progressMax).times(100).toInt()
-            } else if (min == currentWeight && max == firstWeight) {
+            else if (min == currentWeight && max == firstWeight)
                 binding.horizontalProgress.progress = 100
-            } else if (max == currentWeight && min == firstWeight) {
+            else if (max == currentWeight && min == firstWeight)
                 binding.horizontalProgress.progress = 100
-            } else {
+            else
                 binding.horizontalProgress.progress = 0
-            }
         }
     }
 
