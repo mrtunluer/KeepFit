@@ -23,3 +23,9 @@ fun Float.idealWeightForMale() =
 
 fun Float.idealWeightForFemale() =
     this.div(2.54).minus(60).times(2.3).plus(45.5).toFloat().round(1)
+
+fun Float.firstWeightOfHealthyWeightRange() =
+    this.times(18.5f).round(1)
+
+fun Float.lastWeightOfHealthyWeightRange() =
+    this.times(24.9f).round(1)

@@ -93,6 +93,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setProgressLoading(this)
         calculateBmi(this)
         calculateIdealWeight(this)
+        calculateHealthyWeightRange(this)
         uiModel = this
     }
 
@@ -151,8 +152,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         else
             data.height?.div(100)?.pow(2)
 
-        val first = height?.times(18.5)
-        val last = height?.times(24.9)
+        val firstWeight = height?.firstWeightOfHealthyWeightRange()
+        val lastWeight = height?.lastWeightOfHealthyWeightRange()
+
+        binding.healthyWeightRangeTxt.text = if(data.weightUnit == LB)
+            firstWeight?.toLb().toString().plus(" - " + lastWeight?.toLb())
+        else
+            firstWeight?.toString().plus(" - $lastWeight")
 
     }
 
