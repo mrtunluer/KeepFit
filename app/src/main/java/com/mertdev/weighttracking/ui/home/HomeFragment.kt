@@ -45,8 +45,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.addBtn.setOnClickListener {
             try {
-                // When opening the bottom sheet fragment in android, when you send a continuous fragment creation request,
-                // you may encounter the 'cannot be found from the current destination' error.
+                // When opening the bottom sheet fragment in android, when you send a continuous fragment creation request, you may encounter the 'cannot be found from the current destination' error.
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(uiModel)
                 )
@@ -62,13 +61,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private suspend fun collectUiState() {
-        viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect { dataStatus ->
-            when (dataStatus) {
-                is DataStatus.Loading -> onLoadingForUiState()
-                is DataStatus.Error -> onErrorForUiState()
-                is DataStatus.Success -> dataStatus.data?.let { onSuccessForUiState(it) }
+        viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+            .collect { dataStatus ->
+                when (dataStatus) {
+                    is DataStatus.Loading -> onLoadingForUiState()
+                    is DataStatus.Error -> onErrorForUiState()
+                    is DataStatus.Success -> dataStatus.data?.let { onSuccessForUiState(it) }
+                }
             }
-        }
     }
 
     private fun onLoadingForUiState() {
@@ -129,8 +129,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.bmiTxt.text = bmi.toString()
     }
 
-    private fun calculateIdealWeight(data: UiModel){
-        val height: Float? = if(data.heightUnit == FT)
+    private fun calculateIdealWeight(data: UiModel) {
+        val height: Float? = if (data.heightUnit == FT)
             data.height?.toCm()
         else
             data.height
