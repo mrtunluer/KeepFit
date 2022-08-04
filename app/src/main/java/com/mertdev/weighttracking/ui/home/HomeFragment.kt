@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import kotlin.math.absoluteValue
+import kotlin.math.pow
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
@@ -82,7 +83,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.minMaxProgress.isVisible = false
         binding.maxWeightTxt.text = data.maxWeight.toString()
         binding.minWeightTxt.text = data.minWeight.toString()
-        binding.avgWeightTxt.text = data.avgWeight?.round(2).toString()
+        binding.avgWeightTxt.text = data.avgWeight?.round(1).toString()
     }
 
     private fun onLoadingForUiState() {
@@ -104,13 +105,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.weightUnitTxt.text = data.weightUnit
         setRemainderWeight(this)
         setProgressLoading(this)
+        calculateBmi(this)
         uiModel = this
     }
 
     private fun setRemainderWeight(data: UiModel) {
         binding.remainingTxt.text =
             getString(R.string.remaining).plus(" " + data.currentWeight?.let {
-                data.targetWeight?.minus(it)?.round(2)?.absoluteValue
+                data.targetWeight?.minus(it)?.round(1)?.absoluteValue
             })
     }
 
@@ -121,6 +123,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             binding.horizontalProgress.max = progressMax.roundToInt()
             binding.horizontalProgress.progress = progress.roundToInt()
         }
+    }
+
+    private fun calculateBmi(data: UiModel){
+        val height = data.height?.div(100)?.pow(2)
+        val weight = data.currentWeight
+        val bmi = height?.let { weight?.div(it)?.round(1) }
+        binding.bmiTxt.text = bmi.toString()
     }
 
 }
