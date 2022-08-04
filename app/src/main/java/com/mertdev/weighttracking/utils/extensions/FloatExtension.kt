@@ -12,6 +12,9 @@ fun Float.round(decimals: Int): Float {
 fun Float.toKg() =
     this.times(LB_TO_KG).round(1)
 
+fun Float.toLb() =
+    this.div(LB_TO_KG).round(1)
+
 fun Float.toCm() =
     this.times(FT_TO_CM).round(1)
 

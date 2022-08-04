@@ -138,14 +138,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         else
             height?.idealWeightForFemale()
 
-        binding.idealWeightTxt.text = idealWeight?.toString()
+        binding.idealWeightTxt.text = if(data.weightUnit == LB)
+            idealWeight?.toLb().toString()
+        else
+            idealWeight?.toString()
+
     }
 
     private fun calculateHealthyWeightRange(data: UiModel){
         val height: Float? = if (data.heightUnit == FT)
-            data.height?.toCm()
+            data.height?.toCm()?.div(100)?.pow(2)
         else
-            data.height
+            data.height?.div(100)?.pow(2)
+
+        val first = height?.times(18.5)
+        val last = height?.times(24.9)
 
     }
 
