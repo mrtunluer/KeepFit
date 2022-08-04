@@ -140,7 +140,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         else
             height?.div(2.54)?.minus(60)?.times(2.3)?.plus(45.5)?.toFloat()?.round(1)
 
-        binding.idealWeightTxt.text = idealWeight?.roundToInt().toString()
+        binding.idealWeightTxt.text = idealWeight?.toString()
     }
 
 }
