@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
-import com.mertdev.weighttracking.ui.home.model.UiModel
+import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.Constants.FT
 import com.mertdev.weighttracking.utils.Constants.LB
 import com.mertdev.weighttracking.utils.Constants.MALE

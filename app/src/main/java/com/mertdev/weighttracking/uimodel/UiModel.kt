@@ -1,4 +1,4 @@
-package com.mertdev.weighttracking.ui.home.model
+package com.mertdev.weighttracking.uimodel
 
 import com.mertdev.weighttracking.data.entity.Weight
 import java.io.Serializable

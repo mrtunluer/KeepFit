@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
-import com.mertdev.weighttracking.ui.home.model.UiModel
+import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.Constants.DATA_STORE_NAME
 import com.mertdev.weighttracking.utils.Constants.GENDER_KEY
 import com.mertdev.weighttracking.utils.Constants.HEIGHT_KEY

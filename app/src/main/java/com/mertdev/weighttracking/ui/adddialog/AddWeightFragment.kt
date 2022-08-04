@@ -19,7 +19,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.FragmentAddWeightBinding
-import com.mertdev.weighttracking.ui.home.model.UiModel
+import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.Constants.DATE_PATTERN
 import com.mertdev.weighttracking.utils.Constants.EMPTY
 import dagger.hilt.android.AndroidEntryPoint

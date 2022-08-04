@@ -34,7 +34,7 @@
         android:label="AddWeightFragment">
         <argument
             android:name="uiModel"
-            app:argType="com.mertdev.weighttracking.ui.home.model.UiModel" />
+            app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
 
     </dialog>
 
