@@ -89,7 +89,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.minWeightTxt.text = minWeight.toString()
         binding.avgWeightTxt.text = avgWeight?.round(1).toString()
         setRemainderWeight(this)
-        setProgressLoading(this)
+        setHorizontalProgressLoading(this)
         calculateBmi(this)
         calculateIdealWeight(this)
         calculateHealthyWeightRange(this)
@@ -103,7 +103,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             })
     }
 
-    private fun setProgressLoading(data: UiModel) = with(data) {
+    private fun setHorizontalProgressLoading(data: UiModel) = with(data) {
         if (firstWeight != null && currentWeight != null && targetWeight != null) {
             val min = min(min(firstWeight!!, currentWeight!!), targetWeight!!)
             val max = max(max(firstWeight!!, currentWeight!!), targetWeight!!)
