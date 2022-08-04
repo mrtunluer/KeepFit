@@ -69,10 +69,12 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
             heightGenderLayoutVisibility(false)
         }
         heightGenderLayout.saveBtn.setOnClickListener {
-            if (gender != null)
-                addWeight()
-            else
+            if (gender == null)
                 requireContext().showToast("Please choose your gender")
+            else if (currentWeightInput.getValue() == targetWeightInput.getValue())
+                requireContext().showToast("Your current weight cannot be the same as your target weight")
+            else
+                addWeight()
         }
     }
 
