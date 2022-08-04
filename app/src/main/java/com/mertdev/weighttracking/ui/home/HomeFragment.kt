@@ -22,9 +22,7 @@ import com.mertdev.weighttracking.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import kotlin.math.absoluteValue
-import kotlin.math.pow
-import kotlin.math.roundToInt
+import kotlin.math.*
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -56,6 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun initView() {
         binding.swipeRefresh.isEnabled = false
+        binding.horizontalProgress.max = 100
     }
 
     private suspend fun collectUiState() {
@@ -104,12 +103,27 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             })
     }
 
-    private fun setProgressLoading(data: UiModel) {
-        val progressMax = data.firstWeight?.let { data.targetWeight?.minus(it)?.absoluteValue }
-        val progress = data.firstWeight?.let { data.currentWeight?.minus(it)?.absoluteValue }
-        if (progressMax != null && progress != null) {
-            binding.horizontalProgress.max = progressMax.roundToInt()
-            binding.horizontalProgress.progress = progress.roundToInt()
+    private fun setProgressLoading(data: UiModel) = with(data) {
+        if (firstWeight != null && currentWeight != null && targetWeight != null) {
+            val min = min(min(firstWeight!!, currentWeight!!), targetWeight!!)
+            val max = max(max(firstWeight!!, currentWeight!!), targetWeight!!)
+            val median = max(
+                min(firstWeight!!, currentWeight!!),
+                min(max(firstWeight!!, currentWeight!!), targetWeight!!)
+            )
+
+            val progressMax = firstWeight!!.minus(targetWeight!!).absoluteValue
+            val progress = median.minus(min).absoluteValue
+
+            if (currentWeight == median) {
+                binding.horizontalProgress.progress = progress.div(progressMax).times(100).toInt()
+            } else if (min == currentWeight && max == firstWeight) {
+                binding.horizontalProgress.progress = 100
+            } else if (max == currentWeight && min == firstWeight) {
+                binding.horizontalProgress.progress = 100
+            } else {
+                binding.horizontalProgress.progress = 0
+            }
         }
     }
 
@@ -139,14 +153,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         else
             height?.idealWeightForFemale()
 
-        binding.idealWeightTxt.text = if(data.weightUnit == LB)
+        binding.idealWeightTxt.text = if (data.weightUnit == LB)
             idealWeight?.toLb().toString()
         else
             idealWeight?.toString()
-
     }
 
-    private fun calculateHealthyWeightRange(data: UiModel){
+    private fun calculateHealthyWeightRange(data: UiModel) {
         val height: Float? = if (data.heightUnit == FT)
             data.height?.toCm()?.div(100)?.pow(2)
         else
@@ -155,11 +168,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val firstWeight = height?.firstWeightOfHealthyWeightRange()
         val lastWeight = height?.lastWeightOfHealthyWeightRange()
 
-        binding.healthyWeightRangeTxt.text = if(data.weightUnit == LB)
+        binding.healthyWeightRangeTxt.text = if (data.weightUnit == LB)
             firstWeight?.toLb().toString().plus(" - " + lastWeight?.toLb())
         else
             firstWeight?.toString().plus(" - $lastWeight")
-
     }
 
 }
