@@ -32,8 +32,9 @@ class HomeViewModel @Inject constructor(
             weightRepo.getAllWeights(),
             dataStoreRepo.readTargetWeight,
             dataStoreRepo.readWeightUnit,
-            dataStoreRepo.readHeight
-        ) { allWeights, targetWeight, weightUnit, height ->
+            dataStoreRepo.readHeight,
+            dataStoreRepo.readHeightUnit
+        ) { allWeights, targetWeight, weightUnit, height, heightUnit ->
             _uiState.value = DataStatus.Success(
                 UiModel(
                     allWeights = allWeights,
@@ -41,7 +42,8 @@ class HomeViewModel @Inject constructor(
                     currentWeight = allWeights.lastOrNull()?.weight,
                     targetWeight = targetWeight,
                     weightUnit = weightUnit,
-                    height = height
+                    height = height,
+                    heightUnit = heightUnit
                 )
             )
         }.catch { exception ->

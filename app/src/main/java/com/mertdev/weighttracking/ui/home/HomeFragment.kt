@@ -14,8 +14,12 @@ import androidx.navigation.fragment.findNavController
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
 import com.mertdev.weighttracking.ui.home.model.UiModel
+import com.mertdev.weighttracking.utils.Constants.FT
+import com.mertdev.weighttracking.utils.Constants.LB
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.round
+import com.mertdev.weighttracking.utils.extensions.toCm
+import com.mertdev.weighttracking.utils.extensions.toKg
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -126,8 +130,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun calculateBmi(data: UiModel){
-        val height = data.height?.div(100)?.pow(2)
-        val weight = data.currentWeight
+        val weight: Float? = if (data.weightUnit == LB)
+            data.currentWeight?.toKg()
+        else
+            data.currentWeight
+
+        val height: Float? = if (data.heightUnit == FT)
+            data.height?.toCm()?.div(100)?.pow(2)
+        else
+            data.height?.div(100)?.pow(2)
+
         val bmi = height?.let { weight?.div(it)?.round(1) }
         binding.bmiTxt.text = bmi.toString()
     }
