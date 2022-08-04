@@ -16,6 +16,7 @@ import com.mertdev.weighttracking.databinding.FragmentHomeBinding
 import com.mertdev.weighttracking.ui.home.model.UiModel
 import com.mertdev.weighttracking.utils.Constants.FT
 import com.mertdev.weighttracking.utils.Constants.LB
+import com.mertdev.weighttracking.utils.Constants.MALE
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.round
 import com.mertdev.weighttracking.utils.extensions.toCm
@@ -93,6 +94,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setRemainderWeight(this)
         setProgressLoading(this)
         calculateBmi(this)
+        calculateIdealWeight(this)
         uiModel = this
     }
 
@@ -125,6 +127,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val bmi = height?.let { weight?.div(it)?.round(1) }
         binding.bmiTxt.text = bmi.toString()
+    }
+
+    private fun calculateIdealWeight(data: UiModel){
+        val height: Float? = if(data.heightUnit == FT)
+            data.height?.toCm()
+        else
+            data.height
+
+        val idealWeight: Float? = if (data.gender == MALE)
+            height?.div(2.54)?.minus(60)?.times(2.3)?.plus(50)?.toFloat()?.round(1)
+        else
+            height?.div(2.54)?.minus(60)?.times(2.3)?.plus(45.5)?.toFloat()?.round(1)
+
+        binding.idealWeightTxt.text = idealWeight?.roundToInt().toString()
     }
 
 }
