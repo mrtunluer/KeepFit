@@ -10,7 +10,7 @@ fun Float.round(decimals: Int): Double {
 }
 
 fun Float.toKg(): Float {
-    return this.div(LB_TO_KG).round(1).toFloat()
+    return this.times(LB_TO_KG).round(1).toFloat()
 }
 
 fun Float.toCm(): Float {

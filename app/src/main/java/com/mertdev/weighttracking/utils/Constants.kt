@@ -16,6 +16,6 @@ object Constants {
     const val FT = "ft"
     const val EMPTY = ""
     const val DATE_PATTERN = "dd MMM yyyy"
-    const val LB_TO_KG = 2.2046f
+    const val LB_TO_KG = 0.4535f
     const val FT_TO_CM = 30.4878f
 }
