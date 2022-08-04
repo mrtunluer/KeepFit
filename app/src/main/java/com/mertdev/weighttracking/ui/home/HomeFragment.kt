@@ -8,8 +8,8 @@ import android.viewbinding.library.fragment.viewBinding
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
@@ -39,10 +39,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         initView()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch { collectUiState() }
-                launch { collectMinMaxState() }
-            }
+            collectUiState()
         }
 
         binding.addBtn.setOnClickListener {
@@ -64,30 +61,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private suspend fun collectUiState() {
-        viewModel.uiState.collect { dataStatus ->
+        viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED).collect { dataStatus ->
             when (dataStatus) {
                 is DataStatus.Loading -> onLoadingForUiState()
                 is DataStatus.Error -> onErrorForUiState()
                 is DataStatus.Success -> dataStatus.data?.let { onSuccessForUiState(it) }
             }
         }
-    }
-
-    private suspend fun collectMinMaxState() {
-        viewModel.minMaxState.collect { dataStatus ->
-            when (dataStatus) {
-                is DataStatus.Loading -> binding.minMaxProgress.isVisible = true
-                is DataStatus.Error -> binding.minMaxProgress.isVisible = false
-                is DataStatus.Success -> dataStatus.data?.let { onSuccessForMinMaxState(it) }
-            }
-        }
-    }
-
-    private fun onSuccessForMinMaxState(data: UiModel) {
-        binding.minMaxProgress.isVisible = false
-        binding.maxWeightTxt.text = data.maxWeight.toString()
-        binding.minWeightTxt.text = data.minWeight.toString()
-        binding.avgWeightTxt.text = data.avgWeight?.round(1).toString()
     }
 
     private fun onLoadingForUiState() {
@@ -106,7 +86,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.targetWeightTxt.text = targetWeight.toString()
         binding.currentWeightTxt.text = currentWeight.toString()
         binding.firstWeightTxt.text = firstWeight.toString()
-        binding.weightUnitTxt.text = data.weightUnit
+        binding.weightUnitTxt.text = weightUnit
+        binding.maxWeightTxt.text = maxWeight.toString()
+        binding.minWeightTxt.text = minWeight.toString()
+        binding.avgWeightTxt.text = avgWeight?.round(1).toString()
         setRemainderWeight(this)
         setProgressLoading(this)
         calculateBmi(this)
@@ -129,7 +112,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun calculateBmi(data: UiModel){
+    private fun calculateBmi(data: UiModel) {
         val weight: Float? = if (data.weightUnit == LB)
             data.currentWeight?.toKg()
         else

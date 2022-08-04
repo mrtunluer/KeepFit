@@ -14,5 +14,6 @@ data class UiModel(
     var targetWeight: Float? = null,
     var weightUnit: String? = null,
     var height: Float? = null,
-    var heightUnit: String? = null
+    var heightUnit: String? = null,
+    var gender: String? = null
 ): Serializable

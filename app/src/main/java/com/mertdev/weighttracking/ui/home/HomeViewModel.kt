@@ -19,53 +19,35 @@ class HomeViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
     val uiState: StateFlow<DataStatus<UiModel>> = _uiState
 
-    private val _minMaxState = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
-    val minMaxState: StateFlow<DataStatus<UiModel>> = _minMaxState
-
     init {
         fetchData()
-        fetchMinMaxAvg()
     }
 
     private fun fetchData() {
         combine(
             weightRepo.getAllWeights(),
-            dataStoreRepo.readTargetWeight,
-            dataStoreRepo.readWeightUnit,
-            dataStoreRepo.readHeight,
-            dataStoreRepo.readHeightUnit
-        ) { allWeights, targetWeight, weightUnit, height, heightUnit ->
+            dataStoreRepo.readAllPreferences,
+            weightRepo.getMaxWeight(),
+            weightRepo.getMinWeight(),
+            weightRepo.getAvgWeight()
+        ) { allWeights, allPreferences, maxWeight, minWeight, avgWeight ->
             _uiState.value = DataStatus.Success(
                 UiModel(
                     allWeights = allWeights,
                     firstWeight = allWeights.firstOrNull()?.weight,
                     currentWeight = allWeights.lastOrNull()?.weight,
-                    targetWeight = targetWeight,
-                    weightUnit = weightUnit,
-                    height = height,
-                    heightUnit = heightUnit
-                )
-            )
-        }.catch { exception ->
-            _uiState.value = DataStatus.Error(exception.message.toString())
-        }.launchIn(viewModelScope)
-    }
-
-    private fun fetchMinMaxAvg() {
-        combine(
-            weightRepo.getMaxWeight(),
-            weightRepo.getMinWeight(),
-            weightRepo.getAvgWeight()
-        ) { maxWeight, minWeight, avgWeight ->
-            _minMaxState.value = DataStatus.Success(
-                UiModel(
+                    targetWeight = allPreferences.targetWeight,
+                    weightUnit = allPreferences.weightUnit,
+                    height = allPreferences.height,
+                    heightUnit = allPreferences.heightUnit,
+                    gender = allPreferences.gender,
                     maxWeight = maxWeight,
                     minWeight = minWeight,
                     avgWeight = avgWeight
                 )
             )
         }.catch { exception ->
-            _minMaxState.value = DataStatus.Error(exception.message.toString())
+            _uiState.value = DataStatus.Error(exception.message.toString())
         }.launchIn(viewModelScope)
     }
 
