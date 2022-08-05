@@ -18,5 +18,5 @@ object Constants {
     const val DATE_PATTERN = "dd MMM yyyy"
     const val LB_TO_KG = 0.4535f
     const val FT_TO_CM = 30.4878f
-    const val LIMIT_FOR_HOME = 7
+    const val LIMIT_FOR_STATISTICS = 7
 }

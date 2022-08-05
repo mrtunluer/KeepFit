@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.WeightItemBinding
-import com.mertdev.weighttracking.utils.Constants.LIMIT_FOR_HOME
+import com.mertdev.weighttracking.utils.Constants.LIMIT_FOR_STATISTICS
 import com.mertdev.weighttracking.utils.extensions.showDate
 
 class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
@@ -58,8 +58,8 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return if (differ.currentList.size >= LIMIT_FOR_HOME)
-            LIMIT_FOR_HOME
+        return if (differ.currentList.size >= LIMIT_FOR_STATISTICS)
+            LIMIT_FOR_STATISTICS
         else
             differ.currentList.size
     }
@@ -76,6 +76,10 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
 
         private fun noteVisibility(note: String?) {
             binding.noteTxt.isVisible = !note.isNullOrEmpty()
+        }
+
+        private fun calculateDifferenceWithPreviousWeight(weight: Weight) {
+
         }
 
     }
