@@ -3,11 +3,13 @@ package com.mertdev.weighttracking.ui.home
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.WeightItemBinding
+import com.mertdev.weighttracking.utils.Constants.LIMIT_FOR_HOME
 import com.mertdev.weighttracking.utils.extensions.showDate
 
 class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
@@ -56,19 +58,28 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return if (differ.currentList.size >= 7)
-            7
+        return if (differ.currentList.size >= LIMIT_FOR_HOME)
+            LIMIT_FOR_HOME
         else
             differ.currentList.size
     }
 
     inner class ViewHolder(private val binding: WeightItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(weight: Weight) {
             binding.dateTxt.text = weight.date?.showDate()
             binding.noteTxt.text = weight.note
             binding.weightTxt.text = weight.value.toString()
+            noteVisibility(weight.note)
         }
+
+        private fun noteVisibility(note: String?) {
+            binding.noteTxt.isVisible = note?.let {
+                true
+            } ?: false
+        }
+
     }
 
     private var onItemClickListener: ((Weight) -> Unit)? = null
