@@ -134,6 +134,9 @@ class AddWeightFragment : BottomSheetDialogFragment() {
             weight?.date?.let {
                 selectedDate = it
             }
+            weight?.note?.let {
+                binding.noteTxt.setText(it)
+            }
         }
         weightUnit?.let { binding.weightInput.setUnitStr(it) }
         binding.weightInput.setValueListener {

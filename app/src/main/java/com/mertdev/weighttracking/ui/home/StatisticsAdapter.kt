@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.WeightItemBinding
+import com.mertdev.weighttracking.utils.extensions.showDate
 
 class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
 
@@ -43,25 +44,29 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val weight = getItem(position)
-        holder.binding.apply {
-            weightTxt.text = weight.value.toString()
-        }
+        holder.apply {
+            bind(getItem(position))
 
-        holder.itemView.setOnClickListener {
-            onItemClickListener?.let {
-                it(weight)
+            holder.itemView.setOnClickListener {
+                onItemClickListener?.let {
+                    it(getItem(position))
+                }
             }
         }
-
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
 
-    inner class ViewHolder(val binding: WeightItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(private val binding: WeightItemBinding) :
+        RecyclerView.ViewHolder(binding.root){
+            fun bind(weight: Weight){
+                binding.dateTxt.text = weight.date?.showDate()
+                binding.noteTxt.text = weight.note
+                binding.weightTxt.text = weight.value.toString()
+            }
+        }
 
     private var onItemClickListener: ((Weight) -> Unit)? = null
 
