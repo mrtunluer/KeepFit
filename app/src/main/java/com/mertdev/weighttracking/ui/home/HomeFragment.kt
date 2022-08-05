@@ -103,7 +103,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.maxWeightTxt.text = maxWeight.toString()
         binding.minWeightTxt.text = minWeight.toString()
         binding.avgWeightTxt.text = avgWeight?.round(1).toString()
-        statisticsAdapter.submitList(allWeights)
+        statisticsAdapter.submitList(allWeights.asReversed())
         setRemainderWeight(this)
         setHorizontalProgressLoading(this)
         calculateBmi(this)
