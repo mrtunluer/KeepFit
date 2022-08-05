@@ -44,29 +44,32 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.apply {
-            bind(getItem(position))
 
-            holder.itemView.setOnClickListener {
-                onItemClickListener?.let {
-                    it(getItem(position))
-                }
+        holder.bind(getItem(position))
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.let {
+                it(getItem(position))
             }
         }
+
     }
 
     override fun getItemCount(): Int {
-        return differ.currentList.size
+        return if (differ.currentList.size >= 7)
+            7
+        else
+            differ.currentList.size
     }
 
     inner class ViewHolder(private val binding: WeightItemBinding) :
-        RecyclerView.ViewHolder(binding.root){
-            fun bind(weight: Weight){
-                binding.dateTxt.text = weight.date?.showDate()
-                binding.noteTxt.text = weight.note
-                binding.weightTxt.text = weight.value.toString()
-            }
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(weight: Weight) {
+            binding.dateTxt.text = weight.date?.showDate()
+            binding.noteTxt.text = weight.note
+            binding.weightTxt.text = weight.value.toString()
         }
+    }
 
     private var onItemClickListener: ((Weight) -> Unit)? = null
 
