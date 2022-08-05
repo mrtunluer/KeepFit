@@ -20,11 +20,12 @@ import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.FragmentAddWeightBinding
 import com.mertdev.weighttracking.uimodel.UiModel
-import com.mertdev.weighttracking.utils.Constants.DATE_PATTERN
 import com.mertdev.weighttracking.utils.Constants.EMPTY
+import com.mertdev.weighttracking.utils.extensions.endOfDay
+import com.mertdev.weighttracking.utils.extensions.showDate
+import com.mertdev.weighttracking.utils.extensions.startOfDay
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -64,7 +65,7 @@ class AddWeightFragment : BottomSheetDialogFragment() {
     }
 
     private suspend fun updateOrInsert() {
-        viewModel.getWeightByDate(startOfDay(), endOfDay())
+        viewModel.getWeightByDate(selectedDate.startOfDay(), selectedDate.endOfDay())
             .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
             .collect { weight ->
                 if (weight == null)
@@ -112,7 +113,7 @@ class AddWeightFragment : BottomSheetDialogFragment() {
 
         datePicker.addOnPositiveButtonClickListener {
             selectedDate = Date(it)
-            binding.dateTxt.text = showDate()
+            binding.dateTxt.text = selectedDate.showDate()
         }
 
         datePicker.show(parentFragmentManager, EMPTY)
@@ -138,33 +139,7 @@ class AddWeightFragment : BottomSheetDialogFragment() {
         binding.weightInput.setValueListener {
             binding.weightTxt.text = it.toString().plus(weightUnit)
         }
-        binding.dateTxt.text = showDate()
-
-    }
-
-    private fun showDate() =
-        SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(selectedDate)
-
-    private fun startOfDay(): Date {
-        val calendar = Calendar.getInstance()
-        calendar.apply {
-            time = selectedDate
-            set(Calendar.SECOND, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.HOUR_OF_DAY, 0)
-        }
-        return calendar.time
-    }
-
-    private fun endOfDay(): Date {
-        val calendar = Calendar.getInstance()
-        calendar.apply {
-            time = selectedDate
-            set(Calendar.SECOND, 59)
-            set(Calendar.MINUTE, 59)
-            set(Calendar.HOUR_OF_DAY, 23)
-        }
-        return calendar.time
+        binding.dateTxt.text = selectedDate.showDate()
     }
 
 }
