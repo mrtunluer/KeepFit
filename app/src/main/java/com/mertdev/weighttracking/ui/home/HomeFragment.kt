@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
 import com.mertdev.weighttracking.uimodel.UiModel
@@ -30,6 +31,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding()
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var uiModel: UiModel
+    private val statisticsAdapter = StatisticsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,11 +52,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
 
+        statisticsAdapter.setOnItemClickListener { weight ->
+            uiModel = uiModel.copy(weight = weight)
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(uiModel)
+            )
+        }
+
     }
 
     private fun initView() {
         binding.swipeRefresh.isEnabled = false
         binding.horizontalProgress.max = 100
+
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+            adapter = statisticsAdapter
+        }
     }
 
     private suspend fun collectUiState() {
@@ -88,6 +102,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.maxWeightTxt.text = maxWeight.toString()
         binding.minWeightTxt.text = minWeight.toString()
         binding.avgWeightTxt.text = avgWeight?.round(1).toString()
+        statisticsAdapter.submitList(allWeights)
         setRemainderWeight(this)
         setHorizontalProgressLoading(this)
         calculateBmi(this)

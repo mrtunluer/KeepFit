@@ -7,7 +7,7 @@ data class UiModel(
     var weight: Weight? = null,
     var firstWeight: Float? = null,
     var currentWeight: Float? = null,
-    var allWeights: List<Weight?> = emptyList(),
+    var allWeights: List<Weight> = emptyList(),
     var maxWeight: Float? = null,
     var minWeight: Float? = null,
     var avgWeight: Float? = null,
