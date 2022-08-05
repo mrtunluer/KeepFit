@@ -31,8 +31,8 @@
             android:text="-10 kg"
             android:textColor="#F83434"
             android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="@+id/date_txt"
-            app:layout_constraintStart_toStartOf="@+id/date_txt"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_txt" />
 
         <TextView
@@ -43,6 +43,7 @@
             android:textColor="@color/hint"
             android:textSize="13sp"
             android:visibility="gone"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/difference_txt" />
 
