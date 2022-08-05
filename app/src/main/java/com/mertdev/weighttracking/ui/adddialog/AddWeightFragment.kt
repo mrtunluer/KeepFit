@@ -27,7 +27,6 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 @AndroidEntryPoint
 class AddWeightFragment : BottomSheetDialogFragment() {
 
