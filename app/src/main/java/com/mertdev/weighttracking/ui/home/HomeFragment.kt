@@ -66,7 +66,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.horizontalProgress.max = 100
 
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = statisticsAdapter
         }
     }
@@ -128,11 +129,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             )
 
             val progressMax = firstWeight!!.minus(targetWeight!!).absoluteValue
-            val progress = median.minus(min).absoluteValue
 
-            if (currentWeight == median)
+            if (currentWeight == median && firstWeight!! > targetWeight!!) {
+                val progress = median.minus(max).absoluteValue
                 binding.horizontalProgress.progress = progress.div(progressMax).times(100).toInt()
-            else if (min == currentWeight && max == firstWeight)
+            } else if (currentWeight == median && targetWeight!! > firstWeight!!) {
+                val progress = median.minus(min).absoluteValue
+                binding.horizontalProgress.progress = progress.div(progressMax).times(100).toInt()
+            } else if (min == currentWeight && max == firstWeight)
                 binding.horizontalProgress.progress = 100
             else if (max == currentWeight && min == firstWeight)
                 binding.horizontalProgress.progress = 100
