@@ -15,13 +15,13 @@ interface WeightDao {
     @Query("SELECT * FROM Weight WHERE date BETWEEN :start AND :end")
     fun getWeightByDate(start: Date, end: Date): Flow<Weight?>
 
-    @Query("SELECT AVG(weight) FROM Weight")
+    @Query("SELECT AVG(value) FROM Weight")
     fun getAvgWeight(): Flow<Float?>
 
-    @Query("SELECT MAX(weight) FROM Weight")
+    @Query("SELECT MAX(value) FROM Weight")
     fun getMaxWeight(): Flow<Float?>
 
-    @Query("SELECT MIN(weight) FROM Weight")
+    @Query("SELECT MIN(value) FROM Weight")
     fun getMinWeight(): Flow<Float?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

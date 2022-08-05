@@ -9,7 +9,7 @@ import java.util.*
 data class Weight (
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
-    val weight: Float?,
+    val value: Float?,
     val date: Date?,
     val note: String?
 ): Serializable

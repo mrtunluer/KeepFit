@@ -34,8 +34,8 @@ class HomeViewModel @Inject constructor(
             _uiState.value = DataStatus.Success(
                 UiModel(
                     allWeights = allWeights,
-                    firstWeight = allWeights.firstOrNull()?.weight,
-                    currentWeight = allWeights.lastOrNull()?.weight,
+                    firstWeight = allWeights.firstOrNull()?.value,
+                    currentWeight = allWeights.lastOrNull()?.value,
                     targetWeight = allPreferences.targetWeight,
                     weightUnit = allPreferences.weightUnit,
                     height = allPreferences.height,

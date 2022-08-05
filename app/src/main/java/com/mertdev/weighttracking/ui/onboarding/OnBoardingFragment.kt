@@ -97,7 +97,7 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
     private fun addWeight() {
         progressBar.show()
         val weight =
-            Weight(weight = binding.currentWeightInput.getValue(), date = Date(), note = EMPTY)
+            Weight(value = binding.currentWeightInput.getValue(), date = Date(), note = EMPTY)
         val targetWeight = binding.targetWeightInput.getValue()
         val currentHeight = binding.heightGenderLayout.currentHeightInput.getValue()
         viewModel.addWeight(weight, weightUnit, heightUnit, targetWeight, currentHeight, gender!!)

@@ -45,7 +45,7 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val weight = getItem(position)
         holder.binding.apply {
-            weightTxt.text = weight.weight.toString()
+            weightTxt.text = weight.value.toString()
         }
 
         holder.itemView.setOnClickListener {

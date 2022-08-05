@@ -30,7 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding: FragmentHomeBinding by viewBinding()
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var uiModel: UiModel
+    private var uiModel = UiModel()
     private val statisticsAdapter = StatisticsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

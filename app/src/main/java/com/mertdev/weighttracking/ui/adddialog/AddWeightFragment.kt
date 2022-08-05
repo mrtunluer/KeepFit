@@ -77,7 +77,7 @@ class AddWeightFragment : BottomSheetDialogFragment() {
     private fun insertWeight() {
         viewModel.insertWeight(
             Weight(
-                weight = binding.weightInput.getValue(),
+                value = binding.weightInput.getValue(),
                 date = selectedDate,
                 note = binding.noteTxt.text.toString()
             )
@@ -126,7 +126,7 @@ class AddWeightFragment : BottomSheetDialogFragment() {
                 binding.weightTxt.text = it.toString().plus(weightUnit)
             }
         } else {
-            weight?.weight?.let {
+            weight?.value?.let {
                 binding.weightInput.setValue(it)
                 binding.weightTxt.text = it.toString().plus(weightUnit)
             }
