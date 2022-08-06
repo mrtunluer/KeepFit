@@ -7,7 +7,9 @@ import com.mertdev.weighttracking.data.repo.WeightRepo
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,31 +26,33 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun fetchData() {
-        combine(
-            weightRepo.getAllWeights(),
-            dataStoreRepo.readAllPreferences,
-            weightRepo.getMaxWeight(),
-            weightRepo.getMinWeight(),
-            weightRepo.getAvgWeight()
-        ) { allWeights, allPreferences, maxWeight, minWeight, avgWeight ->
-            _uiState.value = DataStatus.Success(
-                UiModel(
-                    allWeights = allWeights,
-                    firstWeight = allWeights.firstOrNull()?.value,
-                    currentWeight = allWeights.lastOrNull()?.value,
-                    targetWeight = allPreferences.targetWeight,
-                    weightUnit = allPreferences.weightUnit,
-                    height = allPreferences.height,
-                    heightUnit = allPreferences.heightUnit,
-                    gender = allPreferences.gender,
-                    maxWeight = maxWeight,
-                    minWeight = minWeight,
-                    avgWeight = avgWeight
+        viewModelScope.launch(Dispatchers.IO) {
+            combine(
+                weightRepo.getAllWeights(),
+                dataStoreRepo.readAllPreferences,
+                weightRepo.getMaxWeight(),
+                weightRepo.getMinWeight(),
+                weightRepo.getAvgWeight()
+            ) { allWeights, allPreferences, maxWeight, minWeight, avgWeight ->
+                _uiState.value = DataStatus.Success(
+                    UiModel(
+                        allWeights = allWeights,
+                        firstWeight = allWeights.firstOrNull()?.value,
+                        currentWeight = allWeights.lastOrNull()?.value,
+                        targetWeight = allPreferences.targetWeight,
+                        weightUnit = allPreferences.weightUnit,
+                        height = allPreferences.height,
+                        heightUnit = allPreferences.heightUnit,
+                        gender = allPreferences.gender,
+                        maxWeight = maxWeight,
+                        minWeight = minWeight,
+                        avgWeight = avgWeight
+                    )
                 )
-            )
-        }.catch { exception ->
-            _uiState.value = DataStatus.Error(exception.message.toString())
-        }.launchIn(viewModelScope)
+            }.catch { exception ->
+                _uiState.value = DataStatus.Error(exception.message.toString())
+            }.stateIn(this)
+        }
     }
 
 }

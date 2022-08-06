@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.data.repo.WeightRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -17,15 +18,14 @@ class AddWeightViewModel @Inject constructor(
     fun getWeightByDate(startOfDay: Date, endOfDay: Date) =
         weightRepo.getWeightByDate(startOfDay, endOfDay)
 
-
     fun insertWeight(weight: Weight) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             weightRepo.insertWeight(weight)
         }
     }
 
     fun updateWeight(weight: Weight) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             weightRepo.updateWeight(weight)
         }
     }
