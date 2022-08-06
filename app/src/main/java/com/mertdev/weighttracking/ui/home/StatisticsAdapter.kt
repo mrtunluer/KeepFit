@@ -46,7 +46,6 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         holder.bind(getItem(position))
 
         holder.itemView.setOnClickListener {
@@ -54,11 +53,10 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
                 it(getItem(position))
             }
         }
-
     }
 
     override fun getItemCount(): Int {
-        return if (differ.currentList.size >= LIMIT_FOR_STATISTICS)
+        return if (differ.currentList.size > 10)
             LIMIT_FOR_STATISTICS
         else
             differ.currentList.size
@@ -76,10 +74,6 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
 
         private fun noteVisibility(note: String?) {
             binding.noteTxt.isVisible = !note.isNullOrEmpty()
-        }
-
-        private fun calculateDifferenceWithPreviousWeight(weight: Weight) {
-
         }
 
     }
