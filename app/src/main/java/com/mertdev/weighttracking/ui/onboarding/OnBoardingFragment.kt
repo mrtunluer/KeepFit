@@ -24,6 +24,7 @@ import com.mertdev.weighttracking.utils.Constants.LB
 import com.mertdev.weighttracking.utils.Constants.MALE
 import com.mertdev.weighttracking.utils.enums.OnBoardingStatus
 import com.mertdev.weighttracking.utils.extensions.initDialog
+import com.mertdev.weighttracking.utils.extensions.safeNavigate
 import com.mertdev.weighttracking.utils.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -109,7 +110,7 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
             .collect { status ->
                 if (status == OnBoardingStatus.SKIP) {
                     progressBar.dismiss()
-                    findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToHomeFragment())
+                    findNavController().safeNavigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToHomeFragment())
                 } else binding.mainLayout.isVisible = status == OnBoardingStatus.SHOW
             }
     }

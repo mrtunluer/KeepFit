@@ -52,6 +52,10 @@ class AddWeightFragment : BottomSheetDialogFragment() {
         val uiModel = args.uiModel
         initView(uiModel)
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            observePopBackStack()
+        }
+
         binding.saveBtn.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
                 updateOrInsert()
@@ -62,6 +66,13 @@ class AddWeightFragment : BottomSheetDialogFragment() {
             datePickerShow()
         }
 
+    }
+
+    private suspend fun observePopBackStack() {
+        viewModel.eventFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+            .collect {
+                findNavController().popBackStack()
+            }
     }
 
     private suspend fun updateOrInsert() {
@@ -83,9 +94,7 @@ class AddWeightFragment : BottomSheetDialogFragment() {
                 note = binding.noteTxt.text.toString()
             )
         )
-        findNavController().popBackStack()
     }
-
 
     private fun updateWeight(weight: Weight) {
         viewModel.updateWeight(
@@ -96,7 +105,6 @@ class AddWeightFragment : BottomSheetDialogFragment() {
                 binding.noteTxt.text.toString()
             )
         )
-        findNavController().popBackStack()
     }
 
     private fun datePickerShow() {

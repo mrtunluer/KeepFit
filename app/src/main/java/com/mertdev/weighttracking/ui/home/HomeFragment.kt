@@ -42,7 +42,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.addBtn.setOnClickListener {
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
                     uiModel
                 )
@@ -51,7 +51,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         statisticsAdapter.setOnItemClickListener { weight ->
             uiModel = uiModel.copy(weight = weight)
-            findNavController().navigate(
+            findNavController().safeNavigate(
                 HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
                     uiModel
                 )
