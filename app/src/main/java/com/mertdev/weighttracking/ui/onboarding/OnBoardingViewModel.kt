@@ -7,6 +7,7 @@ import com.mertdev.weighttracking.data.repo.DataStoreRepo
 import com.mertdev.weighttracking.data.repo.WeightRepo
 import com.mertdev.weighttracking.utils.enums.OnBoardingStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -26,7 +27,7 @@ class OnBoardingViewModel @Inject constructor(
     }
 
     private fun collectOnBoardingState() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.readOnBoardingState.collect {
                 if (it)
                     _onBoardingState.value = OnBoardingStatus.SKIP
@@ -41,7 +42,7 @@ class OnBoardingViewModel @Inject constructor(
         heightUnit: String, targetWeight: Float,
         currentHeight: Float, gender: String
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             weightRepo.insertWeight(weight)
             dataStoreRepo.saveWeightUnit(weightUnit)
             dataStoreRepo.saveHeightUnit(heightUnit)
