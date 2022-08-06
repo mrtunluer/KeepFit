@@ -1,7 +1,6 @@
 package com.mertdev.weighttracking.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
@@ -24,7 +23,6 @@ import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import kotlin.math.*
 
 @AndroidEntryPoint
@@ -44,20 +42,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.addBtn.setOnClickListener {
-            try {
-                // When opening the bottom sheet fragment in android, when you send a continuous fragment creation request, you may encounter the 'cannot be found from the current destination' error.
-                findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(uiModel)
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
+                    uiModel
                 )
-            } catch (e: Exception) {
-                Log.e("ERROR", e.message.toString())
-            }
+            )
         }
 
         statisticsAdapter.setOnItemClickListener { weight ->
             uiModel = uiModel.copy(weight = weight)
             findNavController().navigate(
-                HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(uiModel)
+                HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
+                    uiModel
+                )
             )
         }
 
