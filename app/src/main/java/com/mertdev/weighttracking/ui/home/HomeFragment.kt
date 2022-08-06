@@ -5,12 +5,14 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
@@ -65,10 +67,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.swipeRefresh.isEnabled = false
         binding.horizontalProgress.max = 100
 
+        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        itemDecoration.setDrawable(
+            AppCompatResources.getDrawable(
+                requireContext(),
+                R.drawable.rv_divider_layer
+            )!!
+        )
+
         binding.recyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
             adapter = statisticsAdapter
+            addItemDecoration(itemDecoration)
         }
     }
 

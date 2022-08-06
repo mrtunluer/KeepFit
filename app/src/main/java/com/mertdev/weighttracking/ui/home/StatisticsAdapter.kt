@@ -56,7 +56,7 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return if (differ.currentList.size > 10)
+        return if (differ.currentList.size > 7)
             LIMIT_FOR_STATISTICS
         else
             differ.currentList.size
