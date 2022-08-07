@@ -1,11 +1,11 @@
 package com.mertdev.weighttracking.utils.extensions
 
-import com.mertdev.weighttracking.utils.Constants
+import com.mertdev.weighttracking.utils.Constants.DATE_PATTERN
 import java.text.SimpleDateFormat
 import java.util.*
 
 fun Date.showDate(): String? =
-    SimpleDateFormat(Constants.DATE_PATTERN, Locale.getDefault()).format(this)
+    SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(this)
 
 fun Date.startOfDay(): Date {
     val calendar = Calendar.getInstance()
