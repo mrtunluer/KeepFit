@@ -66,7 +66,7 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(weight: Weight) {
-            binding.dateTxt.text = weight.date?.showDate()
+            binding.dateTxt.text = weight.date?.showDate(isShowDay = true)
             binding.weightTxt.text = weight.value.toString()
             binding.noteTxt.text = weight.note
             noteVisibility(weight.note)

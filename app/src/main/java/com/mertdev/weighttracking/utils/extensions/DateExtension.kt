@@ -1,11 +1,16 @@
 package com.mertdev.weighttracking.utils.extensions
 
 import com.mertdev.weighttracking.utils.Constants.DATE_PATTERN
+import com.mertdev.weighttracking.utils.Constants.DATE_PATTERN_WITH_DAY
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun Date.showDate(): String? =
-    SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(this)
+fun Date.showDate(isShowDay: Boolean = false): String? {
+    return if (!isShowDay)
+        SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(this)
+    else
+        SimpleDateFormat(DATE_PATTERN_WITH_DAY, Locale.getDefault()).format(this)
+}
 
 fun Date.startOfDay(): Date {
     val calendar = Calendar.getInstance()
