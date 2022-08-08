@@ -12,13 +12,16 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.Constants.FT
 import com.mertdev.weighttracking.utils.Constants.LB
 import com.mertdev.weighttracking.utils.Constants.MALE
+import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,6 +81,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             adapter = statisticsAdapter
             addItemDecoration(itemDecoration)
         }
+
+        val swipeGesture = object : SwipeGesture(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewModel.deleteWeight(
+                    statisticsAdapter.getItem(
+                        viewHolder.absoluteAdapterPosition
+                    ).id
+                )
+            }
+        }
+
+        ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.recyclerView)
     }
 
     private suspend fun collectUiState() {

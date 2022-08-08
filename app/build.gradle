@@ -86,6 +86,9 @@ dependencies {
     //mp chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    // recycler view swipe decorator
+    implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'

@@ -55,4 +55,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun deleteWeight(id: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            weightRepo.deleteWeight(id)
+        }
+    }
+
 }

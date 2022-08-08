@@ -31,7 +31,7 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
         differ.submitList(list)
     }
 
-    private fun getItem(position: Int): Weight {
+    fun getItem(position: Int): Weight {
         return differ.currentList[position]
     }
 
