@@ -41,15 +41,12 @@
 
 
     </dialog>
-    <dialog
 
+    <dialog
         android:id="@+id/allWeightFragment"
         android:name="com.mertdev.weighttracking.ui.allweightdialog.AllWeightFragment"
         android:label="fragment_all_weight"
         tools:layout="@layout/fragment_all_weight">
-        <argument
-            android:name="uiModel"
-            app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
         <action
             android:id="@+id/action_allWeightFragment_to_addWeightFragment"
             app:destination="@id/addWeightFragment" />

@@ -43,7 +43,7 @@ class AllWeightViewModel @Inject constructor(
         }
     }
 
-    fun deleteWeight(id: Int){
+    fun deleteWeight(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             weightRepo.deleteWeight(id)
         }

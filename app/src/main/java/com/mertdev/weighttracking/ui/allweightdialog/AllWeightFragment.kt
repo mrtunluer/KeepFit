@@ -24,6 +24,7 @@ import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
+import com.mertdev.weighttracking.utils.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -53,9 +54,12 @@ class AllWeightFragment : BottomSheetDialogFragment() {
             uiModel = uiModel.copy(weight = weight)
             goToAddWeightFragment(uiModel)
         }
+
     }
 
     private fun initView() {
+        binding.progressBar.isVisible = false
+
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
             AppCompatResources.getDrawable(
@@ -88,30 +92,23 @@ class AllWeightFragment : BottomSheetDialogFragment() {
         viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
             .collect { dataStatus ->
                 when (dataStatus) {
-                    is DataStatus.Loading -> onLoadingForUiState()
-                    is DataStatus.Error -> onErrorForUiState()
+                    is DataStatus.Loading -> binding.progressBar.isVisible = true
                     is DataStatus.Success -> dataStatus.data?.let { onSuccessForUiState(it) }
+                    is DataStatus.Error -> onErrorForUiState()
                 }
             }
     }
 
-    private fun onLoadingForUiState() {
-        binding.progressBar.isVisible = true
-        binding.errorTxt.isVisible = false
-    }
-
     private fun onErrorForUiState() {
         binding.progressBar.isVisible = false
-        binding.errorTxt.isVisible = true
+        requireContext().showToast(getString(R.string.error))
     }
 
     private fun onSuccessForUiState(data: UiModel) = with(data) {
         binding.progressBar.isVisible = false
-        binding.errorTxt.isVisible = false
         statisticsAdapter.submitList(allWeights.asReversed())
         uiModel = this
     }
-
 
     private fun goToAddWeightFragment(uiModel: UiModel) {
         findNavController().safeNavigate(

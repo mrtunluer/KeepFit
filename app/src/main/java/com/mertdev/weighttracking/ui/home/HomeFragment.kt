@@ -54,7 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.allWeightBtn.setOnClickListener {
-            goToAllWeightFragment(uiModel)
+            goToAllWeightFragment()
         }
 
     }
@@ -227,11 +227,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         )
     }
 
-    private fun goToAllWeightFragment(uiModel: UiModel) {
+    private fun goToAllWeightFragment() {
         findNavController().safeNavigate(
-            HomeFragmentDirections.actionHomeFragmentToAllWeightFragment(
-                uiModel
-            )
+            HomeFragmentDirections.actionHomeFragmentToAllWeightFragment()
         )
     }
 
