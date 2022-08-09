@@ -15,7 +15,7 @@
             app:destination="@id/homeFragment"
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_homeFragment_to_addWeightFragment"
             app:destination="@id/addWeightFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_allWeightFragment"
+            app:destination="@id/allWeightFragment" />
     </fragment>
 
     <dialog
@@ -36,6 +39,20 @@
             android:name="uiModel"
             app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
 
+
+    </dialog>
+    <dialog
+
+        android:id="@+id/allWeightFragment"
+        android:name="com.mertdev.weighttracking.ui.allweightdialog.AllWeightFragment"
+        android:label="fragment_all_weight"
+        tools:layout="@layout/fragment_all_weight">
+        <argument
+            android:name="uiModel"
+            app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
+        <action
+            android:id="@+id/action_allWeightFragment_to_addWeightFragment"
+            app:destination="@id/addWeightFragment" />
     </dialog>
 
 </navigation>

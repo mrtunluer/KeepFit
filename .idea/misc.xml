@@ -7,6 +7,7 @@
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/bottom_nav_selector.xml" value="0.2005" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/botton_nav_selector.xml" value="0.2005" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/button_bg.xml" value="0.1115" />
+        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/dialog_bg.xml" value="0.2285" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/edit_text_bg.xml" value="0.1" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_add.xml" value="0.1" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1355" />
@@ -32,6 +33,7 @@
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/custom_progress_layout.xml" value="0.8" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/empty_layout.xml" value="0.23541666666666666" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_add_weight.xml" value="0.264" />
+        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_all_weight.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_measurement.xml" value="0.10277777777777777" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_on_boarding.xml" value="0.264" />
