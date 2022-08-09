@@ -5,6 +5,7 @@ import java.io.Serializable
 
 data class UiModel(
     var allWeights: List<Weight> = emptyList(),
+    var lastSevenWeight: List<Weight> = emptyList(),
     var weight: Weight? = null,
     var firstWeight: Float? = null,
     var currentWeight: Float? = null,
