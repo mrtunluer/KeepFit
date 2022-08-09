@@ -69,7 +69,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         binding.recyclerView.apply {
             layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = statisticsAdapter
             addItemDecoration(itemDecoration)
         }
@@ -87,7 +87,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.recyclerView)
     }
 
-    private fun emptyLayoutState(uiModel: UiModel)= with(binding.emptyLayout){
+    private fun emptyLayoutState(uiModel: UiModel) = with(binding.emptyLayout) {
         root.isVisible = uiModel.isShowEmptyLayout == true
         addBtn.setOnClickListener {
             goToAddWeightFragment(uiModel)
@@ -125,7 +125,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.maxWeightTxt.text = maxWeight.toString()
         binding.minWeightTxt.text = minWeight.toString()
         binding.avgWeightTxt.text = avgWeight?.round(1).toString()
-        statisticsAdapter.submitList(allWeights)
+        statisticsAdapter.submitList(allWeights.asReversed())
         emptyLayoutState(this)
         setRemainderWeight(this)
         setHorizontalProgressLoading(this)
@@ -215,7 +215,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             firstWeight?.toString().plus(" - $lastWeight")
     }
 
-    private fun goToAddWeightFragment(uiModel: UiModel){
+    private fun goToAddWeightFragment(uiModel: UiModel) {
         findNavController().safeNavigate(
             HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
                 uiModel
