@@ -70,7 +70,7 @@ dependencies {
     //chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
-    //rulerview
+    //ruler view
     implementation 'com.neobaran.open:ruler-view:0.0.5'
 
     //view binding
