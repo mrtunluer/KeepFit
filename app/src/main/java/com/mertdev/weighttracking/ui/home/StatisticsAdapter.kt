@@ -1,6 +1,5 @@
 package com.mertdev.weighttracking.ui.home
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.WeightItemBinding
-import com.mertdev.weighttracking.utils.Constants.LIMIT_FOR_STATISTICS
 import com.mertdev.weighttracking.utils.extensions.showDate
 
 class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
@@ -19,7 +17,6 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
             return oldItem.id == newItem.id
         }
 
-        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: Weight, newItem: Weight): Boolean {
             return oldItem == newItem
         }
@@ -56,10 +53,7 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return if (differ.currentList.size > 7)
-            LIMIT_FOR_STATISTICS
-        else
-            differ.currentList.size
+        return differ.currentList.size
     }
 
     inner class ViewHolder(private val binding: WeightItemBinding) :
