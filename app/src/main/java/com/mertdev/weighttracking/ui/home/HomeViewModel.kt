@@ -46,7 +46,8 @@ class HomeViewModel @Inject constructor(
                         gender = allPreferences.gender,
                         maxWeight = maxWeight,
                         minWeight = minWeight,
-                        avgWeight = avgWeight
+                        avgWeight = avgWeight,
+                        isShowEmptyLayout = allWeights.isEmpty()
                     )
                 )
             }.catch { exception ->

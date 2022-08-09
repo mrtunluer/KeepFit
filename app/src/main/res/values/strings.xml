@@ -6,4 +6,5 @@
     <string name="error">Something went wrong</string>
     <string name="add_note">Add note</string>
     <string name="select_date">Select Date</string>
+    <string name="empty_weight">you do not have weight information please enter your current weight</string>
 </resources>

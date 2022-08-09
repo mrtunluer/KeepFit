@@ -45,20 +45,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.addBtn.setOnClickListener {
-            findNavController().safeNavigate(
-                HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
-                    uiModel
-                )
-            )
+            goToAddWeightFragment(uiModel)
         }
 
         statisticsAdapter.setOnItemClickListener { weight ->
             uiModel = uiModel.copy(weight = weight)
-            findNavController().safeNavigate(
-                HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
-                    uiModel
-                )
-            )
+            goToAddWeightFragment(uiModel)
         }
 
     }
@@ -95,6 +87,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.recyclerView)
     }
 
+    private fun emptyLayoutState(uiModel: UiModel)= with(binding.emptyLayout){
+        root.isVisible = uiModel.isShowEmptyLayout == true
+        addBtn.setOnClickListener {
+            goToAddWeightFragment(uiModel)
+        }
+    }
+
     private suspend fun collectUiState() {
         viewModel.uiState.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
             .collect { dataStatus ->
@@ -127,6 +126,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.minWeightTxt.text = minWeight.toString()
         binding.avgWeightTxt.text = avgWeight?.round(1).toString()
         statisticsAdapter.submitList(allWeights)
+        emptyLayoutState(this)
         setRemainderWeight(this)
         setHorizontalProgressLoading(this)
         calculateBmi(this)
@@ -213,6 +213,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             firstWeight?.toLb().toString().plus(" - " + lastWeight?.toLb())
         else
             firstWeight?.toString().plus(" - $lastWeight")
+    }
+
+    private fun goToAddWeightFragment(uiModel: UiModel){
+        findNavController().safeNavigate(
+            HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
+                uiModel
+            )
+        )
     }
 
 }

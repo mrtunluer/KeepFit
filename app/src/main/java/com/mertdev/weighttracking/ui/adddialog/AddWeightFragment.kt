@@ -132,12 +132,10 @@ class AddWeightFragment : BottomSheetDialogFragment() {
         if (weight == null) {
             currentWeight?.let {
                 binding.weightInput.setValue(it)
-                binding.weightTxt.text = it.toString().plus(weightUnit)
             }
         } else {
             weight?.value?.let {
                 binding.weightInput.setValue(it)
-                binding.weightTxt.text = it.toString().plus(weightUnit)
             }
             weight?.date?.let {
                 selectedDate = it
@@ -146,6 +144,7 @@ class AddWeightFragment : BottomSheetDialogFragment() {
                 binding.noteTxt.setText(it)
             }
         }
+        binding.weightTxt.text = binding.weightInput.getValue().toString().plus(weightUnit)
         weightUnit?.let { binding.weightInput.setUnitStr(it) }
         binding.weightInput.setValueListener {
             binding.weightTxt.text = it.toString().plus(weightUnit)
