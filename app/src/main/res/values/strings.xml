@@ -7,4 +7,15 @@
     <string name="add_note">Add note</string>
     <string name="select_date">Select Date</string>
     <string name="empty_weight">you do not have weight information please enter your current weight</string>
+    <string name="body_mass_index">Body Mass Index</string>
+    <string name="normal">Normal</string>
+    <string name="underweight">Underweight</string>
+    <string name="overweight">Overweight</string>
+    <string name="obese">Obese</string>
+    <string name="morbidly_obese">Morbidly Obese</string>
+    <string name="_18_5"><![CDATA[< 18.5]]></string>
+    <string name="_18_5_25">18.5 – 25</string>
+    <string name="_25_30">25 – 30</string>
+    <string name="_30_40">30 – 40</string>
+    <string name="_40"><![CDATA[> 40]]></string>
 </resources>

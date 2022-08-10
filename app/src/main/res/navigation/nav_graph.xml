@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_homeFragment_to_allWeightFragment"
             app:destination="@id/allWeightFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bmiFragment"
+            app:destination="@id/bmiFragment" />
     </fragment>
 
     <dialog
@@ -50,6 +53,15 @@
         <action
             android:id="@+id/action_allWeightFragment_to_addWeightFragment"
             app:destination="@id/addWeightFragment" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/bmiFragment"
+        android:name="com.mertdev.weighttracking.ui.bmidialog.BmiFragment"
+        android:label="BmiFragment">
+        <argument
+            android:name="uiModel"
+            app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
     </dialog>
 
 </navigation>

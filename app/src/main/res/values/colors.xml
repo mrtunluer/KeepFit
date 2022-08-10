@@ -13,4 +13,7 @@
     <color name="dark_blue">#1b2a53</color>
     <color name="light_blue">#c2faec</color>
     <color name="secondary_blue">#349af3</color>
+    <color name="light_yellow">#F3E934</color>
+    <color name="dark_yellow">#D59E32</color>
+    <color name="red">#D12131</color>
 </resources>

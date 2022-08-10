@@ -57,6 +57,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             goToAllWeightFragment()
         }
 
+        binding.bmiCard.setOnClickListener {
+            goToBmiFragment(uiModel)
+        }
+
     }
 
     private fun initView() {
@@ -172,48 +176,49 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun calculateBmi(data: UiModel) {
-        val weight: Float? = if (data.weightUnit == LB)
-            data.currentWeight?.toKg()
+    private fun calculateBmi(data: UiModel) = with(data) {
+        val weight: Float? = if (weightUnit == LB)
+            currentWeight?.toKg()
         else
-            data.currentWeight
+            currentWeight
 
-        val height: Float? = if (data.heightUnit == FT)
-            data.height?.toCm()?.div(100)?.pow(2)
+        val height: Float? = if (heightUnit == FT)
+            height?.toCm()?.div(100)?.pow(2)
         else
-            data.height?.div(100)?.pow(2)
+            height?.div(100)?.pow(2)
 
-        val bmi = height?.let { weight?.div(it)?.round(1) }
+        bmi = height?.let { weight?.div(it)?.round(1) }
+
         binding.bmiTxt.text = bmi.toString()
     }
 
-    private fun calculateIdealWeight(data: UiModel) {
-        val height: Float? = if (data.heightUnit == FT)
-            data.height?.toCm()
+    private fun calculateIdealWeight(data: UiModel) = with(data) {
+        val height: Float? = if (heightUnit == FT)
+            height?.toCm()
         else
-            data.height
+            height
 
-        val idealWeight: Float? = if (data.gender == MALE)
+        val idealWeight: Float? = if (gender == MALE)
             height?.idealWeightForMale()
         else
             height?.idealWeightForFemale()
 
-        binding.idealWeightTxt.text = if (data.weightUnit == LB)
+        binding.idealWeightTxt.text = if (weightUnit == LB)
             idealWeight?.toLb().toString()
         else
             idealWeight?.toString()
     }
 
-    private fun calculateHealthyWeightRange(data: UiModel) {
-        val height: Float? = if (data.heightUnit == FT)
-            data.height?.toCm()?.div(100)?.pow(2)
+    private fun calculateHealthyWeightRange(data: UiModel) = with(data) {
+        val height: Float? = if (heightUnit == FT)
+            height?.toCm()?.div(100)?.pow(2)
         else
-            data.height?.div(100)?.pow(2)
+            height?.div(100)?.pow(2)
 
         val firstWeight = height?.firstWeightOfHealthyWeightRange()
         val lastWeight = height?.lastWeightOfHealthyWeightRange()
 
-        binding.healthyWeightRangeTxt.text = if (data.weightUnit == LB)
+        binding.healthyWeightRangeTxt.text = if (weightUnit == LB)
             firstWeight?.toLb().toString().plus(" - " + lastWeight?.toLb())
         else
             firstWeight?.toString().plus(" - $lastWeight")
@@ -230,6 +235,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun goToAllWeightFragment() {
         findNavController().safeNavigate(
             HomeFragmentDirections.actionHomeFragmentToAllWeightFragment()
+        )
+    }
+
+    private fun goToBmiFragment(uiModel: UiModel) {
+        findNavController().safeNavigate(
+            HomeFragmentDirections.actionHomeFragmentToBmiFragment(uiModel)
         )
     }
 
