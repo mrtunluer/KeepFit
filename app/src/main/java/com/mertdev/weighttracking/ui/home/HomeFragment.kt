@@ -49,7 +49,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         statisticsAdapter.setOnItemClickListener { weight ->
-            uiModel = uiModel.copy(weight = weight)
+            val uiModel = uiModel.copy(weight = weight)
             goToAddWeightFragment(uiModel)
         }
 
