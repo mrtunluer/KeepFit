@@ -3,7 +3,7 @@ package com.mertdev.weighttracking.utils.extensions
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.utils.Constants.LIMIT_FOR_STATISTICS
 
-fun List<Weight>.lastSevenWeight(): MutableList<Weight> {
+fun List<Weight>.lastSevenWeight(): List<Weight> {
     val lastSevenList = mutableListOf<Weight>()
     if (this.size >= LIMIT_FOR_STATISTICS)
         for (i in 0 until LIMIT_FOR_STATISTICS){

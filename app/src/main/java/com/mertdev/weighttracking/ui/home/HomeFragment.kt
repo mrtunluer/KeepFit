@@ -85,9 +85,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val swipeGesture = object : SwipeGesture(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 viewModel.deleteWeight(
-                    statisticsAdapter.getItem(
-                        viewHolder.absoluteAdapterPosition
-                    ).id
+                    statisticsAdapter.currentList[viewHolder.absoluteAdapterPosition].id
                 )
             }
         }

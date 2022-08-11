@@ -3,16 +3,16 @@ package com.mertdev.weighttracking.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.WeightItemBinding
 import com.mertdev.weighttracking.utils.extensions.showDate
 
-class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
+class StatisticsAdapter : ListAdapter<Weight, StatisticsAdapter.ViewHolder>(DifferCallback) {
 
-    private val differCallback = object : DiffUtil.ItemCallback<Weight>() {
+     object DifferCallback : DiffUtil.ItemCallback<Weight>() {
         override fun areItemsTheSame(oldItem: Weight, newItem: Weight): Boolean {
             return oldItem.id == newItem.id
         }
@@ -20,16 +20,6 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
         override fun areContentsTheSame(oldItem: Weight, newItem: Weight): Boolean {
             return oldItem == newItem
         }
-    }
-
-    private val differ = AsyncListDiffer(this, differCallback)
-
-    fun submitList(list: List<Weight>) {
-        differ.submitList(list)
-    }
-
-    fun getItem(position: Int): Weight {
-        return differ.currentList[position]
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -52,10 +42,6 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
         }
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
-
     inner class ViewHolder(private val binding: WeightItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -76,6 +62,10 @@ class StatisticsAdapter : RecyclerView.Adapter<StatisticsAdapter.ViewHolder>() {
 
     fun setOnItemClickListener(listener: (Weight) -> Unit) {
         onItemClickListener = listener
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
 }
