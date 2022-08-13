@@ -18,4 +18,15 @@
     <string name="_25_30">25 – 30</string>
     <string name="_30_40">30 – 40</string>
     <string name="_40"><![CDATA[> 40]]></string>
+    <string name="target_weight">Target Weight</string>
+    <string name="weight_unit">Weight Unit</string>
+    <string name="height">Height</string>
+    <string name="height_unit">Height Unit</string>
+    <string name="general_settings">General Settings</string>
+    <string name="ideal_weight">Ideal Weight</string>
+    <string name="healthy_weight_range">Healthy Weight Range</string>
+    <string name="lowest">Lowest</string>
+    <string name="average">Average</string>
+    <string name="highest">Highest</string>
+    <string name="gender">Gender</string>
 </resources>
