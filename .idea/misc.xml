@@ -43,10 +43,12 @@
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_measurement.xml" value="0.10277777777777777" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_on_boarding.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_settings.xml" value="0.2" />
+        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_settings_dialog.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/gender_height_layout.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/height_gender_layout.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/preview_layout.xml" value="0.176" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/weight_item.xml" value="0.264" />
+        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/weight_unit_dialog.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/menu/bottom_menu.xml" value="0.23645833333333333" />
       </map>
     </option>

@@ -45,20 +45,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.addBtn.setOnClickListener {
-            goToAddWeightFragment(uiModel)
+            goToAddWeightDialogFragment(uiModel)
         }
 
         statisticsAdapter.setOnItemClickListener { weight ->
             val uiModel = uiModel.copy(weight = weight)
-            goToAddWeightFragment(uiModel)
+            goToAddWeightDialogFragment(uiModel)
         }
 
         binding.allWeightBtn.setOnClickListener {
-            goToAllWeightFragment()
+            goToAllWeightDialogFragment()
         }
 
         binding.bmiCard.setOnClickListener {
-            goToBmiFragment(uiModel)
+            goToBmiDialogFragment(uiModel)
         }
 
     }
@@ -96,7 +96,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun emptyLayoutState(uiModel: UiModel) = with(binding.emptyLayout) {
         root.isVisible = uiModel.isShowEmptyLayout == true
         addBtn.setOnClickListener {
-            goToAddWeightFragment(uiModel)
+            goToAddWeightDialogFragment(uiModel)
         }
     }
 
@@ -222,23 +222,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             firstWeight?.toString().plus(" - $lastWeight")
     }
 
-    private fun goToAddWeightFragment(uiModel: UiModel) {
+    private fun goToAddWeightDialogFragment(uiModel: UiModel) {
         findNavController().safeNavigate(
-            HomeFragmentDirections.actionHomeFragmentToAddWeightFragment(
+            HomeFragmentDirections.actionHomeFragmentToAddWeightDialogFragment(
                 uiModel
             )
         )
     }
 
-    private fun goToAllWeightFragment() {
+    private fun goToAllWeightDialogFragment() {
         findNavController().safeNavigate(
-            HomeFragmentDirections.actionHomeFragmentToAllWeightFragment()
+            HomeFragmentDirections.actionHomeFragmentToAllWeightDialogFragment()
         )
     }
 
-    private fun goToBmiFragment(uiModel: UiModel) {
+    private fun goToBmiDialogFragment(uiModel: UiModel) {
         findNavController().safeNavigate(
-            HomeFragmentDirections.actionHomeFragmentToBmiFragment(uiModel)
+            HomeFragmentDirections.actionHomeFragmentToBmiDialogFragment(uiModel)
         )
     }
 

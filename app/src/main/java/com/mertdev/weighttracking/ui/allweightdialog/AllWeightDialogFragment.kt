@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mertdev.weighttracking.R
-import com.mertdev.weighttracking.databinding.FragmentAllWeightBinding
+import com.mertdev.weighttracking.databinding.FragmentAllWeightDialogBinding
 import com.mertdev.weighttracking.ui.home.StatisticsAdapter
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
@@ -29,9 +29,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AllWeightFragment : BottomSheetDialogFragment() {
+class AllWeightDialogFragment : BottomSheetDialogFragment() {
 
-    private val binding: FragmentAllWeightBinding by viewBinding()
+    private val binding: FragmentAllWeightDialogBinding by viewBinding()
     private val statisticsAdapter = StatisticsAdapter()
     private val viewModel: AllWeightViewModel by viewModels()
     private var uiModel = UiModel()
@@ -40,7 +40,7 @@ class AllWeightFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_all_weight, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_all_weight_dialog, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -110,7 +110,7 @@ class AllWeightFragment : BottomSheetDialogFragment() {
 
     private fun goToAddWeightFragment(uiModel: UiModel) {
         findNavController().safeNavigate(
-            AllWeightFragmentDirections.actionAllWeightFragmentToAddWeightFragment(
+            AllWeightDialogFragmentDirections.actionAllWeightFragmentToAddWeightDialogFragment(
                 uiModel
             )
         )

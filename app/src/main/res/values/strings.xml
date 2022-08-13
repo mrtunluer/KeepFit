@@ -29,4 +29,11 @@
     <string name="average">Average</string>
     <string name="highest">Highest</string>
     <string name="gender">Gender</string>
+    <string name="set_target_weight">Set Target Weight</string>
+    <string name="set_height">Set Height</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="select_weight_unit">Select Weight Unit</string>
+    <string name="select_height_unit">Select Height Unit</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>

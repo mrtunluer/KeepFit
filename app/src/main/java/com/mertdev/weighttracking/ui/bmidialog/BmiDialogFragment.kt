@@ -10,16 +10,15 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mertdev.weighttracking.R
-import com.mertdev.weighttracking.databinding.FragmentBmiBinding
+import com.mertdev.weighttracking.databinding.FragmentBmiDialogBinding
 import com.mertdev.weighttracking.uimodel.UiModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BmiFragment : BottomSheetDialogFragment() {
+class BmiDialogFragment : BottomSheetDialogFragment() {
 
-    private val binding: FragmentBmiBinding by viewBinding()
-    private val args: BmiFragmentArgs by navArgs()
-
+    private val binding: FragmentBmiDialogBinding by viewBinding()
+    private val args: BmiDialogFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +29,7 @@ class BmiFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_bmi, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_bmi_dialog, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +56,7 @@ class BmiFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun setBg(layout: LinearLayout){
+    private fun setBg(layout: LinearLayout) {
         layout.setBackgroundResource(R.color.dark_blue)
     }
 

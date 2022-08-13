@@ -21,23 +21,23 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.mertdev.weighttracking.ui.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_addWeightFragment"
-            app:destination="@id/addWeightFragment" />
+            android:id="@+id/action_homeFragment_to_addWeightDialogFragment"
+            app:destination="@id/addWeightDialogFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_allWeightFragment"
-            app:destination="@id/allWeightFragment" />
+            android:id="@+id/action_homeFragment_to_allWeightDialogFragment"
+            app:destination="@id/allWeightDialogFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_bmiFragment"
-            app:destination="@id/bmiFragment" />
+            android:id="@+id/action_homeFragment_to_bmiDialogFragment"
+            app:destination="@id/bmiDialogFragment" />
     </fragment>
 
     <dialog
-        android:id="@+id/addWeightFragment"
-        android:name="com.mertdev.weighttracking.ui.adddialog.AddWeightFragment"
-        android:label="AddWeightFragment">
+        android:id="@+id/addWeightDialogFragment"
+        android:name="com.mertdev.weighttracking.ui.adddialog.AddWeightDialogFragment"
+        android:label="AddWeightDialogFragment">
         <argument
             android:name="uiModel"
             app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
@@ -46,27 +46,41 @@
     </dialog>
 
     <dialog
-        android:id="@+id/allWeightFragment"
-        android:name="com.mertdev.weighttracking.ui.allweightdialog.AllWeightFragment"
-        android:label="fragment_all_weight"
-        tools:layout="@layout/fragment_all_weight">
+        android:id="@+id/allWeightDialogFragment"
+        android:name="com.mertdev.weighttracking.ui.allweightdialog.AllWeightDialogFragment"
+        android:label="AllWeightDialogFragment"
+        tools:layout="@layout/fragment_all_weight_dialog">
         <action
-            android:id="@+id/action_allWeightFragment_to_addWeightFragment"
-            app:destination="@id/addWeightFragment" />
+            android:id="@+id/action_allWeightFragment_to_addWeightDialogFragment"
+            app:destination="@id/addWeightDialogFragment" />
     </dialog>
 
     <dialog
-        android:id="@+id/bmiFragment"
-        android:name="com.mertdev.weighttracking.ui.bmidialog.BmiFragment"
-        android:label="BmiFragment">
+        android:id="@+id/bmiDialogFragment"
+        android:name="com.mertdev.weighttracking.ui.bmidialog.BmiDialogFragment"
+        android:label="BmiDialogFragment">
         <argument
             android:name="uiModel"
             app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
     </dialog>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.mertdev.weighttracking.ui.settings.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsDialogFragment"
+            app:destination="@id/settingsDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/settingsDialogFragment"
+        android:name="com.mertdev.weighttracking.ui.settingsdialog.SettingsDialogFragment"
+        android:label="SettingsDialogFragment">
+        <argument
+            android:name="uiModel"
+            app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
+    </dialog>
 
 </navigation>

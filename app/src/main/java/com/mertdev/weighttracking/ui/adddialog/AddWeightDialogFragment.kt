@@ -18,7 +18,7 @@ import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.data.entity.Weight
-import com.mertdev.weighttracking.databinding.FragmentAddWeightBinding
+import com.mertdev.weighttracking.databinding.FragmentAddWeightDialogBinding
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.Constants.EMPTY
 import com.mertdev.weighttracking.utils.extensions.endOfDay
@@ -29,11 +29,11 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 @AndroidEntryPoint
-class AddWeightFragment : BottomSheetDialogFragment() {
+class AddWeightDialogFragment : BottomSheetDialogFragment() {
 
-    private val binding: FragmentAddWeightBinding by viewBinding()
+    private val binding: FragmentAddWeightDialogBinding by viewBinding()
     private val viewModel: AddWeightViewModel by viewModels()
-    private val args: AddWeightFragmentArgs by navArgs()
+    private val args: AddWeightDialogFragmentArgs by navArgs()
     private var selectedDate = Date()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class AddWeightFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_add_weight, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_add_weight_dialog, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

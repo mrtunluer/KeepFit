@@ -52,6 +52,7 @@
                     android:padding="15dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/target_weight_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="@color/dark_blue"
@@ -106,6 +107,7 @@
 
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/weight_unit_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -161,6 +163,7 @@
 
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/height_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -216,6 +219,7 @@
 
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/height_unit_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -271,6 +275,7 @@
 
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/gender_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
