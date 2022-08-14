@@ -61,7 +61,7 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 viewModel.saveGender(uiModel.gender!!)
             }
 
-        } else if (uiModel.weightUnit != null && uiModel.targetWeight != null) {
+        } else if (uiModel.targetWeight != null) {
 
             titleTxt.text = getString(R.string.set_target_weight)
             targetWeightLayout.isVisible = true
@@ -88,7 +88,7 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 viewModel.saveWeightUnit(uiModel.weightUnit!!)
             }
 
-        } else if (uiModel.heightUnit != null && uiModel.height != null) {
+        } else if (uiModel.height != null) {
 
             titleTxt.text = getString(R.string.set_height)
             heightLayout.isVisible = true
@@ -117,6 +117,26 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
 
         }
 
+        selectListener(uiModel)
+        valueListeners(uiModel)
+
+        cancelBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+    }
+
+    private fun valueListeners(uiModel: UiModel) = with(binding) {
+        targetWeightInput.setValueListener {
+            targetWeightTxt.text = it.toString().plus(uiModel.weightUnit)
+        }
+
+        currentHeightInput.setValueListener {
+            currentHeightTxt.text = it.toString().plus(uiModel.heightUnit)
+        }
+    }
+
+    private fun selectListener(uiModel: UiModel) = with(binding) {
         genderCards.setOnSelectListener {
             uiModel.gender = if (it.id == R.id.male_card)
                 MALE
@@ -137,21 +157,7 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
             else
                 FT
         }
-
-        targetWeightInput.setValueListener {
-            targetWeightTxt.text = it.toString().plus(uiModel.weightUnit)
-        }
-
-        currentHeightInput.setValueListener {
-            currentHeightTxt.text = it.toString().plus(uiModel.heightUnit)
-        }
-
-        cancelBtn.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
     }
-
 
     private suspend fun observePopBackStack() {
         viewModel.eventFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)

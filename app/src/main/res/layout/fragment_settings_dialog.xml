@@ -12,24 +12,31 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
+        <TextView
+            android:id="@+id/title_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingStart="30dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="10dp"
+            android:fontFamily="@font/open_sans_semi_bold"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/title_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/open_sans_semi_bold"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+            app:layout_constraintTop_toBottomOf="@+id/title_txt">
 
             <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
                 android:id="@+id/group_choices_weight"
@@ -233,9 +240,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/open_sans_semi_bold"
-            android:paddingStart="30dp"
+            android:paddingStart="15dp"
             android:paddingTop="10dp"
-            android:paddingEnd="30dp"
+            android:paddingEnd="15dp"
             android:paddingBottom="10dp"
             android:text="@string/cancel"
             android:textColor="@color/light_blue"
@@ -250,9 +257,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/open_sans_semi_bold"
-            android:paddingStart="30dp"
+            android:paddingStart="15dp"
             android:paddingTop="10dp"
-            android:paddingEnd="30dp"
+            android:paddingEnd="15dp"
             android:paddingBottom="10dp"
             android:text="@string/save"
             android:textColor="@color/light_blue"
