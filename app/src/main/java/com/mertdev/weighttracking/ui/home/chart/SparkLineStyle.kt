@@ -15,22 +15,22 @@ object SparkLineStyle {
         xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
             textColor = ContextCompat.getColor(context, R.color.white)
-            textSize = 11f
+            textSize = context.resources.getDimension(R.dimen.chartTextSize)
             isGranularityEnabled = false
             setDrawAxisLine(true)
             setDrawGridLines(false)
             axisLineColor = ContextCompat.getColor(context, R.color.blue)
-            axisLineWidth = 2f
+            axisLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
         }
 
         axisLeft.apply {
             textColor = ContextCompat.getColor(context, R.color.white)
-            textSize = 11f
+            textSize = context.resources.getDimension(R.dimen.chartTextSize)
             isGranularityEnabled = false
             setDrawAxisLine(true)
             setDrawGridLines(false)
             axisLineColor = ContextCompat.getColor(context, R.color.blue)
-            axisLineWidth = 2f
+            axisLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
         }
 
         setTouchEnabled(true)
@@ -51,9 +51,9 @@ object SparkLineStyle {
         setDrawVerticalHighlightIndicator(false)
         setDrawHorizontalHighlightIndicator(true)
         setDrawCircles(true)
-        highlightLineWidth = 2.0f
+        highlightLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
         isHighlightEnabled = true
-        lineWidth = 2.0f
+        lineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
         mode = LineDataSet.Mode.LINEAR
     }
 
