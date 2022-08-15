@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
+import com.mertdev.weighttracking.ui.home.chart.SparkLineStyle
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.Constants.FT
 import com.mertdev.weighttracking.utils.Constants.LB
@@ -66,6 +67,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun initView() {
         binding.swipeRefresh.isEnabled = false
         binding.horizontalProgress.max = 100
+
+        SparkLineStyle.styleChart(binding.chart)
 
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
