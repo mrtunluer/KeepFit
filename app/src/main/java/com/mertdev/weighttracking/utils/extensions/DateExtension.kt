@@ -5,7 +5,7 @@ import com.mertdev.weighttracking.utils.Constants.DATE_PATTERN_WITH_DAY
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun Date.showDate(isShowDay: Boolean = false): String? {
+fun Date.showDate(isShowDay: Boolean = false): String {
     return if (!isShowDay)
         SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(this)
     else
