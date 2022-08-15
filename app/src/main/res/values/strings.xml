@@ -36,4 +36,5 @@
     <string name="select_height_unit">Select Height Unit</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="statistics">Statistics</string>
 </resources>
