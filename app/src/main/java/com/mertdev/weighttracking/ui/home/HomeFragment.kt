@@ -1,11 +1,11 @@
 package com.mertdev.weighttracking.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -15,9 +15,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.mikephil.charting.data.BarEntry
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
-import com.mertdev.weighttracking.ui.home.chart.SparkLineStyle
+import com.mertdev.weighttracking.ui.home.chart.InitChart
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.Constants.FT
 import com.mertdev.weighttracking.utils.Constants.LB
@@ -67,8 +68,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun initView() {
         binding.swipeRefresh.isEnabled = false
         binding.horizontalProgress.max = 100
-
-        SparkLineStyle.styleChart(binding.chart)
 
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
@@ -141,6 +140,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         calculateBmi(this)
         calculateIdealWeight(this)
         calculateHealthyWeightRange(this)
+        setChart(this)
         uiModel = this
     }
 
@@ -223,6 +223,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             firstWeight?.toLb().toString().plus(" - " + lastWeight?.toLb())
         else
             firstWeight?.toString().plus(" - $lastWeight")
+    }
+
+    private fun setChart(data: UiModel) = with(data) {
+        val entryList: List<BarEntry> = lastSevenWeight.asReversed()
+            .mapIndexed { index, weight ->
+                BarEntry(index.toFloat(), weight.value ?: 0f)
+            }
+
+        InitChart.setChart(
+            entryList,
+            requireContext(),
+            binding.chart,
+            lastSevenWeight
+        )
     }
 
     private fun goToAddWeightDialogFragment(uiModel: UiModel) {

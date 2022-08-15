@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.WeightItemBinding
-import com.mertdev.weighttracking.utils.extensions.showDate
+import com.mertdev.weighttracking.utils.extensions.showDateWithDay
 
 class StatisticsAdapter : ListAdapter<Weight, StatisticsAdapter.ViewHolder>(DifferCallback) {
 
@@ -46,7 +46,7 @@ class StatisticsAdapter : ListAdapter<Weight, StatisticsAdapter.ViewHolder>(Diff
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(weight: Weight) {
-            binding.dateTxt.text = weight.date?.showDate(isShowDay = true)
+            binding.dateTxt.text = weight.date?.showDateWithDay()
             binding.weightTxt.text = weight.value.toString()
             binding.noteTxt.text = weight.note
             noteVisibility(weight.note)

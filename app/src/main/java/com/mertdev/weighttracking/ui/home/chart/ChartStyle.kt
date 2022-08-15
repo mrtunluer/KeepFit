@@ -7,7 +7,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.LineDataSet
 import com.mertdev.weighttracking.R
 
-object SparkLineStyle {
+object ChartStyle {
 
     fun styleChart(lineChart: LineChart) = lineChart.apply {
         axisRight.isEnabled = false
@@ -48,7 +48,7 @@ object SparkLineStyle {
         setCircleColor(ContextCompat.getColor(context, R.color.secondary_blue))
         highLightColor = ContextCompat.getColor(context, R.color.blue)
         setDrawValues(false)
-        setDrawVerticalHighlightIndicator(false)
+        setDrawVerticalHighlightIndicator(true)
         setDrawHorizontalHighlightIndicator(true)
         setDrawCircles(true)
         highlightLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)

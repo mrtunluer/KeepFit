@@ -6,7 +6,6 @@ import com.mertdev.weighttracking.data.repo.DataStoreRepo
 import com.mertdev.weighttracking.data.repo.WeightRepo
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.enums.DataStatus
-import com.mertdev.weighttracking.utils.extensions.lastSevenWeight
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -38,7 +37,7 @@ class HomeViewModel @Inject constructor(
                 _uiState.value = DataStatus.Success(
                     UiModel(
                         allWeights = allWeights,
-                        lastSevenWeight = allWeights.asReversed().lastSevenWeight(),
+                        lastSevenWeight = allWeights.asReversed().takeLast(7),
                         firstWeight = allWeights.firstOrNull()?.value,
                         currentWeight = allWeights.lastOrNull()?.value,
                         targetWeight = allPreferences.targetWeight,
