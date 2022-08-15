@@ -2,4 +2,5 @@
 <resources>
     <dimen name="chartTextSize">3.8sp</dimen>
     <dimen name="chartLineWidth">0.8dp</dimen>
+    <dimen name="circleWidth">1.4dp</dimen>
 </resources>

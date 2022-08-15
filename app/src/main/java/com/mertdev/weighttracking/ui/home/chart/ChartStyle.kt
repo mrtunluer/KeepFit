@@ -38,6 +38,7 @@ object ChartStyle {
         setDrawVerticalHighlightIndicator(false)
         setDrawHorizontalHighlightIndicator(true)
         setDrawCircles(true)
+        circleRadius = context.resources.getDimension(R.dimen.circleWidth)
         highlightLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
         isHighlightEnabled = true
         lineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
