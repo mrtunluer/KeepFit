@@ -44,7 +44,7 @@ object ChartStyle {
         mode = LineDataSet.Mode.HORIZONTAL_BEZIER
     }
 
-    private fun initAxis(axis: YAxis, context: Context) = with(axis){
+    private fun initAxis(axis: YAxis, context: Context) = with(axis) {
         textColor = ContextCompat.getColor(context, R.color.white)
         textSize = context.resources.getDimension(R.dimen.chartTextSize)
         isGranularityEnabled = false
