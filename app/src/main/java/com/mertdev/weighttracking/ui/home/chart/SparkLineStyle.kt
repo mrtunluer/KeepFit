@@ -51,7 +51,7 @@ object SparkLineStyle {
         setDrawVerticalHighlightIndicator(false)
         setDrawHorizontalHighlightIndicator(true)
         setDrawCircles(true)
-        highlightLineWidth = 1.0f
+        highlightLineWidth = 2.0f
         isHighlightEnabled = true
         lineWidth = 2.0f
         mode = LineDataSet.Mode.LINEAR
