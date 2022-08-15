@@ -15,7 +15,7 @@ object SparkLineStyle {
         xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
             textColor = ContextCompat.getColor(context, R.color.white)
-            textSize = 10f
+            textSize = 11f
             isGranularityEnabled = false
             setDrawAxisLine(true)
             setDrawGridLines(false)
@@ -25,7 +25,7 @@ object SparkLineStyle {
 
         axisLeft.apply {
             textColor = ContextCompat.getColor(context, R.color.white)
-            textSize = 10f
+            textSize = 11f
             isGranularityEnabled = false
             setDrawAxisLine(true)
             setDrawGridLines(false)
@@ -46,12 +46,14 @@ object SparkLineStyle {
         valueTextColor = ContextCompat.getColor(context, R.color.white)
         circleHoleColor = ContextCompat.getColor(context, R.color.secondary_blue)
         setCircleColor(ContextCompat.getColor(context, R.color.secondary_blue))
+        highLightColor = ContextCompat.getColor(context, R.color.blue)
         setDrawValues(false)
         setDrawVerticalHighlightIndicator(false)
         setDrawHorizontalHighlightIndicator(true)
         setDrawCircles(true)
+        highlightLineWidth = 1.0f
         isHighlightEnabled = true
-        lineWidth = 3.0f
+        lineWidth = 2.0f
         mode = LineDataSet.Mode.LINEAR
     }
 
