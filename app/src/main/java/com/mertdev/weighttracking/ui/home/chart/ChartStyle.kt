@@ -37,7 +37,7 @@ object ChartStyle {
         setCircleColor(ContextCompat.getColor(context, R.color.secondary_blue))
         highLightColor = ContextCompat.getColor(context, R.color.blue)
         setDrawValues(false)
-        setDrawVerticalHighlightIndicator(true)
+        setDrawVerticalHighlightIndicator(false)
         setDrawHorizontalHighlightIndicator(true)
         setDrawCircles(true)
         highlightLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
