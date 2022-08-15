@@ -3,7 +3,6 @@ package com.mertdev.weighttracking.ui.home.chart
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.LineDataSet
 import com.mertdev.weighttracking.R
 
@@ -11,17 +10,7 @@ object ChartStyle {
 
     fun styleChart(lineChart: LineChart) = lineChart.apply {
         axisRight.isEnabled = false
-
-        xAxis.apply {
-            position = XAxis.XAxisPosition.BOTTOM
-            textColor = ContextCompat.getColor(context, R.color.white)
-            textSize = context.resources.getDimension(R.dimen.chartTextSize)
-            isGranularityEnabled = false
-            setDrawAxisLine(true)
-            setDrawGridLines(false)
-            axisLineColor = ContextCompat.getColor(context, R.color.blue)
-            axisLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
-        }
+        xAxis.isEnabled = false
 
         axisLeft.apply {
             textColor = ContextCompat.getColor(context, R.color.white)
@@ -54,7 +43,7 @@ object ChartStyle {
         highlightLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
         isHighlightEnabled = true
         lineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
-        mode = LineDataSet.Mode.LINEAR
+        mode = LineDataSet.Mode.HORIZONTAL_BEZIER
     }
 
 }

@@ -234,8 +234,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         InitChart.setChart(
             entryList,
             requireContext(),
-            binding.chart,
-            lastSevenWeight
+            binding.chart
         )
     }
 
