@@ -12,12 +12,14 @@ object InitChart {
     fun setChart(
         entryList: List<BarEntry>,
         context: Context,
-        chart: LineChart
+        chart: LineChart,
+        weightList: List<Weight>
         ){
         val lineDataSet = LineDataSet(entryList, EMPTY)
         ChartStyle.styleLineDataSet(context, lineDataSet)
         ChartStyle.styleChart(chart)
         chart.data = LineData(lineDataSet)
+        chart.marker = ChartMarkerView(context, weightList.asReversed())
         chart.invalidate()
     }
 }

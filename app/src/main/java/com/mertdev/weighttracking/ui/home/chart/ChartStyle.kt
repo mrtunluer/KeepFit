@@ -42,7 +42,7 @@ object ChartStyle {
         highlightLineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
         isHighlightEnabled = true
         lineWidth = context.resources.getDimension(R.dimen.chartLineWidth)
-        mode = LineDataSet.Mode.HORIZONTAL_BEZIER
+        mode = LineDataSet.Mode.LINEAR
     }
 
     private fun initAxis(axis: YAxis, context: Context) = with(axis) {
