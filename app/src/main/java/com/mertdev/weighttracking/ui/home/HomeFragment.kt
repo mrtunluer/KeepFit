@@ -226,7 +226,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setChart(data: UiModel) = with(data) {
-        val entryList: List<BarEntry> = lastSevenWeight.asReversed()
+        val entryList: List<BarEntry> = allWeights.asReversed()
             .mapIndexed { index, weight ->
                 BarEntry(index.toFloat(), weight.value ?: 0f)
             }
@@ -235,7 +235,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             entryList,
             requireContext(),
             binding.chart,
-            lastSevenWeight
+            allWeights
         )
     }
 
