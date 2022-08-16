@@ -227,7 +227,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setChart(data: UiModel) = with(data) {
         numberOfChartData?.let {
-            val listByNumberOfChartData = allWeights.asReversed().takeLast(it)
+            val listByNumberOfChartData = allWeights.takeLast(it)
 
             val entryList = listByNumberOfChartData
                 .mapIndexed { index, weight ->
