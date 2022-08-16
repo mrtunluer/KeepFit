@@ -21,6 +21,7 @@ object Constants {
     const val DATE_PATTERN_WITHOUT_YEAR = "dd MMM"
     const val LB_TO_KG = 0.4535f
     const val FT_TO_CM = 30.4878f
+    const val TAKE_LAST_SEVEN = 7
     const val NUMBER_OF_INITIAL_DATA_IN_CHART = 15
     const val LAST_THIRTY = 30
     const val LAST_NINETY = 90
