@@ -68,6 +68,10 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             goToSettingsDialogFragment(UiModel(gender = uiModel.gender))
         }
 
+        numberOfChartDataCard.setOnClickListener {
+            goToSettingsDialogFragment(UiModel(numberOfChartData = uiModel.numberOfChartData))
+        }
+
     }
 
     private fun goToSettingsDialogFragment(uiModel: UiModel) {
@@ -105,6 +109,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         binding.heightUnitTxt.text = data.heightUnit
         binding.heightTxt.text = data.height.toString()
         binding.targetWeightTxt.text = data.targetWeight.toString()
+        binding.numberOfChartDataTxt.text = data.numberOfChartData.toString()
         uiModel = this
     }
 

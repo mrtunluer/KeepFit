@@ -37,7 +37,8 @@ class SettingsViewModel @Inject constructor(
                             weightUnit = it.weightUnit,
                             height = it.height,
                             heightUnit = it.heightUnit,
-                            gender = it.gender
+                            gender = it.gender,
+                            numberOfChartData = it.numberOfChartData
                         )
                     )
                 }

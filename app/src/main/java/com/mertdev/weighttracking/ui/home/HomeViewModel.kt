@@ -48,6 +48,7 @@ class HomeViewModel @Inject constructor(
                         maxWeight = maxWeight,
                         minWeight = minWeight,
                         avgWeight = avgWeight,
+                        numberOfChartData = allPreferences.numberOfChartData,
                         isShowEmptyLayout = allWeights.isEmpty()
                     )
                 )

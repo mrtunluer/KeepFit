@@ -20,8 +20,12 @@ import com.mertdev.weighttracking.utils.Constants.CM
 import com.mertdev.weighttracking.utils.Constants.FEMALE
 import com.mertdev.weighttracking.utils.Constants.FT
 import com.mertdev.weighttracking.utils.Constants.KG
+import com.mertdev.weighttracking.utils.Constants.LAST_HUNDRED_EIGHTY
+import com.mertdev.weighttracking.utils.Constants.LAST_NINETY
+import com.mertdev.weighttracking.utils.Constants.LAST_THIRTY
 import com.mertdev.weighttracking.utils.Constants.LB
 import com.mertdev.weighttracking.utils.Constants.MALE
+import com.mertdev.weighttracking.utils.Constants.NUMBER_OF_INITIAL_DATA_IN_CHART
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -115,6 +119,30 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 viewModel.saveHeightUnit(uiModel.heightUnit!!)
             }
 
+        } else if (uiModel.numberOfChartData != null) {
+
+            titleTxt.text = getString(R.string.number_of_chart_data)
+            groupChoicesNumberOfChartData.isVisible = true
+
+            when (uiModel.numberOfChartData) {
+                NUMBER_OF_INITIAL_DATA_IN_CHART -> {
+                    groupChoicesNumberOfChartData.check(R.id.last_fifteen)
+                }
+                LAST_THIRTY -> {
+                    groupChoicesNumberOfChartData.check(R.id.last_thirty)
+                }
+                LAST_NINETY -> {
+                    groupChoicesNumberOfChartData.check(R.id.last_ninety)
+                }
+                LAST_HUNDRED_EIGHTY -> {
+                    groupChoicesNumberOfChartData.check(R.id.last_hundred_eighty)
+                }
+            }
+
+            binding.saveBtn.setOnClickListener {
+                viewModel.saveNumberOfChartData(uiModel.numberOfChartData!!)
+            }
+
         }
 
         selectListener(uiModel)
@@ -156,6 +184,15 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 CM
             else
                 FT
+        }
+
+        groupChoicesNumberOfChartData.setOnCheckedChangeListener { _, checkedId ->
+            uiModel.numberOfChartData = when (checkedId) {
+                R.id.last_fifteen -> NUMBER_OF_INITIAL_DATA_IN_CHART
+                R.id.last_thirty -> LAST_THIRTY
+                R.id.last_ninety -> LAST_NINETY
+                else -> LAST_HUNDRED_EIGHTY
+            }
         }
     }
 

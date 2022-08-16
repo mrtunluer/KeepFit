@@ -10,6 +10,8 @@ import com.mertdev.weighttracking.utils.Constants.GENDER_KEY
 import com.mertdev.weighttracking.utils.Constants.HEIGHT_KEY
 import com.mertdev.weighttracking.utils.Constants.HEIGHT_UNIT_KEY
 import com.mertdev.weighttracking.utils.Constants.IS_INFO_ENTERED_KEY
+import com.mertdev.weighttracking.utils.Constants.NUMBER_OF_CHART_DATA_KEY
+import com.mertdev.weighttracking.utils.Constants.NUMBER_OF_INITIAL_DATA_IN_CHART
 import com.mertdev.weighttracking.utils.Constants.TARGET_WEIGHT_KEY
 import com.mertdev.weighttracking.utils.Constants.WEIGHT_UNIT_KEY
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -31,6 +33,7 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
         val isInfoEntered = booleanPreferencesKey(IS_INFO_ENTERED_KEY)
         val gender = stringPreferencesKey(GENDER_KEY)
         val height = floatPreferencesKey(HEIGHT_KEY)
+        val numberOfChartData = intPreferencesKey(NUMBER_OF_CHART_DATA_KEY)
     }
 
     suspend fun saveWeightUnit(weightUnit: String) {
@@ -69,6 +72,12 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
         }
     }
 
+    suspend fun saveNumberOfChartData(numberOfChartData: Int) {
+        context.dataStore.edit { preference ->
+            preference[PreferenceKeys.numberOfChartData] = numberOfChartData
+        }
+    }
+
     val readOnBoardingState: Flow<Boolean> = context.dataStore.data
         .catch { exception ->
             if (exception is IOException) {
@@ -96,12 +105,14 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
             val targetWeight = preference[PreferenceKeys.targetWeight]
             val height = preference[PreferenceKeys.height]
             val gender = preference[PreferenceKeys.gender]
+            val numberOfChartData = preference[PreferenceKeys.numberOfChartData] ?: NUMBER_OF_INITIAL_DATA_IN_CHART
             val uiModel = UiModel(
                 weightUnit = weightUnit,
                 heightUnit = heightUnit,
                 targetWeight = targetWeight,
                 height = height,
-                gender = gender
+                gender = gender,
+                numberOfChartData = numberOfChartData
             )
             uiModel
         }.filterNotNull()

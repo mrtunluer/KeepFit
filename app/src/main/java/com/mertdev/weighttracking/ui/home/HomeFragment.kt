@@ -226,17 +226,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setChart(data: UiModel) = with(data) {
-        val entryList: List<BarEntry> = allWeights.asReversed()
-            .mapIndexed { index, weight ->
-                BarEntry(index.toFloat(), weight.value ?: 0f)
-            }
+        numberOfChartData?.let {
+            val listByNumberOfChartData = allWeights.asReversed().takeLast(it)
 
-        InitChart.setChart(
-            entryList,
-            requireContext(),
-            binding.chart,
-            allWeights
-        )
+            val entryList = listByNumberOfChartData
+                .mapIndexed { index, weight ->
+                    BarEntry(index.toFloat(), weight.value ?: 0f)
+                }
+
+            InitChart.setChart(
+                entryList,
+                requireContext(),
+                binding.chart,
+                listByNumberOfChartData
+            )
+        }
     }
 
     private fun goToAddWeightDialogFragment(uiModel: UiModel) {

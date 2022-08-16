@@ -17,6 +17,7 @@ data class UiModel(
     var gender: String? = null,
     var heightUnit: String? = null,
     var weightUnit: String? = null,
+    var numberOfChartData: Int? = null,
     var bmi: Float? = null,
     var isShowEmptyLayout: Boolean? = null
 ): Serializable

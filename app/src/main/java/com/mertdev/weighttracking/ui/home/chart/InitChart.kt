@@ -19,7 +19,7 @@ object InitChart {
         ChartStyle.styleLineDataSet(context, lineDataSet)
         ChartStyle.styleChart(chart)
         chart.data = LineData(lineDataSet)
-        chart.marker = ChartMarkerView(context, weightList.asReversed())
+        chart.marker = ChartMarkerView(context, weightList)
         chart.invalidate()
     }
 }

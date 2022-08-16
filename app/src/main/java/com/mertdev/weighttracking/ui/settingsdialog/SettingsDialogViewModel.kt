@@ -22,37 +22,44 @@ class SettingsDialogViewModel @Inject constructor(
     private val eventChannel = Channel<Event>()
     val eventFlow = eventChannel.receiveAsFlow()
 
-    fun saveHeight(height: Float){
+    fun saveHeight(height: Float) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveHeight(height)
             eventChannel.send(Event.PopBackStack)
         }
     }
 
-    fun saveHeightUnit(heightUnit: String){
+    fun saveHeightUnit(heightUnit: String) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveHeightUnit(heightUnit)
             eventChannel.send(Event.PopBackStack)
         }
     }
 
-    fun saveGender(gender: String){
+    fun saveGender(gender: String) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveGender(gender)
             eventChannel.send(Event.PopBackStack)
         }
     }
 
-    fun saveWeightUnit(weightUnit: String){
+    fun saveWeightUnit(weightUnit: String) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveWeightUnit(weightUnit)
             eventChannel.send(Event.PopBackStack)
         }
     }
 
-    fun saveTargetWeight(targetWeight: Float){
+    fun saveTargetWeight(targetWeight: Float) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveTargetWeight(targetWeight)
+            eventChannel.send(Event.PopBackStack)
+        }
+    }
+
+    fun saveNumberOfChartData(numberOfChartData: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStoreRepo.saveNumberOfChartData(numberOfChartData)
             eventChannel.send(Event.PopBackStack)
         }
     }
