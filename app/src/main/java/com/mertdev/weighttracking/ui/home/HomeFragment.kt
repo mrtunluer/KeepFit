@@ -20,15 +20,11 @@ import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
 import com.mertdev.weighttracking.ui.home.chart.InitChart
 import com.mertdev.weighttracking.uimodel.UiModel
-import com.mertdev.weighttracking.utils.Constants.FT
-import com.mertdev.weighttracking.utils.Constants.LB
-import com.mertdev.weighttracking.utils.Constants.MALE
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlin.math.*
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -135,94 +131,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.avgWeightTxt.text = avgWeight?.round(1).toString()
         statisticsAdapter.submitList(lastSevenWeight)
         emptyLayoutState(this)
-        setRemainderWeight(this)
-        setHorizontalProgressLoading(this)
-        calculateBmi(this)
-        calculateIdealWeight(this)
-        calculateHealthyWeightRange(this)
+        setMathematicalOperations(this)
         setChart(this)
         uiModel = this
     }
 
-    private fun setRemainderWeight(data: UiModel) {
-        binding.remainingTxt.text =
-            getString(R.string.remaining).plus(" " + data.currentWeight?.let {
-                data.targetWeight?.minus(it)?.round(1)?.absoluteValue
-            })
-    }
-
-    private fun setHorizontalProgressLoading(data: UiModel) = with(data) {
-        if (firstWeight != null && currentWeight != null && targetWeight != null) {
-            val min = min(min(firstWeight!!, currentWeight!!), targetWeight!!)
-            val max = max(max(firstWeight!!, currentWeight!!), targetWeight!!)
-            val median = max(
-                min(firstWeight!!, currentWeight!!),
-                min(max(firstWeight!!, currentWeight!!), targetWeight!!)
-            )
-
-            val progressMax = firstWeight!!.minus(targetWeight!!).absoluteValue
-
-            if (currentWeight == median && firstWeight!! > targetWeight!!) {
-                val progress = median.minus(max).absoluteValue
-                binding.horizontalProgress.progress = progress.div(progressMax).times(100).toInt()
-            } else if (currentWeight == median && targetWeight!! > firstWeight!!) {
-                val progress = median.minus(min).absoluteValue
-                binding.horizontalProgress.progress = progress.div(progressMax).times(100).toInt()
-            } else if (min == currentWeight && max == firstWeight)
-                binding.horizontalProgress.progress = 100
-            else if (max == currentWeight && min == firstWeight)
-                binding.horizontalProgress.progress = 100
-            else
-                binding.horizontalProgress.progress = 0
-        }
-    }
-
-    private fun calculateBmi(data: UiModel) = with(data) {
-        val weight: Float? = if (weightUnit == LB)
-            currentWeight?.toKg()
-        else
-            currentWeight
-
-        val height: Float? = if (heightUnit == FT)
-            height?.toCm()?.div(100)?.pow(2)
-        else
-            height?.div(100)?.pow(2)
-
-        bmi = height?.let { weight?.div(it)?.round(1) }
-
-        binding.bmiTxt.text = bmi.toString()
-    }
-
-    private fun calculateIdealWeight(data: UiModel) = with(data) {
-        val height: Float? = if (heightUnit == FT)
-            height?.toCm()
-        else
-            height
-
-        val idealWeight: Float? = if (gender == MALE)
-            height?.idealWeightForMale()
-        else
-            height?.idealWeightForFemale()
-
-        binding.idealWeightTxt.text = if (weightUnit == LB)
-            idealWeight?.toLb().toString()
-        else
-            idealWeight?.toString()
-    }
-
-    private fun calculateHealthyWeightRange(data: UiModel) = with(data) {
-        val height: Float? = if (heightUnit == FT)
-            height?.toCm()?.div(100)?.pow(2)
-        else
-            height?.div(100)?.pow(2)
-
-        val firstWeight = height?.firstWeightOfHealthyWeightRange()
-        val lastWeight = height?.lastWeightOfHealthyWeightRange()
-
-        binding.healthyWeightRangeTxt.text = if (weightUnit == LB)
-            firstWeight?.toLb().toString().plus(" - " + lastWeight?.toLb())
-        else
-            firstWeight?.toString().plus(" - $lastWeight")
+    private fun setMathematicalOperations(data: UiModel) = with(data){
+        MathematicalOperations.setRemainderWeight(this, binding, requireContext())
+        MathematicalOperations.setHorizontalProgressLoading(this, binding)
+        MathematicalOperations.calculateBmi(this, binding)
+        MathematicalOperations.calculateIdealWeight(this, binding)
+        MathematicalOperations.calculateHealthyWeightRange(this, binding)
     }
 
     private fun setChart(data: UiModel) = with(data) {
