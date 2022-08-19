@@ -4,11 +4,16 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/measurementFragment"
+        android:icon="@drawable/ic_measurement"
+        android:title="@string/measurements" />
 
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
+        android:title="@string/settings" />
 
 </menu>

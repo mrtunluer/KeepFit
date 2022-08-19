@@ -24,6 +24,7 @@
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_height.xml" value="0.1175" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_height_unit.xml" value="0.1175" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_home.xml" value="0.2425" />
+        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_measurement.xml" value="0.2155" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_rocket.xml" value="0.1975" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_ruler.xml" value="0.2005" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/drawable/ic_settings.xml" value="0.2005" />
@@ -42,7 +43,7 @@
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_all_weight.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_bmi.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_home.xml" value="0.2" />
-        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_measurement.xml" value="0.10277777777777777" />
+        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_measurement.xml" value="0.16" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_on_boarding.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_settings.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_settings_dialog.xml" value="0.264" />

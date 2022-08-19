@@ -82,5 +82,10 @@
             android:name="uiModel"
             app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
     </dialog>
+    <fragment
+        android:id="@+id/measurementFragment"
+        android:name="com.mertdev.weighttracking.ui.measurement.MeasurementFragment"
+        android:label="MeasurementFragment"
+        tools:layout="@layout/fragment_measurement" />
 
 </navigation>
