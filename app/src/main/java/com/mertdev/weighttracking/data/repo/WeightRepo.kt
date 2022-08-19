@@ -1,11 +1,11 @@
 package com.mertdev.weighttracking.data.repo
 
-import com.mertdev.weighttracking.data.db.WeightDao
+import com.mertdev.weighttracking.data.db.UserInfoDao
 import com.mertdev.weighttracking.data.entity.Weight
 import java.util.*
 import javax.inject.Inject
 
-class WeightRepo @Inject constructor(private val dao: WeightDao){
+class WeightRepo @Inject constructor(private val dao: UserInfoDao) {
 
     fun getAllWeights() = dao.getAllWeights()
 

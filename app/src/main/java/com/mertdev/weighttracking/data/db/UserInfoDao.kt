@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 @Dao
-interface WeightDao {
+interface UserInfoDao {
 
     @Query("SELECT * FROM Weight ORDER BY date ASC")
     fun getAllWeights(): Flow<List<Weight>>

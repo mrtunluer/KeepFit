@@ -2,9 +2,9 @@ package com.mertdev.weighttracking.di
 
 import android.app.Application
 import androidx.room.Room
-import com.mertdev.weighttracking.data.db.WeightDao
-import com.mertdev.weighttracking.data.db.WeightDatabase
-import com.mertdev.weighttracking.data.db.WeightDatabase.Companion.DB_NAME
+import com.mertdev.weighttracking.data.db.UserInfoDao
+import com.mertdev.weighttracking.data.db.UserInfoDatabase
+import com.mertdev.weighttracking.data.db.UserInfoDatabase.Companion.DB_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,16 +17,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideWeightDb(app: Application): WeightDatabase {
-        return Room.databaseBuilder(app, WeightDatabase::class.java, DB_NAME)
+    fun provideUserInfoDb(app: Application): UserInfoDatabase {
+        return Room.databaseBuilder(app, UserInfoDatabase::class.java, DB_NAME)
             .fallbackToDestructiveMigration()
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideDao(db: WeightDatabase): WeightDao {
-        return db.getWeightDao()
+    fun provideDao(db: UserInfoDatabase): UserInfoDao {
+        return db.getUserInfoDao()
     }
 
 }
