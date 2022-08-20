@@ -38,12 +38,8 @@ interface UserInfoDao {
 
     // Measurement Query
 
-    @Query("SELECT * FROM Measurement ORDER BY date ASC")
+    @Query("SELECT * FROM Measurement ORDER BY date DESC")
     fun getAllMeasurements(): Flow<List<Measurement>>
-
-    // start and end of the entered measurement's day (date)
-    @Query("SELECT * FROM Measurement WHERE date BETWEEN :start AND :end")
-    fun getMeasurementByDate(start: Date, end: Date): Flow<Measurement?>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateMeasurement(measurement: Measurement)

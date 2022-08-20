@@ -17,7 +17,7 @@
         android:textColor="@color/white"/>
 
     <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
-        android:id="@+id/group_choices_weight"
+        android:id="@+id/group_choices_length_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -66,10 +66,8 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/save_btn"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_weight="1"
         app:cardBackgroundColor="@color/light_blue"
         app:cardCornerRadius="20dp">
 
@@ -83,7 +81,7 @@
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="10dp"
-            android:text="Save"
+            android:text="@string/save"
             android:textColor="@color/black"
             android:textSize="14sp" />
 

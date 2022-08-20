@@ -57,8 +57,8 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun initView() {
-        binding.progressBar.isVisible = false
+    private fun initView() = with(binding) {
+        progressBar.isVisible = false
 
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
@@ -68,7 +68,7 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
             )!!
         )
 
-        binding.recyclerView.apply {
+        recyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = statisticsAdapter

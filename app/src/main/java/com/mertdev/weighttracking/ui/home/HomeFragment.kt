@@ -61,9 +61,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    private fun initView() {
-        binding.swipeRefresh.isEnabled = false
-        binding.horizontalProgress.max = 100
+    private fun initView() = with(binding) {
+        swipeRefresh.isEnabled = false
+        horizontalProgress.max = 100
 
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
@@ -73,7 +73,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             )!!
         )
 
-        binding.recyclerView.apply {
+        recyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = statisticsAdapter
@@ -136,7 +136,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         uiModel = this
     }
 
-    private fun setMathematicalOperations(data: UiModel) = with(data){
+    private fun setMathematicalOperations(data: UiModel) = with(data) {
         MathematicalOperations.setRemainderWeight(this, binding, requireContext())
         MathematicalOperations.setHorizontalProgressLoading(this, binding)
         MathematicalOperations.calculateBmi(this, binding)

@@ -14,6 +14,7 @@ object Constants {
     const val KG = "kg"
     const val LB = "lb"
     const val CM = "cm"
+    const val IN = "in"
     const val FT = "ft"
     const val EMPTY = ""
     const val DATE_PATTERN = "dd MMM yyyy"
