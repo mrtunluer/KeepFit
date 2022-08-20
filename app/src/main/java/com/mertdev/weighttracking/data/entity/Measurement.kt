@@ -10,7 +10,9 @@ import java.util.*
 data class Measurement(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
-    val name: String?
+    val name: String?,
+    val lengthUnit: String?,
+    val date: Date?
 )
 
 @Entity

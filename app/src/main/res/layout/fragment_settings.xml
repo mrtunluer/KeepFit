@@ -15,33 +15,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="25dp">
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_semi_bold"
+                    android:text="@string/general_settings"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </androidx.appcompat.widget.Toolbar>
 
             <TextView
                 android:id="@+id/error_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="25dp"
                 android:text="@string/error"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:visibility="gone" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_semi_bold"
-                android:text="@string/general_settings"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/info_card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="25dp"
                 app:cardBackgroundColor="@color/dark_blue"
                 app:cardCornerRadius="20dp">
 

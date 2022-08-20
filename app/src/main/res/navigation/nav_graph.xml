@@ -36,7 +36,7 @@
 
     <dialog
         android:id="@+id/addWeightDialogFragment"
-        android:name="com.mertdev.weighttracking.ui.adddialog.AddWeightDialogFragment"
+        android:name="com.mertdev.weighttracking.ui.addweightdialog.AddWeightDialogFragment"
         android:label="AddWeightDialogFragment">
         <argument
             android:name="uiModel"
@@ -86,6 +86,15 @@
         android:id="@+id/measurementFragment"
         android:name="com.mertdev.weighttracking.ui.measurement.MeasurementFragment"
         android:label="MeasurementFragment"
-        tools:layout="@layout/fragment_measurement" />
+        tools:layout="@layout/fragment_measurement" >
+        <action
+            android:id="@+id/action_measurementFragment_to_addMeasurementDialogFragment"
+            app:destination="@id/addMeasurementDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/addMeasurementDialogFragment"
+        android:name="com.mertdev.weighttracking.ui.addmeasurementdialog.AddMeasurementDialogFragment"
+        android:label="fragment_add_measurement_dialog"
+        tools:layout="@layout/fragment_add_measurement_dialog" />
 
 </navigation>

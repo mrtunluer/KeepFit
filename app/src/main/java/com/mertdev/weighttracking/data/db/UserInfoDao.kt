@@ -1,12 +1,15 @@
 package com.mertdev.weighttracking.data.db
 
 import androidx.room.*
+import com.mertdev.weighttracking.data.entity.Measurement
 import com.mertdev.weighttracking.data.entity.Weight
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 @Dao
 interface UserInfoDao {
+
+    // Weight Query
 
     @Query("SELECT * FROM Weight ORDER BY date ASC")
     fun getAllWeights(): Flow<List<Weight>>
@@ -32,5 +35,20 @@ interface UserInfoDao {
 
     @Query("DELETE FROM Weight where id = :id")
     suspend fun deleteWeight(id: Int)
+
+    // Measurement Query
+
+    @Query("SELECT * FROM Measurement ORDER BY date ASC")
+    fun getAllMeasurements(): Flow<List<Measurement>>
+
+    // start and end of the entered measurement's day (date)
+    @Query("SELECT * FROM Measurement WHERE date BETWEEN :start AND :end")
+    fun getMeasurementByDate(start: Date, end: Date): Flow<Measurement?>
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateMeasurement(measurement: Measurement)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMeasurement(measurement: Measurement)
 
 }

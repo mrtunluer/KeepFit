@@ -1,4 +1,4 @@
-package com.mertdev.weighttracking.ui.adddialog
+package com.mertdev.weighttracking.ui.addweightdialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

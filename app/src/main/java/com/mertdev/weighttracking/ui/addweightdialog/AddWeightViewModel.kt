@@ -1,4 +1,4 @@
-package com.mertdev.weighttracking.ui.adddialog
+package com.mertdev.weighttracking.ui.addweightdialog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
