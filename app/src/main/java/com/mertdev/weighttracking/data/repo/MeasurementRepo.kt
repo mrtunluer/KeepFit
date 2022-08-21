@@ -12,4 +12,6 @@ class MeasurementRepo @Inject constructor(private val dao: UserInfoDao) {
 
     suspend fun insertMeasurement(measurement: Measurement) = dao.insertMeasurement(measurement)
 
+    suspend fun deleteMeasurement(id: Int) = dao.deleteMeasurement(id)
+
 }

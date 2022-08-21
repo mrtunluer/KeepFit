@@ -92,7 +92,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun emptyLayoutState(uiModel: UiModel) = with(binding.emptyLayout) {
-        root.isVisible = uiModel.isShowEmptyLayout == true
+        root.isVisible = uiModel.isShowWeightEmptyLayout == true
         addBtn.setOnClickListener {
             goToAddWeightDialogFragment(uiModel)
         }

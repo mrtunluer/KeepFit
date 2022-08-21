@@ -34,10 +34,17 @@ class MeasurementViewModel @Inject constructor(
                 }.collectLatest { allMeasurements ->
                     _uiState.value = DataStatus.Success(
                         UiModel(
-                            allMeasurements = allMeasurements
+                            allMeasurements = allMeasurements,
+                            isShowMeasurementEmptyLayout = allMeasurements.isEmpty()
                         )
                     )
                 }
+        }
+    }
+
+    fun deleteMeasurement(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            measurementRepo.deleteMeasurement(id)
         }
     }
 

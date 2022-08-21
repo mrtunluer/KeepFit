@@ -47,4 +47,7 @@ interface UserInfoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMeasurement(measurement: Measurement)
 
+    @Query("DELETE FROM Measurement where id = :id")
+    suspend fun deleteMeasurement(id: Int)
+
 }

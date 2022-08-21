@@ -50,7 +50,7 @@ class HomeViewModel @Inject constructor(
                         minWeight = minWeight,
                         avgWeight = avgWeight,
                         numberOfChartData = allPreferences.numberOfChartData,
-                        isShowEmptyLayout = allWeights.isEmpty()
+                        isShowWeightEmptyLayout = allWeights.isEmpty()
                     )
                 )
             }.catch { exception ->

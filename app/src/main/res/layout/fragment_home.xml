@@ -144,9 +144,9 @@
                             android:id="@+id/chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            android:layout_marginStart="10dp"
                             android:layout_marginBottom="30dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -158,10 +158,10 @@
 
                 <ImageView
                     android:id="@+id/add_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-20dp"
+                    android:layout_marginTop="-17dp"
                     android:src="@drawable/ic_add" />
 
                 <com.google.android.material.card.MaterialCardView
@@ -528,7 +528,7 @@
 
     <include
         android:id="@+id/empty_layout"
-        layout="@layout/empty_layout"
+        layout="@layout/weight_empty_layout"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

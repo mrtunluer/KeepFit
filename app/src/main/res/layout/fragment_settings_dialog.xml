@@ -158,24 +158,24 @@
 
                 <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
                     android:id="@+id/female_card"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     app:toggle_backgroundColor="@color/blue"
                     app:toggle_btnCornerRadius="200dp"
                     app:toggle_icon="@drawable/ic_baseline_woman_24"
                     app:toggle_iconColor="@color/white"
-                    app:toggle_iconPadding="20dp"
+                    app:toggle_iconPadding="25dp"
                     app:toggle_selectedBackgroundColor="@color/secondary_blue" />
 
                 <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
                     android:id="@+id/male_card"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     app:toggle_backgroundColor="@color/blue"
                     app:toggle_btnCornerRadius="200dp"
                     app:toggle_icon="@drawable/ic_baseline_man_24"
                     app:toggle_iconColor="@color/white"
-                    app:toggle_iconPadding="20dp"
+                    app:toggle_iconPadding="25dp"
                     app:toggle_selectedBackgroundColor="@color/secondary_blue" />
 
             </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>

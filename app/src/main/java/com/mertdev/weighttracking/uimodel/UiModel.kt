@@ -20,6 +20,7 @@ data class UiModel(
     var weightUnit: String? = null,
     var numberOfChartData: Int? = null,
     var bmi: Float? = null,
-    var isShowEmptyLayout: Boolean? = null,
+    var isShowWeightEmptyLayout: Boolean? = null,
+    var isShowMeasurementEmptyLayout: Boolean? = null,
     var allMeasurements: List<Measurement> = emptyList()
 ): Serializable
