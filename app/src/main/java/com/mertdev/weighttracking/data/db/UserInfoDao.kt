@@ -2,6 +2,7 @@ package com.mertdev.weighttracking.data.db
 
 import androidx.room.*
 import com.mertdev.weighttracking.data.entity.Measurement
+import com.mertdev.weighttracking.data.entity.MeasurementContent
 import com.mertdev.weighttracking.data.entity.Weight
 import kotlinx.coroutines.flow.Flow
 import java.util.*
@@ -49,5 +50,11 @@ interface UserInfoDao {
 
     @Query("DELETE FROM Measurement where id = :id")
     suspend fun deleteMeasurement(id: Int)
+
+    @Query("SELECT * FROM MeasurementContent INNER JOIN Measurement ON Measurement.id = MeasurementContent.measurementId WHERE Measurement.id = :id ORDER BY MeasurementContent.date DESC")
+    fun getMeasurementContent(id: Int): Flow<List<MeasurementContent>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMeasurementContent(measurementContent: MeasurementContent)
 
 }

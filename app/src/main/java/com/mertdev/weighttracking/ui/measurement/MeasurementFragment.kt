@@ -48,8 +48,12 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
             goToAddMeasurementDialogFragment(measurement)
         }
 
-        measurementAdapter.setOnItemClickListener {
-
+        measurementAdapter.setOnItemClickListener { measurement ->
+            findNavController().safeNavigate(
+                MeasurementFragmentDirections.actionMeasurementFragmentToMeasurementContentFragment(
+                    measurement.id
+                )
+            )
         }
 
     }

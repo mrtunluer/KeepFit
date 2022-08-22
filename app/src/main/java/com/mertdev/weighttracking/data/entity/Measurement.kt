@@ -1,9 +1,7 @@
 package com.mertdev.weighttracking.data.entity
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.Relation
 import java.io.Serializable
 import java.util.*
 
@@ -24,13 +22,4 @@ data class MeasurementContent(
     val value: Float?,
     val date: Date?,
     val note: String?
-)
-
-data class MeasurementWithMeasurementContent(
-    @Embedded val measurement:Measurement,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "measurementId"
-    )
-    val measurementContent: List<MeasurementContent>
 )

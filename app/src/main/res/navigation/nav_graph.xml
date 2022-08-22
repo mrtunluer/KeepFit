@@ -41,8 +41,6 @@
         <argument
             android:name="uiModel"
             app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
-
-
     </dialog>
 
     <dialog
@@ -82,25 +80,40 @@
             android:name="uiModel"
             app:argType="com.mertdev.weighttracking.uimodel.UiModel" />
     </dialog>
+
     <fragment
         android:id="@+id/measurementFragment"
         android:name="com.mertdev.weighttracking.ui.measurement.MeasurementFragment"
         android:label="MeasurementFragment"
-        tools:layout="@layout/fragment_measurement" >
+        tools:layout="@layout/fragment_measurement">
         <action
             android:id="@+id/action_measurementFragment_to_addMeasurementDialogFragment"
             app:destination="@id/addMeasurementDialogFragment" />
+        <action
+            android:id="@+id/action_measurementFragment_to_measurementContentFragment"
+            app:destination="@id/measurementContentFragment" />
     </fragment>
+
     <dialog
         android:id="@+id/addMeasurementDialogFragment"
         android:name="com.mertdev.weighttracking.ui.addmeasurementdialog.AddMeasurementDialogFragment"
         android:label="fragment_add_measurement_dialog"
-        tools:layout="@layout/fragment_add_measurement_dialog" >
+        tools:layout="@layout/fragment_add_measurement_dialog">
         <argument
             android:name="measurement"
+            android:defaultValue="@null"
             app:argType="com.mertdev.weighttracking.data.entity.Measurement"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </dialog>
+
+    <fragment
+        android:id="@+id/measurementContentFragment"
+        android:name="com.mertdev.weighttracking.ui.measurementcontent.MeasurementContentFragment"
+        android:label="fragment_measurement_content"
+        tools:layout="@layout/fragment_measurement_content">
+        <argument
+            android:name="measurementId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>
