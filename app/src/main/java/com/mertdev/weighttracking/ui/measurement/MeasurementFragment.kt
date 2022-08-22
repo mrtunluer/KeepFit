@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.R
+import com.mertdev.weighttracking.data.entity.Measurement
 import com.mertdev.weighttracking.databinding.FragmentMeasurementBinding
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
@@ -41,6 +42,10 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
 
         binding.addBtn.setOnClickListener {
             goToAddMeasurementDialogFragment()
+        }
+
+        measurementAdapter.setOnMenuClickListener { measurement ->
+            goToAddMeasurementDialogFragment(measurement)
         }
 
         measurementAdapter.setOnItemClickListener {
@@ -113,9 +118,11 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
         }
     }
 
-    private fun goToAddMeasurementDialogFragment() {
+    private fun goToAddMeasurementDialogFragment(measurement: Measurement? = null) {
         findNavController().safeNavigate(
-            MeasurementFragmentDirections.actionMeasurementFragmentToAddMeasurementDialogFragment()
+            MeasurementFragmentDirections.actionMeasurementFragmentToAddMeasurementDialogFragment(
+                measurement
+            )
         )
     }
 

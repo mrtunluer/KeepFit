@@ -34,12 +34,6 @@ class MeasurementsAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-
-        holder.itemView.setOnClickListener {
-            onItemClickListener?.let {
-                it(getItem(position))
-            }
-        }
     }
 
     inner class ViewHolder(private val binding: MeasurementItemBinding) :
@@ -48,6 +42,18 @@ class MeasurementsAdapter :
         fun bind(measurement: Measurement) = with(binding) {
             binding.dateTxt.text = measurement.date?.showDateWithDay()
             binding.titleTxt.text = measurement.name.toString()
+
+            itemView.setOnClickListener {
+                onItemClickListener?.let {
+                    it(measurement)
+                }
+            }
+
+            menuImg.setOnClickListener {
+                onMenuClickListener?.let {
+                    it(measurement)
+                }
+            }
         }
 
     }
@@ -56,6 +62,12 @@ class MeasurementsAdapter :
 
     fun setOnItemClickListener(listener: (Measurement) -> Unit) {
         onItemClickListener = listener
+    }
+
+    private var onMenuClickListener: ((Measurement) -> Unit)? = null
+
+    fun setOnMenuClickListener(listener: (Measurement) -> Unit) {
+        onMenuClickListener = listener
     }
 
     override fun getItemViewType(position: Int): Int {

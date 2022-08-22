@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.data.entity.Measurement
@@ -27,6 +28,7 @@ class AddMeasurementDialogFragment : BottomSheetDialogFragment() {
 
     private val binding: FragmentAddMeasurementDialogBinding by viewBinding()
     private val viewModel: AddMeasurementDialogViewModel by viewModels()
+    private val args: AddMeasurementDialogFragmentArgs by navArgs()
 
     private var lengthUnit = CM
 
@@ -43,34 +45,63 @@ class AddMeasurementDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        val measurement = args.measurement
+        initView(measurement)
+
         viewLifecycleOwner.lifecycleScope.launch {
             observePopBackStack()
         }
+
+        binding.saveBtn.setOnClickListener {
+            if (binding.nameTxt.text.toString().isNotEmpty())
+                if (measurement != null)
+                    updateMeasurement(measurement)
+                else
+                    insertMeasurement()
+            else
+                requireContext().showToast("Measurement Name Cannot Be Empty")
+        }
     }
 
-    private fun initView() = with(binding){
+    private fun initView(measurement: Measurement?) = with(binding) {
+        if (measurement != null){
+            initViewForUpdate(measurement)
+        }
+
         groupChoicesLengthUnit.setOnCheckedChangeListener { _, checkedId ->
             lengthUnit = if (checkedId == R.id.cm)
                 CM
             else
                 IN
         }
-
-        saveBtn.setOnClickListener {
-            if(nameTxt.text.toString().isNotEmpty())
-                insertMeasurement()
-            else
-                requireContext().showToast("Measurement Name Cannot Be Empty")
-        }
     }
 
-    private fun insertMeasurement() = with(binding){
+    private fun initViewForUpdate(measurement: Measurement) = with(binding){
+        lengthUnit = measurement.lengthUnit.toString()
+        if (lengthUnit == CM)
+            groupChoicesLengthUnit.check(R.id.cm)
+        else
+            groupChoicesLengthUnit.check(R.id.`in`)
+        nameTxt.setText(measurement.name.toString())
+    }
+
+    private fun insertMeasurement() = with(binding) {
         viewModel.insertMeasurement(
             Measurement(
                 name = nameTxt.text.toString(),
                 date = Date(),
                 lengthUnit = lengthUnit
+            )
+        )
+    }
+
+    private fun updateMeasurement(measurement: Measurement) = with(binding) {
+        viewModel.updateMeasurement(
+            Measurement(
+                id = measurement.id,
+                name = nameTxt.text.toString(),
+                lengthUnit = lengthUnit,
+                date = measurement.date
             )
         )
     }

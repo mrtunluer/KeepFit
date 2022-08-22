@@ -99,10 +99,10 @@ class AddWeightDialogFragment : BottomSheetDialogFragment() {
     private fun updateWeight(weight: Weight) {
         viewModel.updateWeight(
             Weight(
-                weight.id,
-                binding.weightInput.getValue(),
-                selectedDate,
-                binding.noteTxt.text.toString()
+                id = weight.id,
+                value = binding.weightInput.getValue(),
+                date = selectedDate,
+                note = binding.noteTxt.text.toString()
             )
         )
     }

@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import java.io.Serializable
 import java.util.*
 
 @Entity
@@ -13,7 +14,7 @@ data class Measurement(
     val name: String?,
     val lengthUnit: String?,
     val date: Date?
-)
+): Serializable
 
 @Entity
 data class MeasurementContent(

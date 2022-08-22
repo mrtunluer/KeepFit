@@ -30,4 +30,11 @@ class AddMeasurementDialogViewModel @Inject constructor(
         }
     }
 
+    fun updateMeasurement(measurement: Measurement) {
+        viewModelScope.launch(Dispatchers.IO) {
+            measurementRepo.updateMeasurement(measurement)
+            eventChannel.send(Event.PopBackStack)
+        }
+    }
+
 }

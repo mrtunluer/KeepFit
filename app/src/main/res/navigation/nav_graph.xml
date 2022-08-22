@@ -95,6 +95,12 @@
         android:id="@+id/addMeasurementDialogFragment"
         android:name="com.mertdev.weighttracking.ui.addmeasurementdialog.AddMeasurementDialogFragment"
         android:label="fragment_add_measurement_dialog"
-        tools:layout="@layout/fragment_add_measurement_dialog" />
+        tools:layout="@layout/fragment_add_measurement_dialog" >
+        <argument
+            android:name="measurement"
+            app:argType="com.mertdev.weighttracking.data.entity.Measurement"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </dialog>
 
 </navigation>
