@@ -54,7 +54,13 @@ interface UserInfoDao {
     @Query("SELECT * FROM MeasurementContent INNER JOIN Measurement ON Measurement.id = MeasurementContent.measurementId WHERE Measurement.id = :id ORDER BY MeasurementContent.date DESC")
     fun getMeasurementContent(id: Int): Flow<List<MeasurementContent>>
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateMeasurementContent(measurementContent: MeasurementContent)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMeasurementContent(measurementContent: MeasurementContent)
+
+    @Query("DELETE FROM MeasurementContent where id = :id")
+    suspend fun deleteMeasurementContent(id: Int)
 
 }
