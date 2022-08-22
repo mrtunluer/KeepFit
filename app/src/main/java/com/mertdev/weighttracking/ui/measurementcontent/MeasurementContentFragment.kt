@@ -5,6 +5,7 @@ import android.view.View
 import android.viewbinding.library.fragment.viewBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentMeasurementContentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,10 +15,16 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
 
     private val binding: FragmentMeasurementContentBinding by viewBinding()
     private val viewModel: MeasurementContentViewModel by viewModels()
+    private val args: MeasurementContentFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
 
+    }
+
+    private fun initView() = with(binding){
+        swipeRefresh.isEnabled = false
     }
 
 }

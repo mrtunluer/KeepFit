@@ -9,8 +9,8 @@ import com.mertdev.weighttracking.data.entity.Measurement
 import com.mertdev.weighttracking.databinding.MeasurementItemBinding
 import com.mertdev.weighttracking.utils.extensions.showDateWithDay
 
-class MeasurementsAdapter :
-    ListAdapter<Measurement, MeasurementsAdapter.ViewHolder>(DifferCallback) {
+class MeasurementAdapter :
+    ListAdapter<Measurement, MeasurementAdapter.ViewHolder>(DifferCallback) {
 
     object DifferCallback : DiffUtil.ItemCallback<Measurement>() {
         override fun areItemsTheSame(oldItem: Measurement, newItem: Measurement): Boolean {

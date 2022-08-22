@@ -30,7 +30,7 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
 
     private val binding: FragmentMeasurementBinding by viewBinding()
     private val viewModel: MeasurementViewModel by viewModels()
-    private val measurementAdapter = MeasurementsAdapter()
+    private val measurementAdapter = MeasurementAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,11 +49,7 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
         }
 
         measurementAdapter.setOnItemClickListener { measurement ->
-            findNavController().safeNavigate(
-                MeasurementFragmentDirections.actionMeasurementFragmentToMeasurementContentFragment(
-                    measurement.id
-                )
-            )
+            goToMeasurementContentFragment(measurement)
         }
 
     }
@@ -126,6 +122,14 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
         findNavController().safeNavigate(
             MeasurementFragmentDirections.actionMeasurementFragmentToAddMeasurementDialogFragment(
                 measurement
+            )
+        )
+    }
+
+    private fun goToMeasurementContentFragment(measurement: Measurement){
+        findNavController().safeNavigate(
+            MeasurementFragmentDirections.actionMeasurementFragmentToMeasurementContentFragment(
+                measurement.id
             )
         )
     }

@@ -1,6 +1,7 @@
 package com.mertdev.weighttracking.uimodel
 
 import com.mertdev.weighttracking.data.entity.Measurement
+import com.mertdev.weighttracking.data.entity.MeasurementContent
 import com.mertdev.weighttracking.data.entity.Weight
 import java.io.Serializable
 
@@ -22,5 +23,10 @@ data class UiModel(
     var bmi: Float? = null,
     var isShowWeightEmptyLayout: Boolean? = null,
     var isShowMeasurementEmptyLayout: Boolean? = null,
-    var allMeasurements: List<Measurement> = emptyList()
+    var isShowMeasurementContentEmptyLayout: Boolean? = null,
+    var allMeasurements: List<Measurement> = emptyList(),
+    var allMeasurementContent: List<MeasurementContent> = emptyList(),
+    var maxMeasurementContentValue: Float? = null,
+    var minMeasurementContentValue: Float? = null,
+    var avgMeasurementContentValue: Float? = null
 ): Serializable

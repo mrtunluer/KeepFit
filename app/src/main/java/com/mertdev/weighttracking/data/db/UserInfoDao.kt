@@ -63,4 +63,13 @@ interface UserInfoDao {
     @Query("DELETE FROM MeasurementContent where id = :id")
     suspend fun deleteMeasurementContent(id: Int)
 
+    @Query("SELECT AVG(value) FROM MeasurementContent WHERE measurementId = :measurementId")
+    fun getAvgMeasurementContentValue(measurementId: Int): Flow<Float?>
+
+    @Query("SELECT MAX(value) FROM MeasurementContent WHERE measurementId = :measurementId")
+    fun getMaxMeasurementContentValue(measurementId: Int): Flow<Float?>
+
+    @Query("SELECT MIN(value) FROM MeasurementContent WHERE measurementId = :measurementId")
+    fun getMinMeasurementContentValue(measurementId: Int): Flow<Float?>
+
 }
