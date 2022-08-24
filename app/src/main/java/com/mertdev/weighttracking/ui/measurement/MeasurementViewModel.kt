@@ -35,7 +35,7 @@ class MeasurementViewModel @Inject constructor(
                     _uiState.value = DataStatus.Success(
                         UiModel(
                             allMeasurements = allMeasurements,
-                            isShowMeasurementEmptyLayout = allMeasurements.isEmpty()
+                            isShowEmptyLayout = allMeasurements.isEmpty()
                         )
                     )
                 }

@@ -3,9 +3,11 @@ package com.mertdev.weighttracking.ui.measurementcontent
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mertdev.weighttracking.data.entity.Measurement
 import com.mertdev.weighttracking.data.repo.DataStoreRepo
 import com.mertdev.weighttracking.data.repo.MeasurementRepo
 import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.utils.Constants.TAKE_LAST_SEVEN
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -22,10 +24,10 @@ class MeasurementContentViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
     val uiState: StateFlow<DataStatus<UiModel>> = _uiState
-    private val measurementId = savedStateHandle.get<Int>("measurementId")
+    private val measurement = savedStateHandle.get<Measurement>("measurement")
 
     init {
-        fetchData(measurementId)
+        fetchData(measurement?.id)
     }
 
     private fun fetchData(measurementId: Int?) {
@@ -41,11 +43,13 @@ class MeasurementContentViewModel @Inject constructor(
                     _uiState.value = DataStatus.Success(
                         UiModel(
                             allMeasurementContent = allMeasurementContent,
+                            lastSevenMeasurementContent = allMeasurementContent.asReversed()
+                                .take(TAKE_LAST_SEVEN),
                             numberOfChartData = allPreferences.numberOfChartData,
                             maxMeasurementContentValue = maxMeasurementContentValue,
                             avgMeasurementContentValue = avgMeasurementContentValue,
                             minMeasurementContentValue = minMeasurementContentValue,
-                            isShowMeasurementContentEmptyLayout = allMeasurementContent.isEmpty()
+                            isShowEmptyLayout = allMeasurementContent.isEmpty()
                         )
                     )
                 }.catch { exception ->

@@ -22,7 +22,6 @@ import com.mertdev.weighttracking.utils.Constants.FT
 import com.mertdev.weighttracking.utils.Constants.KG
 import com.mertdev.weighttracking.utils.Constants.LB
 import com.mertdev.weighttracking.utils.Constants.MALE
-import com.mertdev.weighttracking.utils.enums.OnBoardingStatus
 import com.mertdev.weighttracking.utils.extensions.initDialog
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
 import com.mertdev.weighttracking.utils.extensions.showToast

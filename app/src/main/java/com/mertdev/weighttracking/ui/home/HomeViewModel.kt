@@ -50,7 +50,7 @@ class HomeViewModel @Inject constructor(
                         minWeight = minWeight,
                         avgWeight = avgWeight,
                         numberOfChartData = allPreferences.numberOfChartData,
-                        isShowWeightEmptyLayout = allWeights.isEmpty()
+                        isShowEmptyLayout = allWeights.isEmpty()
                     )
                 )
             }.catch { exception ->
@@ -59,7 +59,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun deleteWeight(id: Int){
+    fun deleteWeight(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             weightRepo.deleteWeight(id)
         }

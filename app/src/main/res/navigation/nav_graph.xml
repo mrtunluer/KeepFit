@@ -112,8 +112,17 @@
         android:label="fragment_measurement_content"
         tools:layout="@layout/fragment_measurement_content">
         <argument
-            android:name="measurementId"
-            app:argType="integer" />
+            android:name="measurement"
+            app:argType="com.mertdev.weighttracking.data.entity.Measurement" />
+        <action
+            android:id="@+id/action_measurementContentFragment_to_addMeasurementContentDialogFragment"
+            app:destination="@id/addMeasurementContentDialogFragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/addMeasurementContentDialogFragment"
+        android:name="com.mertdev.weighttracking.ui.addmeasurementcontentdialog.AddMeasurementContentDialogFragment"
+        android:label="fragment_add_measurement_content_dialog"
+        tools:layout="@layout/fragment_add_measurement_content_dialog" />
 
 </navigation>

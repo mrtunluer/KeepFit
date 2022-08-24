@@ -112,7 +112,7 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
     }
 
     private fun emptyLayoutState(uiModel: UiModel) = with(binding.emptyLayout) {
-        root.isVisible = uiModel.isShowMeasurementEmptyLayout == true
+        root.isVisible = uiModel.isShowEmptyLayout == true
         addBtn.setOnClickListener {
             goToAddMeasurementDialogFragment()
         }
@@ -129,7 +129,7 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
     private fun goToMeasurementContentFragment(measurement: Measurement){
         findNavController().safeNavigate(
             MeasurementFragmentDirections.actionMeasurementFragmentToMeasurementContentFragment(
-                measurement.id
+                measurement
             )
         )
     }

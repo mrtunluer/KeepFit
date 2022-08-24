@@ -21,11 +21,10 @@ data class UiModel(
     var weightUnit: String? = null,
     var numberOfChartData: Int? = null,
     var bmi: Float? = null,
-    var isShowWeightEmptyLayout: Boolean? = null,
-    var isShowMeasurementEmptyLayout: Boolean? = null,
-    var isShowMeasurementContentEmptyLayout: Boolean? = null,
+    var isShowEmptyLayout: Boolean? = null,
     var allMeasurements: List<Measurement> = emptyList(),
     var allMeasurementContent: List<MeasurementContent> = emptyList(),
+    var lastSevenMeasurementContent: List<MeasurementContent> = emptyList(),
     var maxMeasurementContentValue: Float? = null,
     var minMeasurementContentValue: Float? = null,
     var avgMeasurementContentValue: Float? = null

@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.onBoardingFragment -> hideBottomNav()
+                R.id.measurementContentFragment -> hideBottomNav()
+                R.id.addMeasurementContentDialogFragment -> hideBottomNav()
                 else -> showBottomNav()
             }
         }

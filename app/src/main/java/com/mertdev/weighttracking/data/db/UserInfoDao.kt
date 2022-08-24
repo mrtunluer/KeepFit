@@ -54,6 +54,10 @@ interface UserInfoDao {
     @Query("SELECT * FROM MeasurementContent INNER JOIN Measurement ON Measurement.id = MeasurementContent.measurementId WHERE Measurement.id = :id ORDER BY MeasurementContent.date DESC")
     fun getMeasurementContent(id: Int): Flow<List<MeasurementContent>>
 
+    // start and end of the entered measurement content data's day (date)
+    @Query("SELECT * FROM MeasurementContent INNER JOIN Measurement ON Measurement.id = MeasurementContent.measurementId WHERE Measurement.id = :id AND (MeasurementContent.date BETWEEN :start AND :end)")
+    fun getMeasurementContentByDate(id: Int, start: Date, end: Date): Flow<MeasurementContent?>
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateMeasurementContent(measurementContent: MeasurementContent)
 

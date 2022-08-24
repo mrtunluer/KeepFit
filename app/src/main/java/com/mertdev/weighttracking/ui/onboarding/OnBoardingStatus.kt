@@ -1,4 +1,4 @@
-package com.mertdev.weighttracking.utils.enums
+package com.mertdev.weighttracking.ui.onboarding
 
 enum class OnBoardingStatus {
     SKIP, SHOW, LOADING

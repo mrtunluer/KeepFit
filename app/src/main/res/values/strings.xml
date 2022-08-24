@@ -43,4 +43,5 @@
     <string name="name">Name</string>
     <string name="select_length_unit">Select Length Unit</string>
     <string name="empty_measurement">you do not have measurement information, please enter your measurement information</string>
+    <string name="empty_measurement_content">you do not have measurement content information, please enter your measurement content information</string>
 </resources>

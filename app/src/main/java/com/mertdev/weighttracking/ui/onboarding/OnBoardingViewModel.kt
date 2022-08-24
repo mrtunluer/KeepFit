@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.data.repo.DataStoreRepo
 import com.mertdev.weighttracking.data.repo.WeightRepo
-import com.mertdev.weighttracking.utils.enums.OnBoardingStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
