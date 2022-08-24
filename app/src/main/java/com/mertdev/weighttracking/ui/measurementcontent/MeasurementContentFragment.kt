@@ -16,6 +16,7 @@ import com.mertdev.weighttracking.data.entity.Measurement
 import com.mertdev.weighttracking.databinding.FragmentMeasurementContentBinding
 import com.mertdev.weighttracking.uimodel.UiModel
 import com.mertdev.weighttracking.utils.enums.DataStatus
+import com.mertdev.weighttracking.utils.extensions.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -76,7 +77,7 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
     private fun emptyLayoutState(uiModel: UiModel) = with(binding.emptyLayout) {
         root.isVisible = uiModel.isShowEmptyLayout == true
         addBtn.setOnClickListener {
-            findNavController().navigate(MeasurementContentFragmentDirections.actionMeasurementContentFragmentToAddMeasurementContentDialogFragment())
+            findNavController().safeNavigate(MeasurementContentFragmentDirections.actionMeasurementContentFragmentToAddMeasurementContentDialogFragment())
         }
     }
 
