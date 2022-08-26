@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.data.entity.Measurement
 import com.mertdev.weighttracking.databinding.FragmentMeasurementBinding
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.MeasurementUiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
@@ -104,15 +104,15 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
         binding.errorTxt.isVisible = true
     }
 
-    private fun onSuccess(data: UiModel) = with(data) {
+    private fun onSuccess(data: MeasurementUiModel) = with(data) {
         binding.swipeRefresh.isRefreshing = false
         binding.errorTxt.isVisible = false
         measurementAdapter.submitList(allMeasurements)
         emptyLayoutState(this)
     }
 
-    private fun emptyLayoutState(uiModel: UiModel) = with(binding.emptyLayout) {
-        root.isVisible = uiModel.isShowEmptyLayout == true
+    private fun emptyLayoutState(measurementUiModel: MeasurementUiModel) = with(binding.emptyLayout) {
+        root.isVisible = measurementUiModel.isShowEmptyLayout == true
         addBtn.setOnClickListener {
             goToAddMeasurementDialogFragment()
         }

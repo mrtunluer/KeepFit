@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mertdev.weighttracking.data.repo.DataStoreRepo
 import com.mertdev.weighttracking.data.repo.WeightRepo
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.Constants.TAKE_LAST_SEVEN
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,8 +19,8 @@ class HomeViewModel @Inject constructor(
     private val dataStoreRepo: DataStoreRepo
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
-    val uiState: StateFlow<DataStatus<UiModel>> = _uiState
+    private val _uiState = MutableStateFlow<DataStatus<WeightUiModel>>(DataStatus.Loading())
+    val uiState: StateFlow<DataStatus<WeightUiModel>> = _uiState
 
     init {
         fetchData()
@@ -36,7 +36,7 @@ class HomeViewModel @Inject constructor(
                 weightRepo.getAvgWeight()
             ) { allWeights, allPreferences, maxWeight, minWeight, avgWeight ->
                 _uiState.value = DataStatus.Success(
-                    UiModel(
+                    WeightUiModel(
                         allWeights = allWeights,
                         lastSevenWeight = allWeights.asReversed().take(TAKE_LAST_SEVEN),
                         firstWeight = allWeights.firstOrNull()?.value,

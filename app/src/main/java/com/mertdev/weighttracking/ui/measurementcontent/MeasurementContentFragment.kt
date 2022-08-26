@@ -14,8 +14,9 @@ import androidx.navigation.fragment.navArgs
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.data.entity.Measurement
 import com.mertdev.weighttracking.databinding.FragmentMeasurementContentBinding
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.MeasurementUiModel
 import com.mertdev.weighttracking.utils.enums.DataStatus
+import com.mertdev.weighttracking.utils.extensions.round
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,6 +27,7 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
     private val binding: FragmentMeasurementContentBinding by viewBinding()
     private val viewModel: MeasurementContentViewModel by viewModels()
     private val args: MeasurementContentFragmentArgs by navArgs()
+    private var measurementUiModel = MeasurementUiModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,6 +40,10 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
 
         binding.backImg.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        binding.addBtn.setOnClickListener {
+            goToAddMeasurementContentDialogFragment(measurementUiModel)
         }
 
     }
@@ -68,17 +74,33 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
         swipeRefresh.isRefreshing = false
     }
 
-    private fun onSuccessForUiState(data: UiModel) = with(data) {
+    private fun onSuccessForUiState(data: MeasurementUiModel) = with(data) {
         binding.errorTxt.isVisible = false
         binding.swipeRefresh.isRefreshing = false
+        binding.currentValueTxt.text = currentMeasurementContentValue.toString()
+        binding.lengthUnitTxt.text = lengthUnit.toString()
+        binding.maxValueTxt.text = maxMeasurementContentValue.toString()
+        binding.minValueTxt.text = minMeasurementContentValue.toString()
+        binding.avgValueTxt.text = avgMeasurementContentValue?.round(1).toString()
         emptyLayoutState(this)
+        measurementUiModel = this
     }
 
-    private fun emptyLayoutState(uiModel: UiModel) = with(binding.emptyLayout) {
-        root.isVisible = uiModel.isShowEmptyLayout == true
-        addBtn.setOnClickListener {
-            findNavController().safeNavigate(MeasurementContentFragmentDirections.actionMeasurementContentFragmentToAddMeasurementContentDialogFragment())
+    private fun emptyLayoutState(measurementUiModel: MeasurementUiModel) =
+        with(binding.emptyLayout) {
+            root.isVisible = measurementUiModel.isShowEmptyLayout == true
+            addBtn.setOnClickListener {
+                goToAddMeasurementContentDialogFragment(measurementUiModel)
+            }
         }
+
+    private fun goToAddMeasurementContentDialogFragment(measurementUiModel: MeasurementUiModel) {
+        findNavController().safeNavigate(
+            MeasurementContentFragmentDirections.actionMeasurementContentFragmentToAddMeasurementContentDialogFragment(
+                measurementUiModel
+            )
+        )
     }
+
 
 }

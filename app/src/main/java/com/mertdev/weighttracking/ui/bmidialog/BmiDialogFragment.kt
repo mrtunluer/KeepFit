@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentBmiDialogBinding
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.WeightUiModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,14 +34,14 @@ class BmiDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val uiModel = args.uiModel
-        initView(uiModel)
+        val weightUiModel = args.weightUiModel
+        initView(weightUiModel)
     }
 
-    private fun initView(uiModel: UiModel) = with(binding) {
-        bmiTxt.text = uiModel.bmi.toString()
+    private fun initView(weightUiModel: WeightUiModel) = with(binding) {
+        bmiTxt.text = weightUiModel.bmi.toString()
 
-        uiModel.bmi?.let { bmi ->
+        weightUiModel.bmi?.let { bmi ->
             if (bmi < 18.5)
                 setBg(underweightLayout)
             else if (bmi in 18.5..24.9)

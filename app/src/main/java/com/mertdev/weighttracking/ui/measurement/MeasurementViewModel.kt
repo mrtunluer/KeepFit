@@ -3,7 +3,7 @@ package com.mertdev.weighttracking.ui.measurement
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mertdev.weighttracking.data.repo.MeasurementRepo
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.MeasurementUiModel
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,8 +19,8 @@ class MeasurementViewModel @Inject constructor(
     private val measurementRepo: MeasurementRepo
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
-    val uiState: StateFlow<DataStatus<UiModel>> = _uiState
+    private val _uiState = MutableStateFlow<DataStatus<MeasurementUiModel>>(DataStatus.Loading())
+    val uiState: StateFlow<DataStatus<MeasurementUiModel>> = _uiState
 
     init {
         getAllMeasurements()
@@ -33,7 +33,7 @@ class MeasurementViewModel @Inject constructor(
                     _uiState.value = DataStatus.Error(exception.message.toString())
                 }.collectLatest { allMeasurements ->
                     _uiState.value = DataStatus.Success(
-                        UiModel(
+                        MeasurementUiModel(
                             allMeasurements = allMeasurements,
                             isShowEmptyLayout = allMeasurements.isEmpty()
                         )

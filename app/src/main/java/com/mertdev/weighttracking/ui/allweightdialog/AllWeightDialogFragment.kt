@@ -20,7 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentAllWeightDialogBinding
 import com.mertdev.weighttracking.ui.home.StatisticsAdapter
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
@@ -34,7 +34,7 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
     private val binding: FragmentAllWeightDialogBinding by viewBinding()
     private val statisticsAdapter = StatisticsAdapter()
     private val viewModel: AllWeightViewModel by viewModels()
-    private var uiModel = UiModel()
+    private var weightUiModel = WeightUiModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,8 +51,8 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
         }
 
         statisticsAdapter.setOnItemClickListener { weight ->
-            uiModel = uiModel.copy(weight = weight)
-            goToAddWeightFragment(uiModel)
+            weightUiModel = weightUiModel.copy(weight = weight)
+            goToAddWeightFragment(weightUiModel)
         }
 
     }
@@ -102,16 +102,16 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
         requireContext().showToast(getString(R.string.error))
     }
 
-    private fun onSuccessForUiState(data: UiModel) = with(data) {
+    private fun onSuccessForUiState(data: WeightUiModel) = with(data) {
         binding.progressBar.isVisible = false
         statisticsAdapter.submitList(allWeights.asReversed())
-        uiModel = this
+        weightUiModel = this
     }
 
-    private fun goToAddWeightFragment(uiModel: UiModel) {
+    private fun goToAddWeightFragment(weightUiModel: WeightUiModel) {
         findNavController().safeNavigate(
             AllWeightDialogFragmentDirections.actionAllWeightFragmentToAddWeightDialogFragment(
-                uiModel
+                weightUiModel
             )
         )
     }

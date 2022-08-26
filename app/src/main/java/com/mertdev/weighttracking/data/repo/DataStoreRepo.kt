@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.Constants.DATA_STORE_NAME
 import com.mertdev.weighttracking.utils.Constants.GENDER_KEY
 import com.mertdev.weighttracking.utils.Constants.HEIGHT_KEY
@@ -91,7 +91,7 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
             isInfoEntered
         }
 
-    val readAllPreferences: Flow<UiModel> = context.dataStore.data
+    val readAllPreferences: Flow<WeightUiModel> = context.dataStore.data
         .catch { exception ->
             if (exception is IOException) {
                 Log.d("DataStore", exception.message.toString())
@@ -106,7 +106,7 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
             val height = preference[PreferenceKeys.height]
             val gender = preference[PreferenceKeys.gender]
             val numberOfChartData = preference[PreferenceKeys.numberOfChartData] ?: NUMBER_OF_INITIAL_DATA_IN_CHART
-            val uiModel = UiModel(
+            val weightUiModel = WeightUiModel(
                 weightUnit = weightUnit,
                 heightUnit = heightUnit,
                 targetWeight = targetWeight,
@@ -114,7 +114,7 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
                 gender = gender,
                 numberOfChartData = numberOfChartData
             )
-            uiModel
+            weightUiModel
         }.filterNotNull()
 
 }

@@ -3,7 +3,7 @@ package com.mertdev.weighttracking.ui.home
 import android.content.Context
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.Constants.FT
 import com.mertdev.weighttracking.utils.Constants.LB
 import com.mertdev.weighttracking.utils.Constants.MALE
@@ -15,7 +15,7 @@ import kotlin.math.pow
 
 object MathematicalOperations {
 
-    fun setHorizontalProgressLoading(data: UiModel, binding: FragmentHomeBinding) =
+    fun setHorizontalProgressLoading(data: WeightUiModel, binding: FragmentHomeBinding) =
         with(data) {
             if (firstWeight != null && currentWeight != null && targetWeight != null) {
                 val min = min(min(firstWeight!!, currentWeight!!), targetWeight!!)
@@ -44,7 +44,7 @@ object MathematicalOperations {
             }
         }
 
-    fun calculateBmi(data: UiModel, binding: FragmentHomeBinding) = with(data) {
+    fun calculateBmi(data: WeightUiModel, binding: FragmentHomeBinding) = with(data) {
         val weight: Float? = if (weightUnit == LB)
             currentWeight?.toKg()
         else
@@ -60,7 +60,7 @@ object MathematicalOperations {
         binding.bmiTxt.text = bmi.toString()
     }
 
-    fun calculateIdealWeight(data: UiModel, binding: FragmentHomeBinding) = with(data) {
+    fun calculateIdealWeight(data: WeightUiModel, binding: FragmentHomeBinding) = with(data) {
         val height: Float? = if (heightUnit == FT)
             height?.toCm()
         else
@@ -77,7 +77,7 @@ object MathematicalOperations {
             idealWeight?.toString()
     }
 
-    fun calculateHealthyWeightRange(data: UiModel, binding: FragmentHomeBinding) =
+    fun calculateHealthyWeightRange(data: WeightUiModel, binding: FragmentHomeBinding) =
         with(data) {
             val height: Float? = if (heightUnit == FT)
                 height?.toCm()?.div(100)?.pow(2)
@@ -93,7 +93,7 @@ object MathematicalOperations {
                 firstWeight?.toString().plus(" - $lastWeight")
         }
 
-    fun setRemainderWeight(data: UiModel, binding: FragmentHomeBinding, context: Context) {
+    fun setRemainderWeight(data: WeightUiModel, binding: FragmentHomeBinding, context: Context) {
         binding.remainingTxt.text =
             context.getString(R.string.remaining).plus(" " + data.currentWeight?.let {
                 data.targetWeight?.minus(it)?.round(1)?.absoluteValue

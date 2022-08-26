@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentSettingsBinding
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +23,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val binding: FragmentSettingsBinding by viewBinding()
     private val viewModel: SettingsViewModel by viewModels()
-    private var uiModel = UiModel()
+    private var weightUiModel = WeightUiModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,43 +40,43 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
         targetWeightCard.setOnClickListener {
             goToSettingsDialogFragment(
-                UiModel(
-                    weightUnit = uiModel.weightUnit,
-                    targetWeight = uiModel.targetWeight
+                WeightUiModel(
+                    weightUnit = weightUiModel.weightUnit,
+                    targetWeight = weightUiModel.targetWeight
                 )
             )
         }
 
         weightUnitCard.setOnClickListener {
-            goToSettingsDialogFragment(UiModel(weightUnit = uiModel.weightUnit))
+            goToSettingsDialogFragment(WeightUiModel(weightUnit = weightUiModel.weightUnit))
         }
 
         heightCard.setOnClickListener {
             goToSettingsDialogFragment(
-                UiModel(
-                    heightUnit = uiModel.heightUnit,
-                    height = uiModel.height
+                WeightUiModel(
+                    heightUnit = weightUiModel.heightUnit,
+                    height = weightUiModel.height
                 )
             )
         }
 
         heightUnitCard.setOnClickListener {
-            goToSettingsDialogFragment(UiModel(heightUnit = uiModel.heightUnit))
+            goToSettingsDialogFragment(WeightUiModel(heightUnit = weightUiModel.heightUnit))
         }
 
         genderCard.setOnClickListener {
-            goToSettingsDialogFragment(UiModel(gender = uiModel.gender))
+            goToSettingsDialogFragment(WeightUiModel(gender = weightUiModel.gender))
         }
 
         numberOfChartDataCard.setOnClickListener {
-            goToSettingsDialogFragment(UiModel(numberOfChartData = uiModel.numberOfChartData))
+            goToSettingsDialogFragment(WeightUiModel(numberOfChartData = weightUiModel.numberOfChartData))
         }
 
     }
 
-    private fun goToSettingsDialogFragment(uiModel: UiModel) {
+    private fun goToSettingsDialogFragment(weightUiModel: WeightUiModel) {
         findNavController().safeNavigate(
-            SettingsFragmentDirections.actionSettingsFragmentToSettingsDialogFragment(uiModel)
+            SettingsFragmentDirections.actionSettingsFragmentToSettingsDialogFragment(weightUiModel)
         )
     }
 
@@ -101,7 +101,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         binding.errorTxt.isVisible = true
     }
 
-    private fun onSuccessForUiState(data: UiModel) = with(data) {
+    private fun onSuccessForUiState(data: WeightUiModel) = with(data) {
         binding.swipeRefresh.isRefreshing = false
         binding.errorTxt.isVisible = false
         binding.genderTxt.text = data.gender
@@ -110,7 +110,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         binding.heightTxt.text = data.height.toString()
         binding.targetWeightTxt.text = data.targetWeight.toString()
         binding.numberOfChartDataTxt.text = data.numberOfChartData.toString()
-        uiModel = this
+        weightUiModel = this
     }
 
 }

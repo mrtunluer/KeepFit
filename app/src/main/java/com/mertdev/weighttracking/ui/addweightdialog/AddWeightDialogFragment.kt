@@ -19,7 +19,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.FragmentAddWeightDialogBinding
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.Constants.EMPTY
 import com.mertdev.weighttracking.utils.extensions.endOfDay
 import com.mertdev.weighttracking.utils.extensions.showDate
@@ -49,8 +49,8 @@ class AddWeightDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val uiModel = args.uiModel
-        initView(uiModel)
+        val weightUiModel = args.weightUiModel
+        initView(weightUiModel)
 
         viewLifecycleOwner.lifecycleScope.launch {
             observePopBackStack()
@@ -127,8 +127,7 @@ class AddWeightDialogFragment : BottomSheetDialogFragment() {
         datePicker.show(parentFragmentManager, EMPTY)
     }
 
-
-    private fun initView(uiModel: UiModel) = with(uiModel) {
+    private fun initView(weightUiModel: WeightUiModel) = with(weightUiModel) {
         if (weight == null) {
             currentWeight?.let {
                 binding.weightInput.setValue(it)

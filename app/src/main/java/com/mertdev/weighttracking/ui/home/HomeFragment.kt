@@ -19,7 +19,7 @@ import com.github.mikephil.charting.data.BarEntry
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
 import com.mertdev.weighttracking.ui.home.chart.InitChart
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.*
@@ -31,7 +31,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val binding: FragmentHomeBinding by viewBinding()
     private val viewModel: HomeViewModel by viewModels()
-    private var uiModel = UiModel()
+    private var weightUiModel = WeightUiModel()
     private val statisticsAdapter = StatisticsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,11 +43,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.addBtn.setOnClickListener {
-            goToAddWeightDialogFragment(uiModel)
+            goToAddWeightDialogFragment(weightUiModel)
         }
 
         statisticsAdapter.setOnItemClickListener { weight ->
-            val uiModel = uiModel.copy(weight = weight)
+            val uiModel = weightUiModel.copy(weight = weight)
             goToAddWeightDialogFragment(uiModel)
         }
 
@@ -56,7 +56,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.bmiCard.setOnClickListener {
-            goToBmiDialogFragment(uiModel)
+            goToBmiDialogFragment(weightUiModel)
         }
 
     }
@@ -91,10 +91,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.recyclerView)
     }
 
-    private fun emptyLayoutState(uiModel: UiModel) = with(binding.emptyLayout) {
-        root.isVisible = uiModel.isShowEmptyLayout == true
+    private fun emptyLayoutState(weightUiModel: WeightUiModel) = with(binding.emptyLayout) {
+        root.isVisible = weightUiModel.isShowEmptyLayout == true
         addBtn.setOnClickListener {
-            goToAddWeightDialogFragment(uiModel)
+            goToAddWeightDialogFragment(weightUiModel)
         }
     }
 
@@ -119,7 +119,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.errorTxt.isVisible = true
     }
 
-    private fun onSuccessForUiState(data: UiModel) = with(data) {
+    private fun onSuccessForUiState(data: WeightUiModel) = with(data) {
         binding.swipeRefresh.isRefreshing = false
         binding.errorTxt.isVisible = false
         binding.targetWeightTxt.text = targetWeight.toString()
@@ -133,10 +133,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         emptyLayoutState(this)
         setMathematicalOperations(this)
         setChart(this)
-        uiModel = this
+        weightUiModel = this
     }
 
-    private fun setMathematicalOperations(data: UiModel) = with(data) {
+    private fun setMathematicalOperations(data: WeightUiModel) = with(data) {
         MathematicalOperations.setRemainderWeight(this, binding, requireContext())
         MathematicalOperations.setHorizontalProgressLoading(this, binding)
         MathematicalOperations.calculateBmi(this, binding)
@@ -144,7 +144,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         MathematicalOperations.calculateHealthyWeightRange(this, binding)
     }
 
-    private fun setChart(data: UiModel) = with(data) {
+    private fun setChart(data: WeightUiModel) = with(data) {
         numberOfChartData?.let {
             val listByNumberOfChartData = allWeights.takeLast(it)
 
@@ -162,10 +162,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun goToAddWeightDialogFragment(uiModel: UiModel) {
+    private fun goToAddWeightDialogFragment(weightUiModel: WeightUiModel) {
         findNavController().safeNavigate(
             HomeFragmentDirections.actionHomeFragmentToAddWeightDialogFragment(
-                uiModel
+                weightUiModel
             )
         )
     }
@@ -176,9 +176,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         )
     }
 
-    private fun goToBmiDialogFragment(uiModel: UiModel) {
+    private fun goToBmiDialogFragment(weightUiModel: WeightUiModel) {
         findNavController().safeNavigate(
-            HomeFragmentDirections.actionHomeFragmentToBmiDialogFragment(uiModel)
+            HomeFragmentDirections.actionHomeFragmentToBmiDialogFragment(weightUiModel)
         )
     }
 

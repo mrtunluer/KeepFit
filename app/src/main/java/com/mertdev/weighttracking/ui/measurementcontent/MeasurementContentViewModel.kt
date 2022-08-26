@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mertdev.weighttracking.data.entity.Measurement
 import com.mertdev.weighttracking.data.repo.DataStoreRepo
 import com.mertdev.weighttracking.data.repo.MeasurementRepo
-import com.mertdev.weighttracking.uimodel.UiModel
+import com.mertdev.weighttracking.uimodel.MeasurementUiModel
 import com.mertdev.weighttracking.utils.Constants.TAKE_LAST_SEVEN
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +22,8 @@ class MeasurementContentViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<DataStatus<UiModel>>(DataStatus.Loading())
-    val uiState: StateFlow<DataStatus<UiModel>> = _uiState
+    private val _uiState = MutableStateFlow<DataStatus<MeasurementUiModel>>(DataStatus.Loading())
+    val uiState: StateFlow<DataStatus<MeasurementUiModel>> = _uiState
     private val measurement = savedStateHandle.get<Measurement>("measurement")
 
     init {
@@ -41,7 +41,9 @@ class MeasurementContentViewModel @Inject constructor(
                     measurementRepo.getMinMeasurementContentValue(id)
                 ) { allMeasurementContent, allPreferences, avgMeasurementContentValue, maxMeasurementContentValue, minMeasurementContentValue ->
                     _uiState.value = DataStatus.Success(
-                        UiModel(
+                        MeasurementUiModel(
+                            measurementId = id,
+                            measurementName = measurement?.name,
                             allMeasurementContent = allMeasurementContent,
                             lastSevenMeasurementContent = allMeasurementContent.asReversed()
                                 .take(TAKE_LAST_SEVEN),
@@ -49,7 +51,9 @@ class MeasurementContentViewModel @Inject constructor(
                             maxMeasurementContentValue = maxMeasurementContentValue,
                             avgMeasurementContentValue = avgMeasurementContentValue,
                             minMeasurementContentValue = minMeasurementContentValue,
-                            isShowEmptyLayout = allMeasurementContent.isEmpty()
+                            isShowEmptyLayout = allMeasurementContent.isEmpty(),
+                            lengthUnit = measurement?.lengthUnit,
+                            currentMeasurementContentValue = allMeasurementContent.lastOrNull()?.value,
                         )
                     )
                 }.catch { exception ->
