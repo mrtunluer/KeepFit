@@ -51,8 +51,13 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
             findNavController().popBackStack()
         }
 
+        binding.allMeasurementContentBtn.setOnClickListener {
+            goToAllMeasurementContentDialogFragment(measurementUiModel)
+        }
+
         contentStatisticsAdapter.setOnItemClickListener { measurementContent ->
-            val measurementUiModel = measurementUiModel.copy(measurementContent = measurementContent)
+            val measurementUiModel =
+                measurementUiModel.copy(measurementContent = measurementContent)
             goToAddMeasurementContentDialogFragment(measurementUiModel)
         }
 
@@ -145,7 +150,6 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
         }
     }
 
-
     private fun emptyLayoutState(measurementUiModel: MeasurementUiModel) =
         with(binding.emptyLayout) {
             root.isVisible = measurementUiModel.isShowEmptyLayout == true
@@ -162,5 +166,12 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
         )
     }
 
+    private fun goToAllMeasurementContentDialogFragment(measurementUiModel: MeasurementUiModel) {
+        findNavController().safeNavigate(
+            MeasurementContentFragmentDirections.actionMeasurementContentFragmentToAllMeasurementContentDialogFragment(
+                measurementUiModel
+            )
+        )
+    }
 
 }

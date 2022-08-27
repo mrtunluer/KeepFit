@@ -44,5 +44,4 @@ abstract class SwipeGesture(private val context: Context) :
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
-
 }

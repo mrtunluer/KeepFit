@@ -47,7 +47,7 @@
         android:id="@+id/allWeightDialogFragment"
         android:name="com.mertdev.weighttracking.ui.allweightdialog.AllWeightDialogFragment"
         android:label="AllWeightDialogFragment"
-        tools:layout="@layout/fragment_all_weight_dialog">
+        tools:layout="@layout/all_value_dialog">
         <action
             android:id="@+id/action_allWeightFragment_to_addWeightDialogFragment"
             app:destination="@id/addWeightDialogFragment" />
@@ -117,16 +117,31 @@
         <action
             android:id="@+id/action_measurementContentFragment_to_addMeasurementContentDialogFragment"
             app:destination="@id/addMeasurementContentDialogFragment" />
+        <action
+            android:id="@+id/action_measurementContentFragment_to_allMeasurementContentDialogFragment"
+            app:destination="@id/allMeasurementContentDialogFragment" />
     </fragment>
 
     <dialog
         android:id="@+id/addMeasurementContentDialogFragment"
         android:name="com.mertdev.weighttracking.ui.addmeasurementcontentdialog.AddMeasurementContentDialogFragment"
         android:label="fragment_add_measurement_content_dialog"
-        tools:layout="@layout/fragment_add_measurement_content_dialog" >
+        tools:layout="@layout/fragment_add_measurement_content_dialog">
         <argument
             android:name="measurementUiModel"
             app:argType="com.mertdev.weighttracking.uimodel.MeasurementUiModel" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/allMeasurementContentDialogFragment"
+        android:name="com.mertdev.weighttracking.ui.allmeasurementcontentdialog.AllMeasurementContentDialogFragment"
+        android:label="AllMeasurementContentDialogFragment">
+        <argument
+            android:name="measurementUiModel"
+            app:argType="com.mertdev.weighttracking.uimodel.MeasurementUiModel" />
+        <action
+            android:id="@+id/action_allMeasurementContentDialogFragment_to_addMeasurementContentDialogFragment"
+            app:destination="@id/addMeasurementContentDialogFragment" />
     </dialog>
 
 </navigation>

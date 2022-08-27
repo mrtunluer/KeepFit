@@ -1,4 +1,4 @@
-package com.mertdev.weighttracking.ui.allweightdialog
+package com.mertdev.weighttracking.ui.allmeasurementcontentdialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.AllValueDialogBinding
-import com.mertdev.weighttracking.ui.home.WeightStatisticsAdapter
-import com.mertdev.weighttracking.uimodel.WeightUiModel
+import com.mertdev.weighttracking.ui.measurementcontent.ContentStatisticsAdapter
+import com.mertdev.weighttracking.uimodel.MeasurementUiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
@@ -29,12 +29,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AllWeightDialogFragment : BottomSheetDialogFragment() {
+class AllMeasurementContentDialogFragment : BottomSheetDialogFragment() {
 
     private val binding: AllValueDialogBinding by viewBinding()
-    private val weightStatisticsAdapter = WeightStatisticsAdapter()
-    private val viewModel: AllWeightViewModel by viewModels()
-    private var weightUiModel = WeightUiModel()
+    private val contentStatisticsAdapter = ContentStatisticsAdapter()
+    private val viewModel: AllMeasurementContentViewModel by viewModels()
+    private var measurementUiModel = MeasurementUiModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,40 +50,11 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
             collectUiState()
         }
 
-        weightStatisticsAdapter.setOnItemClickListener { weight ->
-            val weightUiModel = weightUiModel.copy(weight = weight)
-            goToAddWeightFragment(weightUiModel)
+        contentStatisticsAdapter.setOnItemClickListener { measurementContent ->
+            val measurementUiModel = measurementUiModel.copy(measurementContent = measurementContent)
+            goToAddMeasurementContentDialogFragment(measurementUiModel)
         }
 
-    }
-
-    private fun initView() = with(binding) {
-        progressBar.isVisible = false
-
-        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-        itemDecoration.setDrawable(
-            AppCompatResources.getDrawable(
-                requireContext(),
-                R.drawable.rv_divider_layer
-            )!!
-        )
-
-        recyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = weightStatisticsAdapter
-            addItemDecoration(itemDecoration)
-        }
-
-        val swipeGesture = object : SwipeGesture(requireContext()) {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.deleteWeight(
-                    weightStatisticsAdapter.currentList[viewHolder.absoluteAdapterPosition].id
-                )
-            }
-        }
-
-        ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.recyclerView)
     }
 
     private suspend fun collectUiState() {
@@ -102,17 +73,47 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
         requireContext().showToast(getString(R.string.error))
     }
 
-    private fun onSuccessForUiState(data: WeightUiModel) = with(data) {
+    private fun onSuccessForUiState(data: MeasurementUiModel) = with(data) {
         binding.progressBar.isVisible = false
-        weightStatisticsAdapter.submitList(allWeights.asReversed())
-        weightUiModel = this
+        contentStatisticsAdapter.submitList(allMeasurementContent.asReversed())
+        measurementUiModel = this
     }
 
-    private fun goToAddWeightFragment(weightUiModel: WeightUiModel) {
+    private fun goToAddMeasurementContentDialogFragment(measurementUiModel: MeasurementUiModel) {
         findNavController().safeNavigate(
-            AllWeightDialogFragmentDirections.actionAllWeightFragmentToAddWeightDialogFragment(
-                weightUiModel
+            AllMeasurementContentDialogFragmentDirections.actionAllMeasurementContentDialogFragmentToAddMeasurementContentDialogFragment(
+                measurementUiModel
             )
         )
     }
+
+    private fun initView() = with(binding) {
+        progressBar.isVisible = false
+
+        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        itemDecoration.setDrawable(
+            AppCompatResources.getDrawable(
+                requireContext(),
+                R.drawable.rv_divider_layer
+            )!!
+        )
+
+        recyclerView.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = contentStatisticsAdapter
+            addItemDecoration(itemDecoration)
+        }
+
+        val swipeGesture = object : SwipeGesture(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewModel.deleteMeasurementContent(
+                    contentStatisticsAdapter.currentList[viewHolder.absoluteAdapterPosition].id
+                )
+            }
+        }
+
+        ItemTouchHelper(swipeGesture).attachToRecyclerView(binding.recyclerView)
+    }
+
 }

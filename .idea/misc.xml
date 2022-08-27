@@ -41,6 +41,7 @@
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/font/font.xml" value="0.17314814814814813" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/add_weight.xml" value="0.264" />
+        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/all_value_dialog.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/custom_progress_layout.xml" value="0.8" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/empty_layout.xml" value="0.23541666666666666" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_add_measurement_content_dialog.xml" value="0.2223731884057971" />
@@ -48,6 +49,7 @@
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_add_weight.xml" value="0.264" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_add_weight_dialog.xml" value="0.11018518518518519" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_all_weight.xml" value="0.2" />
+        <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_all_weight_dialog.xml" value="0.21920289855072464" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_bmi.xml" value="0.2" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_home.xml" value="0.152" />
         <entry key="..\:/Users/LENOVO-PC/AndroidStudioProjects/WeightTracking/app/src/main/res/layout/fragment_measurement.xml" value="0.264" />
