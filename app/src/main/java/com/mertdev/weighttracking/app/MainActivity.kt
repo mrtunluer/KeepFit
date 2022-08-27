@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.onBoardingFragment -> hideBottomNav()
                 R.id.measurementContentFragment -> hideBottomNav()
                 R.id.addMeasurementContentDialogFragment -> hideBottomNav()
+                R.id.allMeasurementContentDialogFragment -> hideBottomNav()
                 else -> showBottomNav()
             }
         }
