@@ -39,7 +39,7 @@ interface UserInfoDao {
 
     // Measurement Query
 
-    @Query("SELECT * FROM Measurement ORDER BY date DESC")
+    @Query("SELECT Measurement.id, Measurement.name, Measurement.lengthUnit,(SELECT Max(MeasurementContent.date) FROM MeasurementContent WHERE Measurement.id = MeasurementContent.measurementId) AS date FROM Measurement ORDER BY date DESC")
     fun getAllMeasurements(): Flow<List<Measurement>>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
