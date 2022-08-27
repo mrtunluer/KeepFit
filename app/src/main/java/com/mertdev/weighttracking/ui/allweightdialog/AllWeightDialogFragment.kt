@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentAllWeightDialogBinding
-import com.mertdev.weighttracking.ui.home.StatisticsAdapter
+import com.mertdev.weighttracking.ui.home.WeightStatisticsAdapter
 import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 class AllWeightDialogFragment : BottomSheetDialogFragment() {
 
     private val binding: FragmentAllWeightDialogBinding by viewBinding()
-    private val statisticsAdapter = StatisticsAdapter()
+    private val weightStatisticsAdapter = WeightStatisticsAdapter()
     private val viewModel: AllWeightViewModel by viewModels()
     private var weightUiModel = WeightUiModel()
 
@@ -50,7 +50,7 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
             collectUiState()
         }
 
-        statisticsAdapter.setOnItemClickListener { weight ->
+        weightStatisticsAdapter.setOnItemClickListener { weight ->
             weightUiModel = weightUiModel.copy(weight = weight)
             goToAddWeightFragment(weightUiModel)
         }
@@ -71,14 +71,14 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
         recyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = statisticsAdapter
+            adapter = weightStatisticsAdapter
             addItemDecoration(itemDecoration)
         }
 
         val swipeGesture = object : SwipeGesture(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 viewModel.deleteWeight(
-                    statisticsAdapter.currentList[viewHolder.absoluteAdapterPosition].id
+                    weightStatisticsAdapter.currentList[viewHolder.absoluteAdapterPosition].id
                 )
             }
         }
@@ -104,7 +104,7 @@ class AllWeightDialogFragment : BottomSheetDialogFragment() {
 
     private fun onSuccessForUiState(data: WeightUiModel) = with(data) {
         binding.progressBar.isVisible = false
-        statisticsAdapter.submitList(allWeights.asReversed())
+        weightStatisticsAdapter.submitList(allWeights.asReversed())
         weightUiModel = this
     }
 

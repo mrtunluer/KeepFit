@@ -1,4 +1,4 @@
-package com.mertdev.weighttracking.ui.home.chart
+package com.mertdev.weighttracking.utils.chart
 
 import android.content.Context
 import androidx.core.content.ContextCompat

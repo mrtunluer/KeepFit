@@ -51,7 +51,7 @@ interface UserInfoDao {
     @Query("DELETE FROM Measurement where id = :id")
     suspend fun deleteMeasurement(id: Int)
 
-    @Query("SELECT * FROM MeasurementContent INNER JOIN Measurement ON Measurement.id = MeasurementContent.measurementId WHERE Measurement.id = :id ORDER BY MeasurementContent.date ASC")
+    @Query("SELECT MeasurementContent.id, MeasurementContent.measurementId, MeasurementContent.value, MeasurementContent.date, MeasurementContent.note FROM MeasurementContent INNER JOIN Measurement ON Measurement.id = MeasurementContent.measurementId WHERE Measurement.id = :id ORDER BY MeasurementContent.date ASC")
     fun getMeasurementContent(id: Int): Flow<List<MeasurementContent>>
 
     // start and end of the entered measurement content data's day (date)

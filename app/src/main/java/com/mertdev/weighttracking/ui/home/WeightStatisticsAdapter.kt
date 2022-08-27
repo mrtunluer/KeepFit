@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mertdev.weighttracking.data.entity.Weight
-import com.mertdev.weighttracking.databinding.WeightItemBinding
+import com.mertdev.weighttracking.databinding.StatisticsItemBinding
 import com.mertdev.weighttracking.utils.extensions.showDateWithDay
 
-class StatisticsAdapter : ListAdapter<Weight, StatisticsAdapter.ViewHolder>(DifferCallback) {
+class WeightStatisticsAdapter : ListAdapter<Weight, WeightStatisticsAdapter.ViewHolder>(DifferCallback) {
 
      object DifferCallback : DiffUtil.ItemCallback<Weight>() {
         override fun areItemsTheSame(oldItem: Weight, newItem: Weight): Boolean {
@@ -24,7 +24,7 @@ class StatisticsAdapter : ListAdapter<Weight, StatisticsAdapter.ViewHolder>(Diff
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            WeightItemBinding.inflate(
+            StatisticsItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -42,7 +42,7 @@ class StatisticsAdapter : ListAdapter<Weight, StatisticsAdapter.ViewHolder>(Diff
         }
     }
 
-    inner class ViewHolder(private val binding: WeightItemBinding) :
+    inner class ViewHolder(private val binding: StatisticsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(weight: Weight) {

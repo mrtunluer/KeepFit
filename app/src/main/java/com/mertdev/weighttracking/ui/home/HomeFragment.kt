@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.data.BarEntry
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
-import com.mertdev.weighttracking.ui.home.chart.InitChart
+import com.mertdev.weighttracking.utils.chart.InitChart
 import com.mertdev.weighttracking.uimodel.WeightUiModel
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
@@ -32,7 +32,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding()
     private val viewModel: HomeViewModel by viewModels()
     private var weightUiModel = WeightUiModel()
-    private val statisticsAdapter = StatisticsAdapter()
+    private val weightStatisticsAdapter = WeightStatisticsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,9 +46,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             goToAddWeightDialogFragment(weightUiModel)
         }
 
-        statisticsAdapter.setOnItemClickListener { weight ->
-            val uiModel = weightUiModel.copy(weight = weight)
-            goToAddWeightDialogFragment(uiModel)
+        weightStatisticsAdapter.setOnItemClickListener { weight ->
+            val weightUiModel = weightUiModel.copy(weight = weight)
+            goToAddWeightDialogFragment(weightUiModel)
         }
 
         binding.allWeightBtn.setOnClickListener {
@@ -76,14 +76,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         recyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = statisticsAdapter
+            adapter = weightStatisticsAdapter
             addItemDecoration(itemDecoration)
         }
 
         val swipeGesture = object : SwipeGesture(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 viewModel.deleteWeight(
-                    statisticsAdapter.currentList[viewHolder.absoluteAdapterPosition].id
+                    weightStatisticsAdapter.currentList[viewHolder.absoluteAdapterPosition].id
                 )
             }
         }
@@ -129,7 +129,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.maxWeightTxt.text = maxWeight.toString()
         binding.minWeightTxt.text = minWeight.toString()
         binding.avgWeightTxt.text = avgWeight?.round(1).toString()
-        statisticsAdapter.submitList(lastSevenWeight)
+        weightStatisticsAdapter.submitList(lastSevenWeight)
         emptyLayoutState(this)
         setMathematicalOperations(this)
         setChart(this)
@@ -157,7 +157,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 entryList,
                 requireContext(),
                 binding.chart,
-                listByNumberOfChartData
+                weightList = listByNumberOfChartData
             )
         }
     }

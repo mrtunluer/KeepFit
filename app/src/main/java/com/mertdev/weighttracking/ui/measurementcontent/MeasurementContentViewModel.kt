@@ -63,4 +63,10 @@ class MeasurementContentViewModel @Inject constructor(
         }
     }
 
+    fun deleteMeasurementContent(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            measurementRepo.deleteMeasurementContent(id)
+        }
+    }
+
 }
