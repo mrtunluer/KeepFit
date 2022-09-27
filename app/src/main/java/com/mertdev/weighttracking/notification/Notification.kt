@@ -18,7 +18,6 @@ class Notification : BroadcastReceiver() {
 
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent?) {
-
         val repeatingIntent = Intent(context, MainActivity::class.java)
         repeatingIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 
@@ -39,7 +38,6 @@ class Notification : BroadcastReceiver() {
 
         val notificationManager = NotificationManagerCompat.from(context)
         notificationManager.notify(NOTIFY_ID, builder.build())
-
     }
 
 }
