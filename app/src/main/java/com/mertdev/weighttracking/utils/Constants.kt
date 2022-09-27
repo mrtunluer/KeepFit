@@ -27,4 +27,8 @@ object Constants {
     const val LAST_THIRTY = 30
     const val LAST_NINETY = 90
     const val LAST_HUNDRED_EIGHTY = 180
+    const val HOUR_OF_DAY = 9
+    const val MINUTE = 30
+    const val NOTIFICATION_ID = "REMINDER_NOTIFICATION"
+    const val NOTIFICATION_NAME = "Reminder Notification"
 }
