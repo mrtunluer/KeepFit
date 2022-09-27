@@ -33,8 +33,8 @@ class Notification : BroadcastReceiver() {
             NotificationCompat.Builder(context, NOTIFICATION_ID)
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("asdasd")
-                .setContentText("This is a daily notification")
+                .setContentTitle(context.getString(R.string.notification_title))
+                .setContentText(context.getString(R.string.notification_content))
                 .setAutoCancel(true)
 
         val notificationManager = NotificationManagerCompat.from(context)
