@@ -31,4 +31,5 @@ object Constants {
     const val MINUTE = 30
     const val NOTIFICATION_ID = "REMINDER_NOTIFICATION"
     const val NOTIFICATION_NAME = "Reminder Notification"
+    const val NOTIFY_ID = 200
 }

@@ -10,6 +10,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.app.MainActivity
 import com.mertdev.weighttracking.utils.Constants.NOTIFICATION_ID
+import com.mertdev.weighttracking.utils.Constants.NOTIFY_ID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +38,7 @@ class Notification : BroadcastReceiver() {
                 .setAutoCancel(true)
 
         val notificationManager = NotificationManagerCompat.from(context)
-        notificationManager.notify(200, builder.build())
+        notificationManager.notify(NOTIFY_ID, builder.build())
 
     }
 
