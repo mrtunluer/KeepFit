@@ -1,6 +1,5 @@
 package com.mertdev.weighttracking.notification
 
-import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -16,7 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class Notification : BroadcastReceiver() {
 
-    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent?) {
         val repeatingIntent = Intent(context, MainActivity::class.java)
         repeatingIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
