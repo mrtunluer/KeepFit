@@ -46,4 +46,5 @@
     <string name="empty_measurement_content">please enter your measurement content information</string>
     <string name="notification_title">Weight Reminder</string>
     <string name="notification_content">Would you like to update your current weight ?</string>
+    <string name="general_settings">General Settings</string>
 </resources>

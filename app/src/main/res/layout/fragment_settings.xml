@@ -41,6 +41,17 @@
                 android:textSize="14sp"
                 android:visibility="gone" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/open_sans_semi_bold"
+                android:text="@string/general_settings"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/info_card_view"
                 android:layout_width="match_parent"
@@ -228,8 +239,7 @@
                         android:id="@+id/height_unit_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp
-"
+                        android:layout_marginTop="20dp"
                         app:cardBackgroundColor="@color/dark_blue"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="0dp">
