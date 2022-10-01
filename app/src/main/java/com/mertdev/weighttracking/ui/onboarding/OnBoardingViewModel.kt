@@ -30,7 +30,7 @@ class OnBoardingViewModel @Inject constructor(
             dataStoreRepo.readOnBoardingState.collect {
                 if (it)
                     _onBoardingState.value = OnBoardingStatus.SKIP
-                else if (!it)
+                else
                     _onBoardingState.value = OnBoardingStatus.SHOW
             }
         }
