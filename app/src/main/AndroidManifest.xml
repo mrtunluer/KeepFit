@@ -27,10 +27,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".notification.Notification" />
+        <receiver android:name=".utils.notification.Notification" />
 
         <receiver
-            android:name=".notification.BootReceiver"
+            android:name=".utils.notification.BootReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

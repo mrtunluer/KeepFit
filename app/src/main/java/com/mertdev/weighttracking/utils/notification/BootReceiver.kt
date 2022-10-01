@@ -1,4 +1,4 @@
-package com.mertdev.weighttracking.notification
+package com.mertdev.weighttracking.utils.notification
 
 import android.content.BroadcastReceiver
 import android.content.Context

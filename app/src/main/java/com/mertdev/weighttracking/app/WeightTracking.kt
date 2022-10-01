@@ -1,7 +1,7 @@
 package com.mertdev.weighttracking.app
 
 import android.app.Application
-import com.mertdev.weighttracking.notification.NotificationOperations
+import com.mertdev.weighttracking.utils.notification.NotificationOperations
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

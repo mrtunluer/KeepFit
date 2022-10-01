@@ -1,4 +1,4 @@
-package com.mertdev.weighttracking.notification
+package com.mertdev.weighttracking.utils.notification
 
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
