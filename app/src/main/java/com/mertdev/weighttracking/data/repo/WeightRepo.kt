@@ -23,4 +23,6 @@ class WeightRepo @Inject constructor(private val dao: UserInfoDao) {
 
     suspend fun deleteWeight(id: Int) = dao.deleteWeight(id)
 
+    suspend fun deleteWeightTable() = dao.deleteWeightTable()
+
 }

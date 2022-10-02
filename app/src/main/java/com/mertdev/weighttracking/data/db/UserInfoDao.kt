@@ -37,6 +37,9 @@ interface UserInfoDao {
     @Query("DELETE FROM Weight where id = :id")
     suspend fun deleteWeight(id: Int)
 
+    @Query("DELETE FROM Weight")
+    suspend fun deleteWeightTable()
+
     // Measurement Query
 
     @Query("SELECT * FROM Measurement ORDER BY date DESC")

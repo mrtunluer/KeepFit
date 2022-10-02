@@ -46,5 +46,11 @@
     <string name="empty_measurement_content">please enter your measurement content information</string>
     <string name="notification_title">Weight Reminder</string>
     <string name="notification_content">Would you like to update your current weight ?</string>
-    <string name="general_settings">General Settings</string>
+    <string name="general">General</string>
+    <string name="data">Data</string>
+    <string name="delete_all_weight_data">Delete All Weight Data</string>
+    <string name="delete_all_measurements_data">Delete All Measurement Data</string>
+    <string name="other">Other</string>
+    <string name="share">Share</string>
+    <string name="rate_us_on_google_play">Rate Us On Google Play</string>
 </resources>
