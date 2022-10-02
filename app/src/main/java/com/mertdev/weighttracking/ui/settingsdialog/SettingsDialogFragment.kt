@@ -143,6 +143,8 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 viewModel.saveNumberOfChartData(settingsUiModel.numberOfChartData!!)
             }
 
+        } else if (settingsUiModel.isDeleteAllWeightData != null){
+            TODO("DELETE ALL WEIGHT")
         }
 
         selectListener(settingsUiModel)

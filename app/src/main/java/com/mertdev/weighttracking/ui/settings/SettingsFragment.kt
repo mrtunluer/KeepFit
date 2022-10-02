@@ -72,6 +72,22 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             goToSettingsDialogFragment(SettingsUiModel(numberOfChartData = settingsUiModel.numberOfChartData))
         }
 
+        deleteWeightDataCard.setOnClickListener {
+            goToSettingsDialogFragment(SettingsUiModel(isDeleteAllWeightData = true))
+        }
+
+        deleteMeasurementDataCard.setOnClickListener {
+            goToSettingsDialogFragment(SettingsUiModel(isDeleteAllMeasurementData = true))
+        }
+
+        shareCard.setOnClickListener {
+            goToSettingsDialogFragment(SettingsUiModel(isShare = true))
+        }
+
+        rateUsCard.setOnClickListener {
+            goToSettingsDialogFragment(SettingsUiModel(isRateUsOnGooglePlay = true))
+        }
+
     }
 
     private fun goToSettingsDialogFragment(settingsUiModel: SettingsUiModel) {
