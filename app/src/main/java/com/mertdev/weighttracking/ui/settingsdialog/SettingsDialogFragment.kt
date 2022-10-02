@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentSettingsDialogBinding
-import com.mertdev.weighttracking.uimodel.WeightUiModel
+import com.mertdev.weighttracking.uimodel.SettingsUiModel
 import com.mertdev.weighttracking.utils.Constants.CM
 import com.mertdev.weighttracking.utils.Constants.FEMALE
 import com.mertdev.weighttracking.utils.Constants.FT
@@ -39,8 +39,8 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val weightUiModel = args.weightUiModel
-        initView(weightUiModel)
+        val settingsUiModel = args.settingsUiModel
+        initView(settingsUiModel)
 
         viewLifecycleOwner.lifecycleScope.launch {
             observePopBackStack()
@@ -48,83 +48,83 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
 
     }
 
-    private fun initView(weightUiModel: WeightUiModel) = with(binding) {
+    private fun initView(settingsUiModel: SettingsUiModel) = with(binding) {
 
-        if (weightUiModel.gender != null) {
+        if (settingsUiModel.gender != null) {
 
             titleTxt.text = getString(R.string.select_gender)
             genderCards.isVisible = true
 
-            if (weightUiModel.gender == MALE) {
+            if (settingsUiModel.gender == MALE) {
                 genderCards.selectButton(R.id.male_card)
             } else {
                 genderCards.selectButton(R.id.female_card)
             }
 
             binding.saveBtn.setOnClickListener {
-                viewModel.saveGender(weightUiModel.gender!!)
+                viewModel.saveGender(settingsUiModel.gender!!)
             }
 
-        } else if (weightUiModel.targetWeight != null) {
+        } else if (settingsUiModel.targetWeight != null) {
 
             titleTxt.text = getString(R.string.set_target_weight)
             targetWeightLayout.isVisible = true
-            targetWeightTxt.text = weightUiModel.targetWeight.toString().plus(weightUiModel.weightUnit)
-            targetWeightInput.setValue(weightUiModel.targetWeight!!)
-            targetWeightInput.setUnitStr(weightUiModel.weightUnit!!)
+            targetWeightTxt.text = settingsUiModel.targetWeight.toString().plus(settingsUiModel.weightUnit)
+            targetWeightInput.setValue(settingsUiModel.targetWeight!!)
+            targetWeightInput.setUnitStr(settingsUiModel.weightUnit!!)
 
             binding.saveBtn.setOnClickListener {
                 viewModel.saveTargetWeight(targetWeightInput.getValue())
             }
 
-        } else if (weightUiModel.weightUnit != null) {
+        } else if (settingsUiModel.weightUnit != null) {
 
             titleTxt.text = getString(R.string.select_weight_unit)
             groupChoicesWeight.isVisible = true
 
-            if (weightUiModel.weightUnit == KG) {
+            if (settingsUiModel.weightUnit == KG) {
                 groupChoicesWeight.check(R.id.kg)
             } else {
                 groupChoicesWeight.check(R.id.lb)
             }
 
             binding.saveBtn.setOnClickListener {
-                viewModel.saveWeightUnit(weightUiModel.weightUnit!!)
+                viewModel.saveWeightUnit(settingsUiModel.weightUnit!!)
             }
 
-        } else if (weightUiModel.height != null) {
+        } else if (settingsUiModel.height != null) {
 
             titleTxt.text = getString(R.string.set_height)
             heightLayout.isVisible = true
-            currentHeightTxt.text = weightUiModel.height.toString().plus(weightUiModel.heightUnit)
-            currentHeightInput.setValue(weightUiModel.height!!)
-            currentHeightInput.setUnitStr(weightUiModel.heightUnit!!)
+            currentHeightTxt.text = settingsUiModel.height.toString().plus(settingsUiModel.heightUnit)
+            currentHeightInput.setValue(settingsUiModel.height!!)
+            currentHeightInput.setUnitStr(settingsUiModel.heightUnit!!)
 
             binding.saveBtn.setOnClickListener {
                 viewModel.saveHeight(currentHeightInput.getValue())
             }
 
-        } else if (weightUiModel.heightUnit != null) {
+        } else if (settingsUiModel.heightUnit != null) {
 
             titleTxt.text = getString(R.string.select_height_unit)
             groupChoicesHeight.isVisible = true
 
-            if (weightUiModel.heightUnit == CM) {
+            if (settingsUiModel.heightUnit == CM) {
                 groupChoicesHeight.check(R.id.cm)
             } else {
                 groupChoicesHeight.check(R.id.ft)
             }
 
             binding.saveBtn.setOnClickListener {
-                viewModel.saveHeightUnit(weightUiModel.heightUnit!!)
+                viewModel.saveHeightUnit(settingsUiModel.heightUnit!!)
             }
 
-        } else if (weightUiModel.numberOfChartData != null) {
+        } else if (settingsUiModel.numberOfChartData != null) {
 
             titleTxt.text = getString(R.string.number_of_chart_data)
             groupChoicesNumberOfChartData.isVisible = true
 
-            when (weightUiModel.numberOfChartData) {
+            when (settingsUiModel.numberOfChartData) {
                 NUMBER_OF_INITIAL_DATA_IN_CHART -> {
                     groupChoicesNumberOfChartData.check(R.id.last_fifteen)
                 }
@@ -140,13 +140,13 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
             }
 
             binding.saveBtn.setOnClickListener {
-                viewModel.saveNumberOfChartData(weightUiModel.numberOfChartData!!)
+                viewModel.saveNumberOfChartData(settingsUiModel.numberOfChartData!!)
             }
 
         }
 
-        selectListener(weightUiModel)
-        valueListeners(weightUiModel)
+        selectListener(settingsUiModel)
+        valueListeners(settingsUiModel)
 
         cancelBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -154,40 +154,40 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
 
     }
 
-    private fun valueListeners(weightUiModel: WeightUiModel) = with(binding) {
+    private fun valueListeners(settingsUiModel: SettingsUiModel) = with(binding) {
         targetWeightInput.setValueListener {
-            targetWeightTxt.text = it.toString().plus(weightUiModel.weightUnit)
+            targetWeightTxt.text = it.toString().plus(settingsUiModel.weightUnit)
         }
 
         currentHeightInput.setValueListener {
-            currentHeightTxt.text = it.toString().plus(weightUiModel.heightUnit)
+            currentHeightTxt.text = it.toString().plus(settingsUiModel.heightUnit)
         }
     }
 
-    private fun selectListener(weightUiModel: WeightUiModel) = with(binding) {
+    private fun selectListener(settingsUiModel: SettingsUiModel) = with(binding) {
         genderCards.setOnSelectListener {
-            weightUiModel.gender = if (it.id == R.id.male_card)
+            settingsUiModel.gender = if (it.id == R.id.male_card)
                 MALE
             else
                 FEMALE
         }
 
         groupChoicesWeight.setOnCheckedChangeListener { _, checkedId ->
-            weightUiModel.weightUnit = if (checkedId == R.id.kg)
+            settingsUiModel.weightUnit = if (checkedId == R.id.kg)
                 KG
             else
                 LB
         }
 
         groupChoicesHeight.setOnCheckedChangeListener { _, checkedId ->
-            weightUiModel.heightUnit = if (checkedId == R.id.cm)
+            settingsUiModel.heightUnit = if (checkedId == R.id.cm)
                 CM
             else
                 FT
         }
 
         groupChoicesNumberOfChartData.setOnCheckedChangeListener { _, checkedId ->
-            weightUiModel.numberOfChartData = when (checkedId) {
+            settingsUiModel.numberOfChartData = when (checkedId) {
                 R.id.last_fifteen -> NUMBER_OF_INITIAL_DATA_IN_CHART
                 R.id.last_thirty -> LAST_THIRTY
                 R.id.last_ninety -> LAST_NINETY

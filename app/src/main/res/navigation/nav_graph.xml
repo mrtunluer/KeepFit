@@ -77,8 +77,8 @@
         android:name="com.mertdev.weighttracking.ui.settingsdialog.SettingsDialogFragment"
         android:label="SettingsDialogFragment">
         <argument
-            android:name="weightUiModel"
-            app:argType="com.mertdev.weighttracking.uimodel.WeightUiModel" />
+            android:name="settingsUiModel"
+            app:argType="com.mertdev.weighttracking.uimodel.SettingsUiModel" />
     </dialog>
 
     <fragment

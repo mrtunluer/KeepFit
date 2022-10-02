@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentSettingsBinding
-import com.mertdev.weighttracking.uimodel.WeightUiModel
+import com.mertdev.weighttracking.uimodel.SettingsUiModel
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +23,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private val binding: FragmentSettingsBinding by viewBinding()
     private val viewModel: SettingsViewModel by viewModels()
-    private var weightUiModel = WeightUiModel()
+    private var settingsUiModel = SettingsUiModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,43 +40,43 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
         targetWeightCard.setOnClickListener {
             goToSettingsDialogFragment(
-                WeightUiModel(
-                    weightUnit = weightUiModel.weightUnit,
-                    targetWeight = weightUiModel.targetWeight
+                SettingsUiModel(
+                    weightUnit = settingsUiModel.weightUnit,
+                    targetWeight = settingsUiModel.targetWeight
                 )
             )
         }
 
         weightUnitCard.setOnClickListener {
-            goToSettingsDialogFragment(WeightUiModel(weightUnit = weightUiModel.weightUnit))
+            goToSettingsDialogFragment(SettingsUiModel(weightUnit = settingsUiModel.weightUnit))
         }
 
         heightCard.setOnClickListener {
             goToSettingsDialogFragment(
-                WeightUiModel(
-                    heightUnit = weightUiModel.heightUnit,
-                    height = weightUiModel.height
+                SettingsUiModel(
+                    heightUnit = settingsUiModel.heightUnit,
+                    height = settingsUiModel.height
                 )
             )
         }
 
         heightUnitCard.setOnClickListener {
-            goToSettingsDialogFragment(WeightUiModel(heightUnit = weightUiModel.heightUnit))
+            goToSettingsDialogFragment(SettingsUiModel(heightUnit = settingsUiModel.heightUnit))
         }
 
         genderCard.setOnClickListener {
-            goToSettingsDialogFragment(WeightUiModel(gender = weightUiModel.gender))
+            goToSettingsDialogFragment(SettingsUiModel(gender = settingsUiModel.gender))
         }
 
         numberOfChartDataCard.setOnClickListener {
-            goToSettingsDialogFragment(WeightUiModel(numberOfChartData = weightUiModel.numberOfChartData))
+            goToSettingsDialogFragment(SettingsUiModel(numberOfChartData = settingsUiModel.numberOfChartData))
         }
 
     }
 
-    private fun goToSettingsDialogFragment(weightUiModel: WeightUiModel) {
+    private fun goToSettingsDialogFragment(settingsUiModel: SettingsUiModel) {
         findNavController().safeNavigate(
-            SettingsFragmentDirections.actionSettingsFragmentToSettingsDialogFragment(weightUiModel)
+            SettingsFragmentDirections.actionSettingsFragmentToSettingsDialogFragment(settingsUiModel)
         )
     }
 
@@ -101,7 +101,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         binding.errorTxt.isVisible = true
     }
 
-    private fun onSuccessForUiState(data: WeightUiModel) = with(data) {
+    private fun onSuccessForUiState(data: SettingsUiModel) = with(data) {
         binding.swipeRefresh.isRefreshing = false
         binding.errorTxt.isVisible = false
         binding.genderTxt.text = data.gender
@@ -110,7 +110,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         binding.heightTxt.text = data.height.toString()
         binding.targetWeightTxt.text = data.targetWeight.toString()
         binding.numberOfChartDataTxt.text = data.numberOfChartData.toString()
-        weightUiModel = this
+        settingsUiModel = this
     }
 
 }
