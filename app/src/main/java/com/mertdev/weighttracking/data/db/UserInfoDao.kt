@@ -54,6 +54,9 @@ interface UserInfoDao {
     @Query("DELETE FROM Measurement where id = :id")
     suspend fun deleteMeasurement(id: Int)
 
+    @Query("DELETE FROM Measurement")
+    suspend fun deleteMeasurementTable()
+
     @Query("SELECT MeasurementContent.id, MeasurementContent.measurementId, MeasurementContent.value, MeasurementContent.date, MeasurementContent.note FROM MeasurementContent INNER JOIN Measurement ON Measurement.id = MeasurementContent.measurementId WHERE Measurement.id = :id ORDER BY MeasurementContent.date ASC")
     fun getMeasurementContent(id: Int): Flow<List<MeasurementContent>>
 
@@ -78,9 +81,6 @@ interface UserInfoDao {
 
     @Query("SELECT MIN(value) FROM MeasurementContent WHERE measurementId = :measurementId")
     fun getMinMeasurementContentValue(measurementId: Int): Flow<Float?>
-
-    @Query("DELETE FROM Measurement")
-    suspend fun deleteMeasurementTable()
 
     @Query("DELETE FROM MeasurementContent")
     suspend fun deleteMeasurementContentTable()

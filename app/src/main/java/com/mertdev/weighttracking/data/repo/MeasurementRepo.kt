@@ -16,6 +16,8 @@ class MeasurementRepo @Inject constructor(private val dao: UserInfoDao) {
 
     suspend fun deleteMeasurement(id: Int) = dao.deleteMeasurement(id)
 
+    suspend fun deleteMeasurementTable() = dao.deleteMeasurementTable()
+
     fun getMeasurementContent(id: Int) = dao.getMeasurementContent(id)
 
     fun getMeasurementContentByDate(id: Int, start: Date, end: Date) = dao.getMeasurementContentByDate(id, start, end)
@@ -31,8 +33,6 @@ class MeasurementRepo @Inject constructor(private val dao: UserInfoDao) {
     suspend fun insertMeasurementContent(measurementContent: MeasurementContent) = dao.insertMeasurementContent(measurementContent)
 
     suspend fun deleteMeasurementContent(id: Int) = dao.deleteMeasurementContent(id)
-
-    suspend fun deleteMeasurementTable() = dao.deleteMeasurementTable()
 
     suspend fun deleteMeasurementContentTable() = dao.deleteMeasurementContentTable()
 }
