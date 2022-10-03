@@ -79,4 +79,10 @@ interface UserInfoDao {
     @Query("SELECT MIN(value) FROM MeasurementContent WHERE measurementId = :measurementId")
     fun getMinMeasurementContentValue(measurementId: Int): Flow<Float?>
 
+    @Query("DELETE FROM Measurement")
+    suspend fun deleteMeasurementTable()
+
+    @Query("DELETE FROM MeasurementContent")
+    suspend fun deleteMeasurementContentTable()
+
 }

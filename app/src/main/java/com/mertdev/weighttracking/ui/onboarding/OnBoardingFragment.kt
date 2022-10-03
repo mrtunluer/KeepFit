@@ -68,7 +68,7 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
         heightGenderLayout.backImg.setOnClickListener {
             heightGenderLayoutVisibility(false)
         }
-        heightGenderLayout.saveBtn.setOnClickListener {
+        heightGenderLayout.positiveBtn.setOnClickListener {
             if (gender == null)
                 requireContext().showToast("Please choose your gender")
             else if (currentWeightInput.getValue() == targetWeightInput.getValue())

@@ -52,7 +52,7 @@ class AddMeasurementDialogFragment : BottomSheetDialogFragment() {
             observePopBackStack()
         }
 
-        binding.saveBtn.setOnClickListener {
+        binding.positiveBtn.setOnClickListener {
             if (binding.nameTxt.text.toString().isNotEmpty())
                 if (measurement != null)
                     updateMeasurement(measurement)

@@ -3,6 +3,8 @@ package com.mertdev.weighttracking.ui.settingsdialog
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mertdev.weighttracking.data.repo.DataStoreRepo
+import com.mertdev.weighttracking.data.repo.MeasurementRepo
+import com.mertdev.weighttracking.data.repo.WeightRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -12,7 +14,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsDialogViewModel @Inject constructor(
-    private val dataStoreRepo: DataStoreRepo
+    private val dataStoreRepo: DataStoreRepo,
+    private val weightRepo: WeightRepo,
+    private val measurementRepo: MeasurementRepo
 ) : ViewModel() {
 
     sealed class Event {
@@ -60,6 +64,21 @@ class SettingsDialogViewModel @Inject constructor(
     fun saveNumberOfChartData(numberOfChartData: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveNumberOfChartData(numberOfChartData)
+            eventChannel.send(Event.PopBackStack)
+        }
+    }
+
+    fun deleteWeightTable(){
+        viewModelScope.launch(Dispatchers.IO) {
+            weightRepo.deleteWeightTable()
+            eventChannel.send(Event.PopBackStack)
+        }
+    }
+
+    fun deleteMeasurementAndMeasurementContentTable(){
+        viewModelScope.launch(Dispatchers.IO) {
+            measurementRepo.deleteMeasurementTable()
+            measurementRepo.deleteMeasurementContentTable()
             eventChannel.send(Event.PopBackStack)
         }
     }

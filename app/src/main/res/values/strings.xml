@@ -53,4 +53,8 @@
     <string name="other">Other</string>
     <string name="share">Share</string>
     <string name="rate_us_on_google_play">Rate Us On Google Play</string>
+    <string name="are_you_sure_delete_all_weight_data">Are You Sure Want To Delete All Weight Data ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="are_you_sure_delete_all_measurement_data">Are You Sure Want To Delete All Measurement Data ?</string>
 </resources>

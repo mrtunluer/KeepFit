@@ -61,7 +61,7 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 genderCards.selectButton(R.id.female_card)
             }
 
-            binding.saveBtn.setOnClickListener {
+            positiveBtn.setOnClickListener {
                 viewModel.saveGender(settingsUiModel.gender!!)
             }
 
@@ -69,11 +69,12 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
 
             titleTxt.text = getString(R.string.set_target_weight)
             targetWeightLayout.isVisible = true
-            targetWeightTxt.text = settingsUiModel.targetWeight.toString().plus(settingsUiModel.weightUnit)
+            targetWeightTxt.text =
+                settingsUiModel.targetWeight.toString().plus(settingsUiModel.weightUnit)
             targetWeightInput.setValue(settingsUiModel.targetWeight!!)
             targetWeightInput.setUnitStr(settingsUiModel.weightUnit!!)
 
-            binding.saveBtn.setOnClickListener {
+            positiveBtn.setOnClickListener {
                 viewModel.saveTargetWeight(targetWeightInput.getValue())
             }
 
@@ -88,7 +89,7 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 groupChoicesWeight.check(R.id.lb)
             }
 
-            binding.saveBtn.setOnClickListener {
+            positiveBtn.setOnClickListener {
                 viewModel.saveWeightUnit(settingsUiModel.weightUnit!!)
             }
 
@@ -96,11 +97,12 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
 
             titleTxt.text = getString(R.string.set_height)
             heightLayout.isVisible = true
-            currentHeightTxt.text = settingsUiModel.height.toString().plus(settingsUiModel.heightUnit)
+            currentHeightTxt.text =
+                settingsUiModel.height.toString().plus(settingsUiModel.heightUnit)
             currentHeightInput.setValue(settingsUiModel.height!!)
             currentHeightInput.setUnitStr(settingsUiModel.heightUnit!!)
 
-            binding.saveBtn.setOnClickListener {
+            positiveBtn.setOnClickListener {
                 viewModel.saveHeight(currentHeightInput.getValue())
             }
 
@@ -115,7 +117,7 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 groupChoicesHeight.check(R.id.ft)
             }
 
-            binding.saveBtn.setOnClickListener {
+            positiveBtn.setOnClickListener {
                 viewModel.saveHeightUnit(settingsUiModel.heightUnit!!)
             }
 
@@ -139,18 +141,36 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
                 }
             }
 
-            binding.saveBtn.setOnClickListener {
+            positiveBtn.setOnClickListener {
                 viewModel.saveNumberOfChartData(settingsUiModel.numberOfChartData!!)
             }
 
-        } else if (settingsUiModel.isDeleteAllWeightData != null){
-            TODO("DELETE ALL WEIGHT")
+        } else if (settingsUiModel.isDeleteAllWeightData != null) {
+
+            positiveBtn.text = getString(R.string.yes)
+            negativeBtn.text = getString(R.string.no)
+            titleTxt.text = getString(R.string.are_you_sure_delete_all_weight_data)
+
+            positiveBtn.setOnClickListener {
+                viewModel.deleteWeightTable()
+            }
+
+        } else if (settingsUiModel.isDeleteAllMeasurementData != null) {
+
+            positiveBtn.text = getString(R.string.yes)
+            negativeBtn.text = getString(R.string.no)
+            titleTxt.text = getString(R.string.are_you_sure_delete_all_measurement_data)
+
+            positiveBtn.setOnClickListener {
+                viewModel.deleteMeasurementAndMeasurementContentTable()
+            }
+
         }
 
         selectListener(settingsUiModel)
         valueListeners(settingsUiModel)
 
-        cancelBtn.setOnClickListener {
+        negativeBtn.setOnClickListener {
             findNavController().popBackStack()
         }
 

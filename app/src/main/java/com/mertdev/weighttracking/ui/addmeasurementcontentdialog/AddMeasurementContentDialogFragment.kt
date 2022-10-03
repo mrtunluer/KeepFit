@@ -57,7 +57,7 @@ class AddMeasurementContentDialogFragment : BottomSheetDialogFragment() {
             observePopBackStack()
         }
 
-        binding.saveBtn.setOnClickListener {
+        binding.positiveBtn.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
                 updateOrInsert()
             }

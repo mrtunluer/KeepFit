@@ -157,7 +157,7 @@
         </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/save_btn"
+            android:id="@+id/positive_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

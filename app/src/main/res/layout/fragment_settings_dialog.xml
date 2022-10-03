@@ -17,11 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/open_sans_semi_bold"
             android:paddingStart="30dp"
             android:paddingTop="10dp"
             android:paddingEnd="30dp"
             android:paddingBottom="10dp"
-            android:fontFamily="@font/open_sans_semi_bold"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -275,14 +275,12 @@
                     app:textSpaceHeight="10dp"
                     app:unitStr="kg" />
 
-
             </LinearLayout>
-
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/cancel_btn"
+            android:id="@+id/negative_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -295,11 +293,11 @@
             android:textColor="@color/light_blue"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/save_btn"
+            app:layout_constraintEnd_toStartOf="@+id/positive_btn"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <TextView
-            android:id="@+id/save_btn"
+            android:id="@+id/positive_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

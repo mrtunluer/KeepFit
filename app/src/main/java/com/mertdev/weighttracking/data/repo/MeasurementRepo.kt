@@ -32,4 +32,7 @@ class MeasurementRepo @Inject constructor(private val dao: UserInfoDao) {
 
     suspend fun deleteMeasurementContent(id: Int) = dao.deleteMeasurementContent(id)
 
+    suspend fun deleteMeasurementTable() = dao.deleteMeasurementTable()
+
+    suspend fun deleteMeasurementContentTable() = dao.deleteMeasurementContentTable()
 }
