@@ -81,11 +81,16 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
 
         shareCard.setOnClickListener {
-            goToSettingsDialogFragment(SettingsUiModel(isShare = true))
+          /* val sendIntent = Intent()
+           sendIntent.action = Intent.ACTION_SEND
+           sendIntent.type = "text/plain"
+           sendIntent.putExtra(Intent.EXTRA_TEXT, "APP LINK")
+           startActivity(Intent.createChooser(sendIntent, "Choose One"))
+           */
         }
 
         rateUsCard.setOnClickListener {
-            goToSettingsDialogFragment(SettingsUiModel(isRateUsOnGooglePlay = true))
+            //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}")))
         }
 
     }

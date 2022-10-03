@@ -10,7 +10,5 @@ data class SettingsUiModel(
     var gender: String? = null,
     var numberOfChartData: Int? = null,
     var isDeleteAllWeightData: Boolean? = null,
-    var isDeleteAllMeasurementData: Boolean? = null,
-    var isShare: Boolean? = null,
-    var isRateUsOnGooglePlay: Boolean? = null
+    var isDeleteAllMeasurementData: Boolean? = null
 ): Serializable
