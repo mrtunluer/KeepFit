@@ -81,12 +81,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
 
         shareCard.setOnClickListener {
-          /* val sendIntent = Intent()
-           sendIntent.action = Intent.ACTION_SEND
-           sendIntent.type = "text/plain"
-           sendIntent.putExtra(Intent.EXTRA_TEXT, "APP LINK")
-           startActivity(Intent.createChooser(sendIntent, "Choose One"))
-           */
+            /* val sendIntent = Intent()
+             sendIntent.action = Intent.ACTION_SEND
+             sendIntent.type = "text/plain"
+             sendIntent.putExtra(Intent.EXTRA_TEXT, "APP LINK")
+             startActivity(Intent.createChooser(sendIntent, "Choose One"))
+             */
         }
 
         rateUsCard.setOnClickListener {
@@ -97,7 +97,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private fun goToSettingsDialogFragment(settingsUiModel: SettingsUiModel) {
         findNavController().safeNavigate(
-            SettingsFragmentDirections.actionSettingsFragmentToSettingsDialogFragment(settingsUiModel)
+            SettingsFragmentDirections.actionSettingsFragmentToSettingsDialogFragment(
+                settingsUiModel
+            )
         )
     }
 
