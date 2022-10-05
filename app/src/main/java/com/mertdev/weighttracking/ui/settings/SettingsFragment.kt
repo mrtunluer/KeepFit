@@ -1,5 +1,7 @@
 package com.mertdev.weighttracking.ui.settings
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -10,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.mertdev.weighttracking.BuildConfig
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentSettingsBinding
 import com.mertdev.weighttracking.uimodel.SettingsUiModel
@@ -81,16 +84,23 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
 
         shareCard.setOnClickListener {
-            /* val sendIntent = Intent()
-             sendIntent.action = Intent.ACTION_SEND
-             sendIntent.type = "text/plain"
-             sendIntent.putExtra(Intent.EXTRA_TEXT, "APP LINK")
-             startActivity(Intent.createChooser(sendIntent, "Choose One"))
-             */
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.type = "text/plain"
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
+            )
+            startActivity(Intent.createChooser(sendIntent, "Choose One"))
         }
 
         rateUsCard.setOnClickListener {
-            //startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}")))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}")
+                )
+            )
         }
 
     }
