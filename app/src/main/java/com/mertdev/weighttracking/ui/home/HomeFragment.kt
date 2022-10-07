@@ -3,6 +3,8 @@ package com.mertdev.weighttracking.ui.home
 import android.os.Bundle
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -20,6 +22,7 @@ import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentHomeBinding
 import com.mertdev.weighttracking.utils.chart.InitChart
 import com.mertdev.weighttracking.uimodel.WeightUiModel
+import com.mertdev.weighttracking.utils.Constants.NOTIFICATION_PERMISSION
 import com.mertdev.weighttracking.utils.SwipeGesture
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.*
@@ -33,10 +36,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels()
     private var weightUiModel = WeightUiModel()
     private val weightStatisticsAdapter = WeightStatisticsAdapter()
+    private lateinit var permissionsRequest: ActivityResultLauncher<String>
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        permissionsRequest = getPermissionsRequest()
+        requestNotificationPermission(permissionsRequest, NOTIFICATION_PERMISSION)
+
 
         viewLifecycleOwner.lifecycleScope.launch {
             collectUiState()
@@ -161,6 +169,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             )
         }
     }
+
+    private fun getPermissionsRequest() =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (!isNotificationPermissionGranted(NOTIFICATION_PERMISSION))
+                TODO("when not allowed notification")
+        }
 
     private fun goToAddWeightDialogFragment(weightUiModel: WeightUiModel) {
         findNavController().safeNavigate(
