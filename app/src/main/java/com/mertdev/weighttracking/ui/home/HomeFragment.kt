@@ -173,7 +173,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun getPermissionsRequest() =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (!isGranted)
-                TODO("when not allowed notification")
+                requireContext().showToast(getString(R.string.not_allowed_notification))
         }
 
     private fun goToAddWeightDialogFragment(weightUiModel: WeightUiModel) {
