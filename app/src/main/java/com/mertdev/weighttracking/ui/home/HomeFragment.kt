@@ -1,5 +1,6 @@
 package com.mertdev.weighttracking.ui.home
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
@@ -43,8 +44,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         permissionsRequest = getPermissionsRequest()
-        requestNotificationPermission(permissionsRequest, NOTIFICATION_PERMISSION)
-
+        requestNotificationPermission()
 
         viewLifecycleOwner.lifecycleScope.launch {
             collectUiState()
@@ -167,6 +167,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.chart,
                 weightList = listByNumberOfChartData
             )
+        }
+    }
+
+    private fun requestNotificationPermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestNotificationPermission(permissionsRequest, NOTIFICATION_PERMISSION)
         }
     }
 
