@@ -171,8 +171,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun getPermissionsRequest() =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-            if (!isNotificationPermissionGranted(NOTIFICATION_PERMISSION))
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (!isGranted)
                 TODO("when not allowed notification")
         }
 
