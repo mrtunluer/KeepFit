@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.viewbinding.library.fragment.viewBinding
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
@@ -37,14 +36,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels()
     private var weightUiModel = WeightUiModel()
     private val weightStatisticsAdapter = WeightStatisticsAdapter()
-    private lateinit var permissionsRequest: ActivityResultLauncher<String>
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        permissionsRequest = getPermissionsRequest()
-        requestNotificationPermission()
+        permissionsRequest()
 
         viewLifecycleOwner.lifecycleScope.launch {
             collectUiState()
@@ -170,17 +166,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun requestNotificationPermission(){
+    private fun permissionsRequest() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requestNotificationPermission(permissionsRequest, NOTIFICATION_PERMISSION)
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                if (!isGranted)
+                    requireContext().showToast(getString(R.string.not_allowed_notification))
+            }.launch(NOTIFICATION_PERMISSION)
         }
     }
-
-    private fun getPermissionsRequest() =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (!isGranted)
-                requireContext().showToast(getString(R.string.not_allowed_notification))
-        }
 
     private fun goToAddWeightDialogFragment(weightUiModel: WeightUiModel) {
         findNavController().safeNavigate(
