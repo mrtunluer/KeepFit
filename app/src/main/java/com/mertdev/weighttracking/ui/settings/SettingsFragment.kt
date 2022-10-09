@@ -16,6 +16,7 @@ import com.mertdev.weighttracking.BuildConfig
 import com.mertdev.weighttracking.R
 import com.mertdev.weighttracking.databinding.FragmentSettingsBinding
 import com.mertdev.weighttracking.uimodel.SettingsUiModel
+import com.mertdev.weighttracking.utils.Constants.MALE
 import com.mertdev.weighttracking.utils.enums.DataStatus
 import com.mertdev.weighttracking.utils.extensions.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
@@ -137,13 +138,20 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private fun onSuccessForUiState(data: SettingsUiModel) = with(data) {
         binding.swipeRefresh.isRefreshing = false
         binding.errorTxt.isVisible = false
-        binding.genderTxt.text = data.gender
-        binding.weightUnitTxt.text = data.weightUnit
-        binding.heightUnitTxt.text = data.heightUnit
-        binding.heightTxt.text = data.height.toString()
-        binding.targetWeightTxt.text = data.targetWeight.toString()
-        binding.numberOfChartDataTxt.text = data.numberOfChartData.toString()
+        binding.weightUnitTxt.text = weightUnit
+        binding.heightUnitTxt.text = heightUnit
+        binding.heightTxt.text = height.toString()
+        binding.targetWeightTxt.text = targetWeight.toString()
+        binding.numberOfChartDataTxt.text = numberOfChartData.toString()
+        setGenderImg(gender)
         settingsUiModel = this
+    }
+
+    private fun setGenderImg(gender: String?) = with(binding) {
+        if (gender == MALE)
+            genderImg.setImageResource(R.drawable.male)
+        else
+            genderImg.setImageResource(R.drawable.female)
     }
 
 }
