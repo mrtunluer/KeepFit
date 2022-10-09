@@ -26,7 +26,7 @@
             android:gravity="center"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
-            android:text="Finally, let's enter the height and gender values"
+            android:text="@string/finally_sentence"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -78,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Height"
+                    android:text="@string/height"
                     android:textColor="@color/hint"
                     android:textSize="14sp" />
 
@@ -121,7 +121,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="Select Gender"
+            android:text="@string/select_gender"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
@@ -172,7 +172,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="30dp"
                 android:paddingBottom="10dp"
-                android:text="Save"
+                android:text="@string/save"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 

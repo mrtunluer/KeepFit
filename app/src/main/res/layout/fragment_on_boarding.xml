@@ -36,7 +36,7 @@
             android:gravity="center"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
-            android:text="Let's start by entering the current and target weight values ️‍️️"
+            android:text="@string/introductory_sentence"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -87,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Current Weight"
+                    android:text="@string/current_weight"
                     android:textColor="@color/hint"
                     android:textSize="14sp" />
 
@@ -146,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Target Weight"
+                    android:text="@string/target_weight"
                     android:textColor="@color/hint"
                     android:textSize="13sp" />
 
@@ -202,7 +202,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="30dp"
                 android:paddingBottom="10dp"
-                android:text="Next"
+                android:text="@string/next"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
