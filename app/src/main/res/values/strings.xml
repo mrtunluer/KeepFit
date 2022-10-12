@@ -63,4 +63,5 @@
     <string name="no">No</string>
     <string name="are_you_sure_delete_all_measurement_data">Are You Sure Want To Delete All Measurement Data ?</string>
     <string name="not_allowed_notification">Allow notifications for daily weight reminders</string>
+    <string name="measurement_dialog_title">What you would like to track? \n (hips, biceps, waist width, etc.)</string>
 </resources>

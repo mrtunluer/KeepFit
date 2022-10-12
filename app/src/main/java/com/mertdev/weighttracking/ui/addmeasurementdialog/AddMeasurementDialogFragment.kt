@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.viewbinding.library.fragment.viewBinding
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -64,7 +65,7 @@ class AddMeasurementDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun initView(measurement: Measurement?) = with(binding) {
-        if (measurement != null){
+        if (measurement != null) {
             initViewForUpdate(measurement)
         }
 
@@ -76,8 +77,9 @@ class AddMeasurementDialogFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun initViewForUpdate(measurement: Measurement) = with(binding){
+    private fun initViewForUpdate(measurement: Measurement) = with(binding) {
         lengthUnit = measurement.lengthUnit.toString()
+        titleTxt.isVisible = false
         if (lengthUnit == CM)
             groupChoicesLengthUnit.check(R.id.cm)
         else
