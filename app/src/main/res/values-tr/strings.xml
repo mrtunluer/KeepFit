@@ -63,5 +63,5 @@
     <string name="no">Hayır</string>
     <string name="are_you_sure_delete_all_measurement_data">Tüm Ölçüm Verilerini Silmek İstediğinizden Emin Misiniz ?</string>
     <string name="not_allowed_notification">Günlük kilo hatırlatmaları için bildirimlere izin verin</string>
-    <string name="measurement_dialog_title">Neyi gözlemlemek istersiniz ? \n (kalça, pazı, bel genişliği vb.)</string>
+    <string name="measurement_dialog_title">Neyi gözlemlemek istersiniz ?\n(kalça, pazı, bel genişliği vb.)</string>
 </resources>
