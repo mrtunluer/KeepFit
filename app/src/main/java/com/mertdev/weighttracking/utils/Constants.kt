@@ -1,6 +1,8 @@
 package com.mertdev.weighttracking.utils
 
 import android.Manifest
+import android.os.Build
+import androidx.annotation.RequiresApi
 
 object Constants {
     const val WEIGHT_UNIT_KEY = "weight_unit"
@@ -34,6 +36,6 @@ object Constants {
     const val NOTIFICATION_ID = "REMINDER_NOTIFICATION"
     const val NOTIFICATION_NAME = "Reminder Notification"
     const val NOTIFY_ID = 200
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     const val NOTIFICATION_PERMISSION = Manifest.permission.POST_NOTIFICATIONS
-
 }
