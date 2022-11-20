@@ -140,12 +140,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         weightUiModel = this
     }
 
-    private fun setMathematicalOperations(data: WeightUiModel) = with(data) {
-        MathematicalOperations.setRemainderWeight(this, binding, requireContext())
-        MathematicalOperations.setHorizontalProgressLoading(this, binding)
-        MathematicalOperations.calculateBmi(this, binding)
-        MathematicalOperations.calculateIdealWeight(this, binding)
-        MathematicalOperations.calculateHealthyWeightRange(this, binding)
+    private fun setMathematicalOperations(data: WeightUiModel) = with(MathematicalOperations) {
+        setRemainderWeight(data, binding, requireContext())
+        setHorizontalProgressLoading(data, binding)
+        calculateBmi(data, binding)
+        calculateIdealWeight(data, binding)
+        calculateHealthyWeightRange(data, binding)
     }
 
     private fun setChart(data: WeightUiModel) = with(data) {
