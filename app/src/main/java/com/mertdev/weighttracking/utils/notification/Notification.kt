@@ -29,7 +29,7 @@ class Notification : BroadcastReceiver() {
         val builder: NotificationCompat.Builder =
             NotificationCompat.Builder(context, NOTIFICATION_ID)
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.notification_icon)
                 .setContentTitle(context.getString(R.string.notification_title))
                 .setContentText(context.getString(R.string.notification_content))
                 .setAutoCancel(true)
