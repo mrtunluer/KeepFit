@@ -188,24 +188,18 @@ class SettingsDialogFragment : DialogFragment(R.layout.fragment_settings_dialog)
 
     private fun selectListener(settingsUiModel: SettingsUiModel) = with(binding) {
         genderCards.setOnSelectListener {
-            settingsUiModel.gender = if (it.id == R.id.male_card)
-                MALE
-            else
-                FEMALE
+            settingsUiModel.gender = if (it.id == R.id.male_card) MALE
+            else FEMALE
         }
 
         groupChoicesWeight.setOnCheckedChangeListener { _, checkedId ->
-            settingsUiModel.weightUnit = if (checkedId == R.id.kg)
-                KG
-            else
-                LB
+            settingsUiModel.weightUnit = if (checkedId == R.id.kg) KG
+            else LB
         }
 
         groupChoicesHeight.setOnCheckedChangeListener { _, checkedId ->
-            settingsUiModel.heightUnit = if (checkedId == R.id.cm)
-                CM
-            else
-                FT
+            settingsUiModel.heightUnit = if (checkedId == R.id.cm) CM
+            else FT
         }
 
         groupChoicesNumberOfChartData.setOnCheckedChangeListener { _, checkedId ->
