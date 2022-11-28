@@ -50,14 +50,15 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
             onBoardingState()
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (binding.heightGenderLayout.root.isVisible)
-                    heightGenderLayoutVisibility(false)
-                else
-                    requireActivity().finish()
-            }
-        })
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (binding.heightGenderLayout.root.isVisible) heightGenderLayoutVisibility(
+                        false
+                    )
+                    else requireActivity().finish()
+                }
+            })
 
     }
 
@@ -69,12 +70,11 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
             heightGenderLayoutVisibility(false)
         }
         heightGenderLayout.positiveBtn.setOnClickListener {
-            if (gender == null)
-                requireContext().showToast("Please choose your gender")
-            else if (currentWeightInput.getValue() == targetWeightInput.getValue())
-                requireContext().showToast("Your current weight cannot be the same as your target weight")
-            else
-                addWeight()
+            if (gender == null) requireContext().showToast("Please choose your gender")
+            else if (currentWeightInput.getValue() == targetWeightInput.getValue()) requireContext().showToast(
+                "Your current weight cannot be the same as your target weight"
+            )
+            else addWeight()
         }
     }
 
@@ -104,14 +104,14 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
     }
 
     private suspend fun onBoardingState() {
-        viewModel.onBoardingState
-            .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .collect { status ->
-                if (status == OnBoardingStatus.SKIP) {
-                    progressBar.dismiss()
-                    findNavController().safeNavigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToHomeFragment())
-                } else binding.mainLayout.isVisible = status == OnBoardingStatus.SHOW
-            }
+        viewModel.onBoardingState.flowWithLifecycle(
+            viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED
+        ).collect { status ->
+            if (status == OnBoardingStatus.SKIP) {
+                progressBar.dismiss()
+                findNavController().safeNavigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToHomeFragment())
+            } else binding.mainLayout.isVisible = status == OnBoardingStatus.SHOW
+        }
     }
 
     private fun initView() = with(binding) {
@@ -125,24 +125,18 @@ class OnBoardingFragment : Fragment(R.layout.fragment_on_boarding) {
 
     private fun selectListener() = with(binding) {
         groupChoicesWeight.setOnCheckedChangeListener { _, checkedId ->
-            if (checkedId == R.id.kg)
-                setWeightUnitStr(KG)
-            else
-                setWeightUnitStr(LB)
+            if (checkedId == R.id.kg) setWeightUnitStr(KG)
+            else setWeightUnitStr(LB)
         }
 
         heightGenderLayout.groupChoicesHeight.setOnCheckedChangeListener { _, checkedId ->
-            if (checkedId == R.id.cm)
-                setHeightUnitStr(CM)
-            else
-                setHeightUnitStr(FT)
+            if (checkedId == R.id.cm) setHeightUnitStr(CM)
+            else setHeightUnitStr(FT)
         }
 
         heightGenderLayout.genderCards.setOnSelectListener {
-            gender = if (it.id == R.id.male_card)
-                MALE
-            else
-                FEMALE
+            gender = if (it.id == R.id.male_card) MALE
+            else FEMALE
         }
     }
 

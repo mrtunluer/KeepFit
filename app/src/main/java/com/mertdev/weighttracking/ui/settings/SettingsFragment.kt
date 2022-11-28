@@ -58,8 +58,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         heightCard.setOnClickListener {
             goToSettingsDialogFragment(
                 SettingsUiModel(
-                    heightUnit = settingsUiModel.heightUnit,
-                    height = settingsUiModel.height
+                    heightUnit = settingsUiModel.heightUnit, height = settingsUiModel.height
                 )
             )
         }
@@ -148,10 +147,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun setGenderImg(gender: String?) = with(binding) {
-        if (gender == MALE)
-            genderImg.setImageResource(R.drawable.male)
-        else
-            genderImg.setImageResource(R.drawable.female)
+        if (gender == MALE) genderImg.setImageResource(R.drawable.male)
+        else genderImg.setImageResource(R.drawable.female)
     }
 
 }

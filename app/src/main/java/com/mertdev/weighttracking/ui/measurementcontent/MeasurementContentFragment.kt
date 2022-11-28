@@ -74,8 +74,7 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
             AppCompatResources.getDrawable(
-                requireContext(),
-                R.drawable.rv_divider_layer
+                requireContext(), R.drawable.rv_divider_layer
             )!!
         )
 
@@ -136,10 +135,9 @@ class MeasurementContentFragment : Fragment(R.layout.fragment_measurement_conten
         numberOfChartData?.let {
             val listByNumberOfChartData = allMeasurementContent.takeLast(it)
 
-            val entryList = listByNumberOfChartData
-                .mapIndexed { index, measurementContent ->
-                    BarEntry(index.toFloat(), measurementContent.value ?: 0f)
-                }
+            val entryList = listByNumberOfChartData.mapIndexed { index, measurementContent ->
+                BarEntry(index.toFloat(), measurementContent.value ?: 0f)
+            }
 
             InitChart.setChart(
                 entryList,

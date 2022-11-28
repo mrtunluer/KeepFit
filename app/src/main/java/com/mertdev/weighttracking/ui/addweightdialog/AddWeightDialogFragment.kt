@@ -42,9 +42,7 @@ class AddWeightDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_add_weight_dialog, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,10 +77,8 @@ class AddWeightDialogFragment : BottomSheetDialogFragment() {
         viewModel.getWeightByDate(selectedDate.startOfDay(), selectedDate.endOfDay())
             .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
             .collect { weight ->
-                if (weight == null)
-                    insertWeight()
-                else
-                    updateWeight(weight)
+                if (weight == null) insertWeight()
+                else updateWeight(weight)
             }
     }
 
@@ -109,15 +105,12 @@ class AddWeightDialogFragment : BottomSheetDialogFragment() {
 
     private fun datePickerShow() {
         val constraintsBuilder =
-            CalendarConstraints.Builder()
-                .setValidator(DateValidatorPointBackward.now())
+            CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now())
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .setCalendarConstraints(constraintsBuilder.build())
-            .setTheme(R.style.MaterialCalendarTheme)
-            .setSelection(selectedDate.time)
-            .setTitleText(getString(R.string.select_date))
-            .build()
+            .setTheme(R.style.MaterialCalendarTheme).setSelection(selectedDate.time)
+            .setTitleText(getString(R.string.select_date)).build()
 
         datePicker.addOnPositiveButtonClickListener {
             selectedDate = Date(it)

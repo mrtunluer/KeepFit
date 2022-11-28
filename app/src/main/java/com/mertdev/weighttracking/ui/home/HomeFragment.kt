@@ -72,8 +72,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
             AppCompatResources.getDrawable(
-                requireContext(),
-                R.drawable.rv_divider_layer
+                requireContext(), R.drawable.rv_divider_layer
             )!!
         )
 
@@ -152,16 +151,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         numberOfChartData?.let {
             val listByNumberOfChartData = allWeights.takeLast(it)
 
-            val entryList = listByNumberOfChartData
-                .mapIndexed { index, weight ->
-                    BarEntry(index.toFloat(), weight.value ?: 0f)
-                }
+            val entryList = listByNumberOfChartData.mapIndexed { index, weight ->
+                BarEntry(index.toFloat(), weight.value ?: 0f)
+            }
 
             InitChart.setChart(
-                entryList,
-                requireContext(),
-                binding.chart,
-                weightList = listByNumberOfChartData
+                entryList, requireContext(), binding.chart, weightList = listByNumberOfChartData
             )
         }
     }
@@ -169,8 +164,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun permissionsRequest() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                if (!isGranted)
-                    requireContext().showToast(getString(R.string.not_allowed_notification))
+                if (!isGranted) requireContext().showToast(getString(R.string.not_allowed_notification))
             }.launch(NOTIFICATION_PERMISSION)
         }
     }

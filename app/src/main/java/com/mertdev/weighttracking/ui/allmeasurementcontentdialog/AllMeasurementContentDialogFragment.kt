@@ -37,9 +37,7 @@ class AllMeasurementContentDialogFragment : BottomSheetDialogFragment() {
     private var measurementUiModel = MeasurementUiModel()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.all_value_dialog, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +49,8 @@ class AllMeasurementContentDialogFragment : BottomSheetDialogFragment() {
         }
 
         contentStatisticsAdapter.setOnItemClickListener { measurementContent ->
-            val measurementUiModel = measurementUiModel.copy(measurementContent = measurementContent)
+            val measurementUiModel =
+                measurementUiModel.copy(measurementContent = measurementContent)
             goToAddMeasurementContentDialogFragment(measurementUiModel)
         }
 
@@ -93,8 +92,7 @@ class AllMeasurementContentDialogFragment : BottomSheetDialogFragment() {
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
             AppCompatResources.getDrawable(
-                requireContext(),
-                R.drawable.rv_divider_layer
+                requireContext(), R.drawable.rv_divider_layer
             )!!
         )
 

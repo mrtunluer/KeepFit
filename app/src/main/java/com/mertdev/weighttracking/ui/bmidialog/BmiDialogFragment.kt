@@ -26,9 +26,7 @@ class BmiDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_bmi_dialog, container, false)
 
 
@@ -42,16 +40,11 @@ class BmiDialogFragment : BottomSheetDialogFragment() {
         bmiTxt.text = weightUiModel.bmi.toString()
 
         weightUiModel.bmi?.let { bmi ->
-            if (bmi < 18.5)
-                setBg(underweightLayout)
-            else if (bmi in 18.5..24.9)
-                setBg(normalLayout)
-            else if (bmi in 25.0..29.9)
-                setBg(overweightLayout)
-            else if (bmi in 30.0..39.9)
-                setBg(obeseLayout)
-            else
-                setBg(morbidlyObeseLayout)
+            if (bmi < 18.5) setBg(underweightLayout)
+            else if (bmi in 18.5..24.9) setBg(normalLayout)
+            else if (bmi in 25.0..29.9) setBg(overweightLayout)
+            else if (bmi in 30.0..39.9) setBg(obeseLayout)
+            else setBg(morbidlyObeseLayout)
         }
 
     }

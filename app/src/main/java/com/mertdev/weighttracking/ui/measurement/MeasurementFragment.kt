@@ -60,8 +60,7 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecoration.setDrawable(
             AppCompatResources.getDrawable(
-                requireContext(),
-                R.drawable.rv_divider_layer
+                requireContext(), R.drawable.rv_divider_layer
             )!!
         )
 
@@ -111,12 +110,13 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
         emptyLayoutState(this)
     }
 
-    private fun emptyLayoutState(measurementUiModel: MeasurementUiModel) = with(binding.emptyLayout) {
-        root.isVisible = measurementUiModel.isShowEmptyLayout == true
-        addBtn.setOnClickListener {
-            goToAddMeasurementDialogFragment()
+    private fun emptyLayoutState(measurementUiModel: MeasurementUiModel) =
+        with(binding.emptyLayout) {
+            root.isVisible = measurementUiModel.isShowEmptyLayout == true
+            addBtn.setOnClickListener {
+                goToAddMeasurementDialogFragment()
+            }
         }
-    }
 
     private fun goToAddMeasurementDialogFragment(measurement: Measurement? = null) {
         findNavController().safeNavigate(
@@ -126,7 +126,7 @@ class MeasurementFragment : Fragment(R.layout.fragment_measurement) {
         )
     }
 
-    private fun goToMeasurementContentFragment(measurement: Measurement){
+    private fun goToMeasurementContentFragment(measurement: Measurement) {
         findNavController().safeNavigate(
             MeasurementFragmentDirections.actionMeasurementFragmentToMeasurementContentFragment(
                 measurement
