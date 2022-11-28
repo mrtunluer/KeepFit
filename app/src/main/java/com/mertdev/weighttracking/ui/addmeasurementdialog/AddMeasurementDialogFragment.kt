@@ -39,9 +39,7 @@ class AddMeasurementDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_add_measurement_dialog, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,13 +52,11 @@ class AddMeasurementDialogFragment : BottomSheetDialogFragment() {
         }
 
         binding.positiveBtn.setOnClickListener {
-            if (binding.nameTxt.text.toString().isNotEmpty())
-                if (measurement != null)
-                    updateMeasurement(measurement)
-                else
-                    insertMeasurement()
-            else
-                requireContext().showToast("Measurement Name Cannot Be Empty")
+            if (binding.nameTxt.text.toString()
+                    .isNotEmpty()
+            ) if (measurement != null) updateMeasurement(measurement)
+            else insertMeasurement()
+            else requireContext().showToast("Measurement Name Cannot Be Empty")
         }
     }
 
@@ -70,29 +66,23 @@ class AddMeasurementDialogFragment : BottomSheetDialogFragment() {
         }
 
         groupChoicesLengthUnit.setOnCheckedChangeListener { _, checkedId ->
-            lengthUnit = if (checkedId == R.id.cm)
-                CM
-            else
-                IN
+            lengthUnit = if (checkedId == R.id.cm) CM
+            else IN
         }
     }
 
     private fun initViewForUpdate(measurement: Measurement) = with(binding) {
         lengthUnit = measurement.lengthUnit.toString()
         titleTxt.isVisible = false
-        if (lengthUnit == CM)
-            groupChoicesLengthUnit.check(R.id.cm)
-        else
-            groupChoicesLengthUnit.check(R.id.`in`)
+        if (lengthUnit == CM) groupChoicesLengthUnit.check(R.id.cm)
+        else groupChoicesLengthUnit.check(R.id.`in`)
         nameTxt.setText(measurement.name.toString())
     }
 
     private fun insertMeasurement() = with(binding) {
         viewModel.insertMeasurement(
             Measurement(
-                name = nameTxt.text.toString(),
-                date = Date(),
-                lengthUnit = lengthUnit
+                name = nameTxt.text.toString(), date = Date(), lengthUnit = lengthUnit
             )
         )
     }
