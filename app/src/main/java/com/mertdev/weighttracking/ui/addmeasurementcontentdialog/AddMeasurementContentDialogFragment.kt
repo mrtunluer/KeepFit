@@ -43,9 +43,7 @@ class AddMeasurementContentDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_add_measurement_content_dialog, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,13 +76,12 @@ class AddMeasurementContentDialogFragment : BottomSheetDialogFragment() {
 
     private suspend fun updateOrInsert() {
         measurementUiModel.measurementId?.let { id ->
-            viewModel.getMeasurementContentByDate(id, selectedDate.startOfDay(), selectedDate.endOfDay())
-                .flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
+            viewModel.getMeasurementContentByDate(
+                id, selectedDate.startOfDay(), selectedDate.endOfDay()
+            ).flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
                 .collect { measurementContent ->
-                    if (measurementContent == null)
-                        insertMeasurementContent()
-                    else
-                        updateMeasurementContent(measurementContent)
+                    if (measurementContent == null) insertMeasurementContent()
+                    else updateMeasurementContent(measurementContent)
                 }
         }
     }
@@ -129,7 +126,8 @@ class AddMeasurementContentDialogFragment : BottomSheetDialogFragment() {
             }
         }
         binding.measurementContentNameTxt.text = measurementName.toString()
-        binding.measurementContentTxt.text = binding.measurementContentInput.getValue().toString().plus(lengthUnit)
+        binding.measurementContentTxt.text =
+            binding.measurementContentInput.getValue().toString().plus(lengthUnit)
         lengthUnit?.let { binding.measurementContentInput.setUnitStr(it) }
         binding.measurementContentInput.setValueListener {
             binding.measurementContentTxt.text = it.toString().plus(lengthUnit)
@@ -139,15 +137,12 @@ class AddMeasurementContentDialogFragment : BottomSheetDialogFragment() {
 
     private fun datePickerShow() {
         val constraintsBuilder =
-            CalendarConstraints.Builder()
-                .setValidator(DateValidatorPointBackward.now())
+            CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now())
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .setCalendarConstraints(constraintsBuilder.build())
-            .setTheme(R.style.MaterialCalendarTheme)
-            .setSelection(selectedDate.time)
-            .setTitleText(getString(R.string.select_date))
-            .build()
+            .setTheme(R.style.MaterialCalendarTheme).setSelection(selectedDate.time)
+            .setTitleText(getString(R.string.select_date)).build()
 
         datePicker.addOnPositiveButtonClickListener {
             selectedDate = Date(it)
