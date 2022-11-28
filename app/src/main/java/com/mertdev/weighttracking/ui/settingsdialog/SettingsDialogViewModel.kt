@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.mertdev.weighttracking.data.repo.DataStoreRepo
 import com.mertdev.weighttracking.data.repo.MeasurementRepo
 import com.mertdev.weighttracking.data.repo.WeightRepo
+import com.mertdev.weighttracking.utils.enums.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -19,67 +20,63 @@ class SettingsDialogViewModel @Inject constructor(
     private val measurementRepo: MeasurementRepo
 ) : ViewModel() {
 
-    sealed class Event {
-        object PopBackStack : Event()
-    }
-
     private val eventChannel = Channel<Event>()
     val eventFlow = eventChannel.receiveAsFlow()
 
     fun saveHeight(height: Float) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveHeight(height)
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
     fun saveHeightUnit(heightUnit: String) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveHeightUnit(heightUnit)
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
     fun saveGender(gender: String) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveGender(gender)
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
     fun saveWeightUnit(weightUnit: String) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveWeightUnit(weightUnit)
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
     fun saveTargetWeight(targetWeight: Float) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveTargetWeight(targetWeight)
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
     fun saveNumberOfChartData(numberOfChartData: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepo.saveNumberOfChartData(numberOfChartData)
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
-    fun deleteWeightTable(){
+    fun deleteWeightTable() {
         viewModelScope.launch(Dispatchers.IO) {
             weightRepo.deleteWeightTable()
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
-    fun deleteMeasurementAndMeasurementContentTable(){
+    fun deleteMeasurementAndMeasurementContentTable() {
         viewModelScope.launch(Dispatchers.IO) {
             measurementRepo.deleteMeasurementTable()
             measurementRepo.deleteMeasurementContentTable()
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 

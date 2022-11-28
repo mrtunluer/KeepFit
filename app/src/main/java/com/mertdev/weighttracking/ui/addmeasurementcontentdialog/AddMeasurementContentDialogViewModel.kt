@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mertdev.weighttracking.data.entity.MeasurementContent
 import com.mertdev.weighttracking.data.repo.MeasurementRepo
+import com.mertdev.weighttracking.utils.enums.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -17,10 +18,6 @@ class AddMeasurementContentDialogViewModel @Inject constructor(
     private val measurementRepo: MeasurementRepo
 ) : ViewModel() {
 
-    sealed class Event {
-        object PopBackStack : Event()
-    }
-
     private val eventChannel = Channel<Event>()
     val eventFlow = eventChannel.receiveAsFlow()
 
@@ -30,14 +27,14 @@ class AddMeasurementContentDialogViewModel @Inject constructor(
     fun insertMeasurementContent(measurementContent: MeasurementContent) {
         viewModelScope.launch(Dispatchers.IO) {
             measurementRepo.insertMeasurementContent(measurementContent)
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
     fun updateMeasurementContent(measurementContent: MeasurementContent) {
         viewModelScope.launch(Dispatchers.IO) {
             measurementRepo.updateMeasurementContent(measurementContent)
-            eventChannel.send(Event.PopBackStack)
+            eventChannel.send(Event.BACK)
         }
     }
 
