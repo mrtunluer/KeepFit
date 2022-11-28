@@ -15,8 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val weightRepo: WeightRepo,
-    private val dataStoreRepo: DataStoreRepo
+    private val weightRepo: WeightRepo, private val dataStoreRepo: DataStoreRepo
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<DataStatus<WeightUiModel>>(DataStatus.Loading())
