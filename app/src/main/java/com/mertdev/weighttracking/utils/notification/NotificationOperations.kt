@@ -17,9 +17,7 @@ object NotificationOperations {
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                NOTIFICATION_ID,
-                NOTIFICATION_NAME,
-                NotificationManager.IMPORTANCE_DEFAULT
+                NOTIFICATION_ID, NOTIFICATION_NAME, NotificationManager.IMPORTANCE_DEFAULT
             )
             applicationContext.getSystemService(
                 NotificationManager::class.java
@@ -57,16 +55,11 @@ object NotificationOperations {
             applicationContext.getSystemService(Application.ALARM_SERVICE) as AlarmManager
 
         alarmManager.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            time.timeInMillis,
-            AlarmManager.INTERVAL_DAY,
-            pendingIntent
+            AlarmManager.RTC_WAKEUP, time.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent
         )
 
         alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            time.timeInMillis,
-            pendingIntent
+            AlarmManager.RTC_WAKEUP, time.timeInMillis, pendingIntent
         )
     }
 
