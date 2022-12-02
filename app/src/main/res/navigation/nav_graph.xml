@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.mertdev.weighttracking.ui.onboarding.OnBoardingFragment"
+        android:name="com.mertdev.keepfit.ui.onboarding.OnBoardingFragment"
         android:label="OnBoardingFragment"
         tools:layout="@layout/fragment_on_boarding">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.mertdev.weighttracking.ui.home.HomeFragment"
+        android:name="com.mertdev.keepfit.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -36,16 +36,16 @@
 
     <dialog
         android:id="@+id/addWeightDialogFragment"
-        android:name="com.mertdev.weighttracking.ui.addweightdialog.AddWeightDialogFragment"
+        android:name="com.mertdev.keepfit.ui.addweightdialog.AddWeightDialogFragment"
         android:label="AddWeightDialogFragment">
         <argument
             android:name="weightUiModel"
-            app:argType="com.mertdev.weighttracking.uimodel.WeightUiModel" />
+            app:argType="com.mertdev.keepfit.uimodel.WeightUiModel" />
     </dialog>
 
     <dialog
         android:id="@+id/allWeightDialogFragment"
-        android:name="com.mertdev.weighttracking.ui.allweightdialog.AllWeightDialogFragment"
+        android:name="com.mertdev.keepfit.ui.allweightdialog.AllWeightDialogFragment"
         android:label="AllWeightDialogFragment"
         tools:layout="@layout/all_value_dialog">
         <action
@@ -55,16 +55,16 @@
 
     <dialog
         android:id="@+id/bmiDialogFragment"
-        android:name="com.mertdev.weighttracking.ui.bmidialog.BmiDialogFragment"
+        android:name="com.mertdev.keepfit.ui.bmidialog.BmiDialogFragment"
         android:label="BmiDialogFragment">
         <argument
             android:name="weightUiModel"
-            app:argType="com.mertdev.weighttracking.uimodel.WeightUiModel" />
+            app:argType="com.mertdev.keepfit.uimodel.WeightUiModel" />
     </dialog>
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.mertdev.weighttracking.ui.settings.SettingsFragment"
+        android:name="com.mertdev.keepfit.ui.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings">
         <action
@@ -74,16 +74,16 @@
 
     <dialog
         android:id="@+id/settingsDialogFragment"
-        android:name="com.mertdev.weighttracking.ui.settingsdialog.SettingsDialogFragment"
+        android:name="com.mertdev.keepfit.ui.settingsdialog.SettingsDialogFragment"
         android:label="SettingsDialogFragment">
         <argument
             android:name="settingsUiModel"
-            app:argType="com.mertdev.weighttracking.uimodel.SettingsUiModel" />
+            app:argType="com.mertdev.keepfit.uimodel.SettingsUiModel" />
     </dialog>
 
     <fragment
         android:id="@+id/measurementFragment"
-        android:name="com.mertdev.weighttracking.ui.measurement.MeasurementFragment"
+        android:name="com.mertdev.keepfit.ui.measurement.MeasurementFragment"
         android:label="MeasurementFragment"
         tools:layout="@layout/fragment_measurement">
         <action
@@ -96,24 +96,24 @@
 
     <dialog
         android:id="@+id/addMeasurementDialogFragment"
-        android:name="com.mertdev.weighttracking.ui.addmeasurementdialog.AddMeasurementDialogFragment"
+        android:name="com.mertdev.keepfit.ui.addmeasurementdialog.AddMeasurementDialogFragment"
         android:label="fragment_add_measurement_dialog"
         tools:layout="@layout/fragment_add_measurement_dialog">
         <argument
             android:name="measurement"
             android:defaultValue="@null"
-            app:argType="com.mertdev.weighttracking.data.entity.Measurement"
+            app:argType="com.mertdev.keepfit.data.entity.Measurement"
             app:nullable="true" />
     </dialog>
 
     <fragment
         android:id="@+id/measurementContentFragment"
-        android:name="com.mertdev.weighttracking.ui.measurementcontent.MeasurementContentFragment"
+        android:name="com.mertdev.keepfit.ui.measurementcontent.MeasurementContentFragment"
         android:label="fragment_measurement_content"
         tools:layout="@layout/fragment_measurement_content">
         <argument
             android:name="measurement"
-            app:argType="com.mertdev.weighttracking.data.entity.Measurement" />
+            app:argType="com.mertdev.keepfit.data.entity.Measurement" />
         <action
             android:id="@+id/action_measurementContentFragment_to_addMeasurementContentDialogFragment"
             app:destination="@id/addMeasurementContentDialogFragment" />
@@ -124,21 +124,21 @@
 
     <dialog
         android:id="@+id/addMeasurementContentDialogFragment"
-        android:name="com.mertdev.weighttracking.ui.addmeasurementcontentdialog.AddMeasurementContentDialogFragment"
+        android:name="com.mertdev.keepfit.ui.addmeasurementcontentdialog.AddMeasurementContentDialogFragment"
         android:label="fragment_add_measurement_content_dialog"
         tools:layout="@layout/fragment_add_measurement_content_dialog">
         <argument
             android:name="measurementUiModel"
-            app:argType="com.mertdev.weighttracking.uimodel.MeasurementUiModel" />
+            app:argType="com.mertdev.keepfit.uimodel.MeasurementUiModel" />
     </dialog>
 
     <dialog
         android:id="@+id/allMeasurementContentDialogFragment"
-        android:name="com.mertdev.weighttracking.ui.allmeasurementcontentdialog.AllMeasurementContentDialogFragment"
+        android:name="com.mertdev.keepfit.ui.allmeasurementcontentdialog.AllMeasurementContentDialogFragment"
         android:label="AllMeasurementContentDialogFragment">
         <argument
             android:name="measurementUiModel"
-            app:argType="com.mertdev.weighttracking.uimodel.MeasurementUiModel" />
+            app:argType="com.mertdev.keepfit.uimodel.MeasurementUiModel" />
         <action
             android:id="@+id/action_allMeasurementContentDialogFragment_to_addMeasurementContentDialogFragment"
             app:destination="@id/addMeasurementContentDialogFragment" />

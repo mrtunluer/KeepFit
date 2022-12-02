@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         jcenter()
     }
 }
-rootProject.name = "Weight Tracking"
+rootProject.name = "KeepFit"
 include ':app'
