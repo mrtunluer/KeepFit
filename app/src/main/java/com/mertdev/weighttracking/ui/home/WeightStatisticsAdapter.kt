@@ -10,9 +10,10 @@ import com.mertdev.weighttracking.data.entity.Weight
 import com.mertdev.weighttracking.databinding.StatisticsItemBinding
 import com.mertdev.weighttracking.utils.extensions.showDateWithDay
 
-class WeightStatisticsAdapter : ListAdapter<Weight, WeightStatisticsAdapter.ViewHolder>(DifferCallback) {
+class WeightStatisticsAdapter :
+    ListAdapter<Weight, WeightStatisticsAdapter.ViewHolder>(DifferCallback) {
 
-     object DifferCallback : DiffUtil.ItemCallback<Weight>() {
+    object DifferCallback : DiffUtil.ItemCallback<Weight>() {
         override fun areItemsTheSame(oldItem: Weight, newItem: Weight): Boolean {
             return oldItem.id == newItem.id
         }
@@ -23,12 +24,9 @@ class WeightStatisticsAdapter : ListAdapter<Weight, WeightStatisticsAdapter.View
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding =
-            StatisticsItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        val binding = StatisticsItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         return ViewHolder(binding)
     }
 

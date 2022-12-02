@@ -14,8 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllMeasurementContentViewModel @Inject constructor(
-    private val measurementRepo: MeasurementRepo,
-    savedStateHandle: SavedStateHandle
+    private val measurementRepo: MeasurementRepo, savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<DataStatus<MeasurementUiModel>>(DataStatus.Loading())
@@ -29,19 +28,18 @@ class AllMeasurementContentViewModel @Inject constructor(
     private fun fetchData(measurementId: Int?) {
         viewModelScope.launch(Dispatchers.IO) {
             measurementId?.let { id ->
-                measurementRepo.getMeasurementContent(id)
-                    .catch { exception ->
-                        _uiState.value = DataStatus.Error(exception.message.toString())
-                    }.collectLatest { contentList ->
-                        _uiState.value = DataStatus.Success(
-                            MeasurementUiModel(
-                                measurementId = id,
-                                allMeasurementContent = contentList,
-                                lengthUnit = measurementUiModel?.lengthUnit,
-                                measurementName = measurementUiModel?.measurementName
-                            )
+                measurementRepo.getMeasurementContent(id).catch { exception ->
+                    _uiState.value = DataStatus.Error(exception.message.toString())
+                }.collectLatest { contentList ->
+                    _uiState.value = DataStatus.Success(
+                        MeasurementUiModel(
+                            measurementId = id,
+                            allMeasurementContent = contentList,
+                            lengthUnit = measurementUiModel?.lengthUnit,
+                            measurementName = measurementUiModel?.measurementName
                         )
-                    }
+                    )
+                }
             }
         }
     }

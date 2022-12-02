@@ -10,25 +10,27 @@ import com.mertdev.weighttracking.data.entity.MeasurementContent
 import com.mertdev.weighttracking.databinding.StatisticsItemBinding
 import com.mertdev.weighttracking.utils.extensions.showDateWithDay
 
-class ContentStatisticsAdapter : ListAdapter<MeasurementContent, ContentStatisticsAdapter.ViewHolder>(DifferCallback) {
+class ContentStatisticsAdapter :
+    ListAdapter<MeasurementContent, ContentStatisticsAdapter.ViewHolder>(DifferCallback) {
 
     object DifferCallback : DiffUtil.ItemCallback<MeasurementContent>() {
-        override fun areItemsTheSame(oldItem: MeasurementContent, newItem: MeasurementContent): Boolean {
+        override fun areItemsTheSame(
+            oldItem: MeasurementContent, newItem: MeasurementContent
+        ): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: MeasurementContent, newItem: MeasurementContent): Boolean {
+        override fun areContentsTheSame(
+            oldItem: MeasurementContent, newItem: MeasurementContent
+        ): Boolean {
             return oldItem == newItem
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding =
-            StatisticsItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        val binding = StatisticsItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         return ViewHolder(binding)
     }
 

@@ -35,25 +35,20 @@ object MathematicalOperations {
                     val progress = median.minus(min).absoluteValue
                     binding.horizontalProgress.progress =
                         progress.div(progressMax).times(100).toInt()
-                } else if (min == currentWeight && max == firstWeight)
-                    binding.horizontalProgress.progress = 100
-                else if (max == currentWeight && min == firstWeight)
-                    binding.horizontalProgress.progress = 100
-                else
-                    binding.horizontalProgress.progress = 0
+                } else if (min == currentWeight && max == firstWeight) binding.horizontalProgress.progress =
+                    100
+                else if (max == currentWeight && min == firstWeight) binding.horizontalProgress.progress =
+                    100
+                else binding.horizontalProgress.progress = 0
             }
         }
 
     fun calculateBmi(data: WeightUiModel, binding: FragmentHomeBinding) = with(data) {
-        val weight: Float? = if (weightUnit == LB)
-            currentWeight?.toKg()
-        else
-            currentWeight
+        val weight: Float? = if (weightUnit == LB) currentWeight?.toKg()
+        else currentWeight
 
-        val height: Float? = if (heightUnit == FT)
-            height?.toCm()?.div(100)?.pow(2)
-        else
-            height?.div(100)?.pow(2)
+        val height: Float? = if (heightUnit == FT) height?.toCm()?.div(100)?.pow(2)
+        else height?.div(100)?.pow(2)
 
         bmi = height?.let { weight?.div(it)?.round(1) }
 
@@ -61,36 +56,28 @@ object MathematicalOperations {
     }
 
     fun calculateIdealWeight(data: WeightUiModel, binding: FragmentHomeBinding) = with(data) {
-        val height: Float? = if (heightUnit == FT)
-            height?.toCm()
-        else
-            height
+        val height: Float? = if (heightUnit == FT) height?.toCm()
+        else height
 
-        val idealWeight: Float? = if (gender == MALE)
-            height?.idealWeightForMale()
-        else
-            height?.idealWeightForFemale()
+        val idealWeight: Float? = if (gender == MALE) height?.idealWeightForMale()
+        else height?.idealWeightForFemale()
 
-        binding.idealWeightTxt.text = if (weightUnit == LB)
-            idealWeight?.toLb().toString()
-        else
-            idealWeight?.toString()
+        binding.idealWeightTxt.text = if (weightUnit == LB) idealWeight?.toLb().toString()
+        else idealWeight?.toString()
     }
 
     fun calculateHealthyWeightRange(data: WeightUiModel, binding: FragmentHomeBinding) =
         with(data) {
-            val height: Float? = if (heightUnit == FT)
-                height?.toCm()?.div(100)?.pow(2)
-            else
-                height?.div(100)?.pow(2)
+            val height: Float? = if (heightUnit == FT) height?.toCm()?.div(100)?.pow(2)
+            else height?.div(100)?.pow(2)
 
             val firstWeight = height?.firstWeightOfHealthyWeightRange()
             val lastWeight = height?.lastWeightOfHealthyWeightRange()
 
-            binding.healthyWeightRangeTxt.text = if (weightUnit == LB)
-                firstWeight?.toLb().toString().plus(" - " + lastWeight?.toLb())
-            else
-                firstWeight?.toString().plus(" - $lastWeight")
+            binding.healthyWeightRangeTxt.text =
+                if (weightUnit == LB) firstWeight?.toLb().toString()
+                    .plus(" - " + lastWeight?.toLb())
+                else firstWeight?.toString().plus(" - $lastWeight")
         }
 
     fun setRemainderWeight(data: WeightUiModel, binding: FragmentHomeBinding, context: Context) {

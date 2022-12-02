@@ -12,8 +12,9 @@ import com.mertdev.weighttracking.data.entity.MeasurementContent
 import com.mertdev.weighttracking.utils.extensions.showDateWithoutYear
 
 @SuppressLint("ViewConstructor")
-class MeasurementContentChartMarkerView(context: Context, private var measurementContentList: List<MeasurementContent>) :
-    MarkerView(context, R.layout.marker_view) {
+class MeasurementContentChartMarkerView(
+    context: Context, private var measurementContentList: List<MeasurementContent>
+) : MarkerView(context, R.layout.marker_view) {
 
     private var valueTxt: TextView? = null
     private var dateTxt: TextView? = null
