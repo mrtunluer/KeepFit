@@ -11,4 +11,4 @@ data class SettingsUiModel(
     var numberOfChartData: Int? = null,
     var isDeleteAllWeightData: Boolean? = null,
     var isDeleteAllMeasurementData: Boolean? = null
-): Serializable
+) : Serializable

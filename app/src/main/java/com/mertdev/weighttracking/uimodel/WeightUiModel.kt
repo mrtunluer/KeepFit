@@ -20,4 +20,4 @@ data class WeightUiModel(
     var numberOfChartData: Int? = null,
     var bmi: Float? = null,
     var isShowEmptyLayout: Boolean? = null
-): Serializable
+) : Serializable

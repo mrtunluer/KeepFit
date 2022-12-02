@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNav() {
-        val navController = findNavController( R.id.fragmentContainer)
+        val navController = findNavController(R.id.fragmentContainer)
         binding.bottomNavigationView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->

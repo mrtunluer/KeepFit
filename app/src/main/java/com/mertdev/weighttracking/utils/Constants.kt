@@ -36,6 +36,7 @@ object Constants {
     const val NOTIFICATION_ID = "REMINDER_NOTIFICATION"
     const val NOTIFICATION_NAME = "Reminder Notification"
     const val NOTIFY_ID = 200
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     const val NOTIFICATION_PERMISSION = Manifest.permission.POST_NOTIFICATIONS
 }

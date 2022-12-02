@@ -105,7 +105,8 @@ class DataStoreRepo @Inject constructor(@ApplicationContext private val context:
             val targetWeight = preference[PreferenceKeys.targetWeight]
             val height = preference[PreferenceKeys.height]
             val gender = preference[PreferenceKeys.gender]
-            val numberOfChartData = preference[PreferenceKeys.numberOfChartData] ?: NUMBER_OF_INITIAL_DATA_IN_CHART
+            val numberOfChartData =
+                preference[PreferenceKeys.numberOfChartData] ?: NUMBER_OF_INITIAL_DATA_IN_CHART
             val weightUiModel = WeightUiModel(
                 weightUnit = weightUnit,
                 heightUnit = heightUnit,

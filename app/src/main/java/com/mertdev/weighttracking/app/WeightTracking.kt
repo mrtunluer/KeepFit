@@ -5,7 +5,7 @@ import com.mertdev.weighttracking.utils.notification.NotificationOperations
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class WeightTracking : Application(){
+class WeightTracking : Application() {
 
     override fun onCreate() {
         super.onCreate()

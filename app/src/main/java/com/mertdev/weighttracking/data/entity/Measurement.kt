@@ -12,7 +12,7 @@ data class Measurement(
     val name: String?,
     val lengthUnit: String?,
     val date: Date?
-): Serializable
+) : Serializable
 
 @Entity
 data class MeasurementContent(

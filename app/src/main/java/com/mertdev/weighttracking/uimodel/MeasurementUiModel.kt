@@ -18,4 +18,4 @@ data class MeasurementUiModel(
     var lengthUnit: String? = null,
     var numberOfChartData: Int? = null,
     var isShowEmptyLayout: Boolean? = null
-): Serializable
+) : Serializable
