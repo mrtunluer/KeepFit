@@ -11,7 +11,7 @@ The application adopts MVVM architecture, consists of 1 root activity and severa
 
 ## Libraries And Tech Stack
 
-- <a href="https://developer.android.com/topic/libraries/architecture/viewmodel">MVVM Architecture</a> - The ViewModel class is a business logic or screen level state holder. It exposes state to the UI and encapsulates related business logic.
+- <a href="https://developer.android.com/topic/architecture">MVVM Architecture</a> - Model-View-ViewModel (MVVM) is a software design pattern that is structured to separate program logic and user interface controls.
 - <a href="https://developer.android.com/guide/navigation">Navigation</a> - Navigation refers to the interactions that allow users to navigate across, into, and back out from the different pieces of content within your app.
 - <a href="https://developer.android.com/training/dependency-injection/hilt-android">Hilt</a> - Hilt is a dependency injection library for Android that reduces the boilerplate of doing manual dependency injection in your project.
 - <a href="https://developer.android.com/topic/libraries/architecture/datastore">DataStore</a> - Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers.
