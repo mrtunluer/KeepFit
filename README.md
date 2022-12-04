@@ -1,6 +1,6 @@
 # KeepFit
 
-KeppFit is a weight tracking app, helps you to reach your target weight.You can also track your body measurements.
+KeppFit is a weight tracking app, helps you to reach your target weight. You can also track your body measurements.
 
 ## ScreenShots
 
