@@ -4,9 +4,10 @@ KeppFit is a weight tracking app, helps you to reach your target weight. You can
 
 ## ScreenShots
 
-![Apple iPhone 11 Pro Max Presentation-min](https://user-images.githubusercontent.com/75806927/205513186-b9a18f17-4309-44b2-8b2e-fad7f7c4ae87.png)
+![Apple iPhone 11 Pro Max Presentation-min](https://user-images.githubusercontent.com/75806927/205656486-ed1cbe92-90e7-4dd6-b363-97dd986544de.png)
 
 ## Architecture
+
 The application adopts MVVM architecture, consists of 1 root activity and several fragments. It is used for navigation, data transfer and switching between fragments.
 
 ## Libraries And Tech Stack
