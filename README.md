@@ -2,15 +2,17 @@
 
 KeppFit is a weight tracking app, helps you to reach your target weight. You can also track your body measurements.
 
-## ScreenShots
+<a href="https://play.google.com/store/apps/details?id=com.mertdev.keepfit" target="_blank"><img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
+
+### ScreenShots
 
 ![Apple iPhone 11 Pro Max Presentation-min](https://user-images.githubusercontent.com/75806927/205656486-ed1cbe92-90e7-4dd6-b363-97dd986544de.png)
 
-## Architecture
+### Architecture
 
 The application adopts MVVM architecture, consists of 1 root activity and several fragments. It is used for navigation, data transfer and switching between fragments.
 
-## Libraries And Tech Stack
+### Libraries And Tech Stack
 
 - <a href="https://developer.android.com/topic/architecture">MVVM Architecture</a> - Model-View-ViewModel (MVVM) is a software design pattern that is structured to separate program logic and user interface controls.
 - <a href="https://developer.android.com/guide/navigation">Navigation</a> - Navigation refers to the interactions that allow users to navigate across, into, and back out from the different pieces of content within your app.
