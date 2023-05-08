@@ -37,7 +37,7 @@ abstract class SwipeGesture(private val context: Context) :
             actionState,
             isCurrentlyActive
         )
-            .addBackgroundColor(ContextCompat.getColor(context, R.color.secondary_blue))
+            .addBackgroundColor(ContextCompat.getColor(context, R.color.red))
             .addActionIcon(R.drawable.ic_baseline_delete_24)
             .create()
             .decorate()
