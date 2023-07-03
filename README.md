@@ -2,8 +2,6 @@
 
 KeppFit is a weight tracking app, helps you to reach your target weight. You can also track your body measurements.
 
-<a href="https://play.google.com/store/apps/details?id=com.mertdev.keepfit" target="_blank"><img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height="90"/></a>
-
 ### ScreenShots
 
 ![Apple iPhone 11 Pro Max Presentation-min](https://user-images.githubusercontent.com/75806927/205656486-ed1cbe92-90e7-4dd6-b363-97dd986544de.png)
